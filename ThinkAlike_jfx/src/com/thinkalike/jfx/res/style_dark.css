@@ -1,0 +1,36 @@
+
+.root{
+	-fx-base: rgb(63, 63, 63);
+	-fx-background: rgb(73, 73, 73);
+    -fx-control-inner-background: white; /*black;*/
+    -fx-color: -fx-base;
+
+    /* For highlighting/accenting/focused objects. */
+    -fx-accent: derive(-fx-control-inner-background, -50%);
+    -fx-focus-color: derive(-fx-control-inner-background, -50%);
+
+    /* The color to use in ListView/TreeView/TableView to indicate hover. */
+    -fx-cell-hover-color: #cce3f4;         
+    -fx-cell-focus-inner-border: #85b9de;
+
+    /* The colors to use in Pagination */
+    -fx-page-bullet-border: #acacac;
+    -fx-page-indicator-hover-border: #accee5; 
+    
+    cell-separator-color: black;
+    text-cell-bkgcolor: -fx-control-inner-background;
+    text-cell-bkgcolor-odd: derive(-fx-control-inner-background, -50%);
+}
+
+#p_root {
+	-fx-background-color: black;
+}
+
+#sp_nodeSelector {
+    -fx-background-image: url("images/bkg_itempane.png");     
+}
+
+#sp_workarea {
+	-fx-background-color: rgba(0,0,0,0.6);
+}
+ 
