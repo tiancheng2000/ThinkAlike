@@ -1,0 +1,13 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/rl_workarea"
+    android:background="@color/alpha_grey"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="@string/title_workarea"
+		/>
+
+</RelativeLayout>

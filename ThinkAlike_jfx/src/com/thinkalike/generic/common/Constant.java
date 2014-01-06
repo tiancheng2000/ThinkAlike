@@ -47,10 +47,10 @@ public class Constant {
     	public static final String IsBusy = "isBusy";
     	//public static final String NodeType = "nodeType";
     	public static final String NodeList = "nodeList";
-    	public static final String PageBase = "pageBase";
+    	public static final String Node = "node";
     }
     
-    //--- ResourceView ------------------------------------
+    //--- NodeSelector ------------------------------------
     public static final String[] EXTENSIONS_IMAGE = new String[]{"jpg", "png", "gif", "jpeg", "bmp"};
     public static final String[] EXTENSIONS_TEXT = new String[]{"txt"};
     public static final String[] EXTENSIONS_VIDEO = new String[]{"3gp", "mp4", "wmv", "avi"};

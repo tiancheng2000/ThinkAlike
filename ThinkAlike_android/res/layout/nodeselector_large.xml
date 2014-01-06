@@ -1,0 +1,18 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/rl_nodeselector"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@drawable/bkg_itempane"
+	android:orientation="vertical">
+
+	<ListView
+		android:id="@+id/lv_nodelist"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_marginTop="70dp"
+		android:layout_marginBottom="6dp"
+		android:layout_marginLeft="14dp"
+		android:layout_marginRight="14dp"
+		android:cacheColorHint="#00000000" />
+
+</RelativeLayout>

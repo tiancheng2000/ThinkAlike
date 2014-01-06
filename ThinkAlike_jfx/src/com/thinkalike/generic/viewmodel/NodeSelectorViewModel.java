@@ -89,7 +89,7 @@ public class NodeSelectorViewModel extends ViewModelBase{
 			ImageNode[] imageNodes = NodeLoader.loadImageNodes(_currentNodeType);
 			_uiNodeList = new ArrayList<UINode>();
 			for (int i=0; i<imageNodes.length; i++){
-				_uiNodeList.add(new UIImageNode(uiContext, imageNodes[i], true));
+				_uiNodeList.add(new UIImageNode(uiContext, imageNodes[i], false)); //It will be more efficient to create platform-dependent ImageView after UI dimension(width & height) can be calculated. 
 			}           
 			Util.trace(LogTag.ViewModel, String.format("Load DO: _uiNodeList.size=%s", (_uiNodeList==null) ? "n/a" : _uiNodeList.size()));
 		}
