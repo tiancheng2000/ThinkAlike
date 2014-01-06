@@ -5,7 +5,7 @@ What's it?
 ----------
 It's an open source Java MVVM framework intending to help Cross-Platform development among Android and other JVM platform (e.g.Windows, MacOS).
 
-What's *NOT* it?
+What it is *NOT*
 ----------------
 * It's not Mono/Xamarin -- .Net solution is good. But in some cases, Java solution which is Android's Native language will be more than welcome.
 * It's not PhoneGap/Cordova -- Hybrid solution still has UI/UX shortcoming to some extent.
