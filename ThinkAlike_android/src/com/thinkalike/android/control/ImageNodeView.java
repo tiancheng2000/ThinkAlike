@@ -71,25 +71,25 @@ public class ImageNodeView extends ImageView implements IImageNodeView {
 			
 			//Method 1. Synchronized image loading
 //			Bitmap thumb = Util.createThumbFromFile(imagePath
-//													, Constant.NodeView.DEFAULT_RESOURCELIST_WIDTH
-//													, Constant.NodeView.DEFAULT_RESOURCELIST_HEIGHT);
+//													, Constant.NodeView.DEFAULT_NODELIST_WIDTH
+//													, Constant.NodeView.DEFAULT_NODELIST_HEIGHT);
 //			setImageBitmap(thumb);
 			
 			//Method 2. Asynchronized image loading, with hard-fix size
 //			MediaAsyncLoader.asyncLoadImageFile(imagePath,
-//												Constant.NodeView.DEFAULT_RESOURCELIST_WIDTH,
-//												Constant.NodeView.DEFAULT_RESOURCELIST_HEIGHT,
-//								_onNodeLoadListener);
+//												Constant.NodeView.DEFAULT_NODELIST_WIDTH,
+//												Constant.NodeView.DEFAULT_NODELIST_HEIGHT,
+//								_onMediaLoadListener);
 			
 			//Method 3. Asynchronized image loading, with hard-fix size
 			final ImageNodeView thisInstance = this;
 			this.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener(){
 					@Override
 					public boolean onPreDraw() {
-						thisInstance.getViewTreeObserver().removeOnPreDrawListener(this);  //<-- this is a must
+						thisInstance.getViewTreeObserver().removeOnPreDrawListener(this); //no longer handle this event
 						int width_image = Util.getActualLayoutWidth(thisInstance);
 						int height_image = Util.getActualLayoutHeight(thisInstance);
-						Util.trace(null, LogTag.ResourceThread, "ImageNodeView.setData, (width_image,height_image,image)=("+width_image+","+height_image+","+imagePath+")");
+						Util.trace(null, LogTag.ResourceThread, "ImageNodeView.update, (width_image,height_image,image)=("+width_image+","+height_image+","+imagePath+")");
 						MediaAsyncLoader.asyncLoadImageFile(imagePath, width_image, height_image, _onMediaLoadListener);
  						return true;
 					}

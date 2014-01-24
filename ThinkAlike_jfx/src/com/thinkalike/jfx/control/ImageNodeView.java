@@ -27,6 +27,11 @@ public class ImageNodeView extends ImageView implements IImageNodeView {
 		
 		if(uiData instanceof UIImageNode){
 			
+			//0.initialize according to context.
+			int width_limit, height_limit;
+			width_limit = Constant.NodeSelector.DEFAULT_NODELIST_WIDTH;
+			height_limit = Constant.NodeSelector.DEFAULT_NODELIST_HEIGHT;
+			
 			//1.set the default image: 
 			setImage(new Image(Res.getImageUrl("default_image.gif")));
 
@@ -35,17 +40,14 @@ public class ImageNodeView extends ImageView implements IImageNodeView {
 			final String imageUrl = Util.getAbsoluteUrl(((UIImageNode)uiData).getRelativePath());
 			
 			//Method 1. Synchronized image loading, with fixed size
-			Image thumb = Util.decodeThumbFromFile(imageUrl
-													, Constant.NodeSelector.DEFAULT_NODELIST_WIDTH
-													, Constant.NodeSelector.DEFAULT_NODELIST_HEIGHT);
-			
-			setImage(thumb);
+			Image image = Util.decodeThumbFromFile(imageUrl, width_limit, height_limit);
+			setImage(image);
 
 			//Method 2. Asynchronized image loading, with fixed size
 //			MediaAsyncLoader.asyncLoadImageFile(imagePath,
 //												Constant.NodeSelector.DEFAULT_NODELIST_WIDTH,
 //												Constant.NodeSelector.DEFAULT_NODELIST_HEIGHT,
-//								_onResourceLoadListener);
+//								_onMediaLoadListener);
 
 			//Method 3. Asynchronized image loading, with proper size
 //			final ImageNodeView thisInstance = this;
@@ -56,7 +58,7 @@ public class ImageNodeView extends ImageView implements IImageNodeView {
 //						int width_image = Util.getActualLayoutWidth(thisInstance);
 //						int height_image = Util.getActualLayoutHeight(thisInstance);
 //						Util.trace(null, LogTag.ResourceThread, "ImageNodeView.setData, (width_image,height_image)=("+width_image+","+height_image+")");
-//						MediaAsyncLoader.asyncLoadImageFile(imagePath, width_image, height_image, _onResourceLoadListener);
+//						MediaAsyncLoader.asyncLoadImageFile(imagePath, width_image, height_image, _onMediaLoadListener);
 // 						return true;
 //					}
 //			});

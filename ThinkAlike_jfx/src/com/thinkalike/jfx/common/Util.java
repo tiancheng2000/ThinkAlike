@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.Iterator;
 
 import javafx.embed.swing.SwingFXUtils;
@@ -80,10 +81,6 @@ public class Util extends com.thinkalike.generic.common.Util {
 	
 	
     //-- 2. File/Folder/Full Path related ----------------------------------------------------
-    public static String getAbsoluteUrl(String relativePath){
-    	return pathToUrl(getAbsolutePath(relativePath));
-    }
-
 	//-- 3. GUI: Image transaction related ----------------------------------------------------
     public static long calcImageSize(int width, int height, int bytePerPixcel){
     	return width * height * bytePerPixcel;
@@ -92,7 +89,8 @@ public class Util extends com.thinkalike.generic.common.Util {
     public static Dimension getImageSize(String imageUrl){
     	ImageInputStream in = null;
 		try {
-			in = ImageIO.createImageInputStream(imageUrl);
+			URL url = new URL(imageUrl);
+			in = ImageIO.createImageInputStream(url.openStream());
 			if(in == null){
 				Util.error(TAG, "getImageSize() failed: createImageInputStream failed");
 				return null;
@@ -130,14 +128,14 @@ public class Util extends com.thinkalike.generic.common.Util {
 
     	//1.get image size without loading it
     	int width=0, height=0;
-    	//Dimension imageSize = getImageSize(imageUrl); //TODO
-    	//if(imageSize!=null){
-    	//	width = imageSize.width;
-    	//	height = imageSize.height;
-    	//}
+    	Dimension imageSize = getImageSize(imageUrl);
+    	if(imageSize!=null){
+    		width = imageSize.width;
+    		height = imageSize.height;
+    	}
 		if(width>0 && height>0){
 			width = Math.min(width, width_limit);
-			height = Math.min(height, height_limit);           
+			height = Math.min(height, height_limit);
 		}
 		else{
 			width = width_limit;

@@ -35,8 +35,8 @@ import com.thinkalike.generic.viewmodel.control.UINode;
 public class NodeSelectorFragment extends Fragment {
 
 	//-- Constants and Enums --------------------------
-	private static final int[] ImageResIds = new int[]{R.drawable.btn_typea, R.drawable.btn_typeb, R.drawable.btn_typec, R.drawable.btn_typed, R.drawable.btn_typee}; 
-	private static final NodeType[] ItemValues = new NodeType[]{NodeType.TypeA, NodeType.TypeB, NodeType.TypeC, NodeType.TypeD, NodeType.TypeE};
+	private static final int[] ImageResIds = new int[]{R.drawable.btn_typea, R.drawable.btn_typeb, R.drawable.btn_typec, R.drawable.btn_typed, R.drawable.btn_typee, R.drawable.btn_typef, R.drawable.btn_typeg, R.drawable.btn_typeh, R.drawable.btn_typei, R.drawable.btn_typej, R.drawable.btn_typek}; 
+	private static final NodeType[] ItemValues = new NodeType[]{NodeType.TypeA, NodeType.TypeB, NodeType.TypeC, NodeType.TypeD, NodeType.TypeE, NodeType.TypeF, NodeType.TypeG, NodeType.TypeH, NodeType.TypeI, NodeType.TypeJ, NodeType.TypeK};
 	private static final NodeType DefaultValue = NodeType.TypeA;
 	/**
 	 * The serialization (saved instance state) Bundle key representing xxx
