@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>ThinkAlike_jfx</name>
+	<comment></comment>
+	<projects>
+		<project>ThinkAlike_generic</project>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.jdt.core.javabuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>org.eclipse.xtext.ui.shared.xtextBuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.xtext.ui.shared.xtextNature</nature>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>src/com/thinkalike/jfx/assets/ThinkAlike</name>
+			<type>2</type>
+			<location>J:/EP/Java/workspace_SmartClient/ThinkAlike/ThinkAlike_generic/assets/ThinkAlike</location>
+		</link>
+	</linkedResources>
+</projectDescription>
