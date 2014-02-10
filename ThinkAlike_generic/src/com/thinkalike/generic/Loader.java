@@ -17,6 +17,7 @@ public class Loader {
 	//-- Instance and Shared Fields ----------------------------
 	private static Loader _this;
 	private Platform _platform;
+	@SuppressWarnings("unused")
 	private OnLoaderEventListener _onLoaderEventListener;
 	
 	//-- Properties --------------------------------------------

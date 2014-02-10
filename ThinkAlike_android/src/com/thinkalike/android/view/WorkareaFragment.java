@@ -6,14 +6,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
-import android.widget.RelativeLayout.LayoutParams;
+import android.widget.Button;
 
 import com.thinkalike.R;
+import com.thinkalike.android.control.ImageNodeView;
 import com.thinkalike.generic.common.Constant;
 import com.thinkalike.generic.common.LogTag;
 import com.thinkalike.generic.common.Util;
-import com.thinkalike.generic.domain.Node;
 import com.thinkalike.generic.event.PropertyChangeEvent;
 import com.thinkalike.generic.event.PropertyChangeListener;
 import com.thinkalike.generic.viewmodel.WorkareaViewModel;
@@ -38,15 +37,19 @@ public class WorkareaFragment extends Fragment {
 	//private TextView _tv_content;
 	//private ImageView _iv_content;
 	private ProgressDialog _pd;
-	private RelativeLayout _rl_workarea;
+	private ImageNodeView _inv_nodeselected;
+	private Button _btn_OK;
 	
 	// FragmentCallbacks
 
 	// MVVM
 	private WorkareaViewModel _viewModel = null;
-	private PropertyChangeListener _listenToVM = null;  //listen to relative ViewModel. SHOULD be a instance variable. 
-														//Registration side (ViewModel) will only keep their WeakReference. 
-
+	/**
+	 * listen to relative ViewModel. SHOULD be an instance variable.<br>
+	 * Registration side (ViewModel) will only keep listener's WeakReference, so that View can be safely released.
+	 */
+	private PropertyChangeListener _listenToVM = null; 
+														
 	//-- Properties --------------------------
 	//-- Constructors --------------------------
 	/**
@@ -63,22 +66,19 @@ public class WorkareaFragment extends Fragment {
 		Util.trace(LogTag.LifeCycleManagement, String.format("%s: onCreate", getClass().getSimpleName()));
 		super.onCreate(savedInstanceState);
 
+		final WorkareaFragment thisInstance = this;
 		if(_viewModel == null){
 			_viewModel = WorkareaViewModel.getInstance();
-			_viewModel.addPropertyChangeListener(Constant.PropertyName.IsBusy, new PropertyChangeListener(){
-				@Override
-				public void onPropertyChanged(PropertyChangeEvent event) {
-					if (event.getPropertyName().equals(Constant.PropertyName.IsBusy)){
-						//turn on/off circular progress bar 
-						showProgressBar((Boolean)event.getNewValue());
-					}
-				}
-			});
 			_listenToVM = new PropertyChangeListener(){
 				@Override
 				public void onPropertyChanged(PropertyChangeEvent event) {
+					Util.trace(LogTag.ViewModel, String.format("[IProperty] PropertyChanged(name=%s, value=%s, listener=%s)", event.getPropertyName(), event.getNewValue(), thisInstance.getClass().getSimpleName()));
 					if (event.getPropertyName().equals(Constant.PropertyName.Node)){
 						updateWorkarea((UINode)event.getNewValue());
+					}
+					else if (event.getPropertyName().equals(Constant.PropertyName.IsBusy)){
+						//turn on/off circular progress bar 
+						showProgressBar((Boolean)event.getNewValue());
 					}
 				}
 			};
@@ -103,14 +103,13 @@ public class WorkareaFragment extends Fragment {
 				container, false); //kw: 3rd param must be false -- Android SDK
 
 		//initialize Editor's canvas based on DOs (Page[])
-		_rl_workarea = (RelativeLayout) rootView.findViewById(R.id.rl_workarea); 
-		
-//		_tv_content = (TextView) rootView.findViewById(R.id.tv_item_detail);
-//		_iv_content = (ImageView) rootView.findViewById(R.id.iv_item_detail);
+		_btn_OK = (Button) rootView.findViewById(R.id.btn_ok); 
+		_btn_OK.setVisibility(View.INVISIBLE);
+		_inv_nodeselected = (ImageNodeView) rootView.findViewById(R.id.iv_nodeselected); 
+		//NOTE: if ImageView/ImageNodeView is instantiated dynamically without its dimensions specified, use the following callback instead. 
+
 //		if (_item != null) {
-//			String contentText = (String)_item.getProperty(Constant.PropertyName.Content);
-//			final String imagePath = contentText;
-//			_tv_content.setText(contentText);
+//			final String imagePath = (String)_item.getProperty(Constant.PropertyName.Content);
 //			_iv_content.setImageDrawable(getResources().getDrawable(R.drawable.placeholder_image)); //default image (inner resource)
 //			//IMPROVE: (in onCreateView()) rootView.getWidth()/getHeight() or container.getWidth()/getHeight() can only get 0 value.
 //			//IMPROVE: (in onResume()) _iv_content's w/h cannot be retrieved even here.., even recursively to its parents.
@@ -163,16 +162,29 @@ public class WorkareaFragment extends Fragment {
 	}
 
 	private void updateWorkarea(UINode uiNode){
+		if (uiNode == null){
+			_inv_nodeselected.setImageBitmap(null);
+			_btn_OK.setVisibility(View.INVISIBLE);
+			return;
+		}
+
 		INodeView nodeView = uiNode.getView();
-		if (!(nodeView instanceof View)){
+		if(nodeView==null){
+			nodeView = uiNode.attachView(_inv_nodeselected); //attach and update uiData to an existed raw ImageView 
+			_btn_OK.setVisibility(View.VISIBLE);
+		}
+		else if (!(nodeView instanceof View)){
+			//...
+		}
+		else {
 			Util.error(TAG, "updateWorkarea(): uiNode's view type is incompatible: " + ((nodeView==null)?null:nodeView.getClass().getSimpleName()));
 			return;
 		}
-		RelativeLayout.LayoutParams rlp = new RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-		rlp.addRule(RelativeLayout.CENTER_IN_PARENT);
-		_rl_workarea.addView((View)nodeView, rlp);
-		//nodeView.onParentViewChanged(_rl_workarea);
-		//Otherwise, use INodeView.attachedToView(_rl_workarea) instead.
+//		RelativeLayout.LayoutParams rlp = new RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+//		rlp.addRule(RelativeLayout.CENTER_IN_PARENT);
+//		_rl_workarea.addView((View)nodeView, rlp);
+//		//nodeView.onParentViewChanged(_rl_workarea);
+//		//Otherwise, use INodeView.attachedToView(_rl_workarea) instead.
 	}
 	
 	//-- Event Handlers --------------------------

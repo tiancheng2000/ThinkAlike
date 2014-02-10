@@ -4,7 +4,7 @@ package com.thinkalike.generic.domain;
  * base interface for parent-child relationship manipulation
  */
 public interface Node {
-
+	
 	/*
 	//Event Handler
 	public interface OnChildrenChangeListener {
@@ -15,6 +15,7 @@ public interface Node {
 		public boolean onInsertedTo(Node newParent);
 	}
 
+	//Hierarchy operations
 	public Node appendChild(Node newChild);
 	public boolean hasChildNodes(); 
 	public int indexOfChild(Node child); 

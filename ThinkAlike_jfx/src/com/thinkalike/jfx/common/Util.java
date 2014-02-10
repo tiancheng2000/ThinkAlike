@@ -1,7 +1,6 @@
 package com.thinkalike.jfx.common;
 
 import java.awt.Dimension;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -56,6 +55,7 @@ public class Util extends com.thinkalike.generic.common.Util {
 	//-- Base Class Overrides ----------------------------------
 	//-- Public and internal Methods ---------------------------
     //-- 1. Message Output / Logging (Android Implementation) related ------
+	@SuppressWarnings("deprecation")
 	public static void logFile(String tag, String message, int level) {
     	if (Config.LOGGING_USING_LOGFILE){
     		if (Config.LogLevel_UsingLogFile <= level){

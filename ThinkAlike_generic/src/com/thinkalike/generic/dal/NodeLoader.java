@@ -13,7 +13,6 @@ import com.thinkalike.generic.domain.NodeType;
 
 public class NodeLoader {
 	//-- Constants and Enums -----------------------------------
-	private final static String TAG = NodeLoader.class.getSimpleName();
 	// NodeType-AssetsPath Map
 	private final static Map<NodeType, String> NodeType_AssetsPath_Map = new HashMap<NodeType, String>();
 	private final static NodeType[] NodeTypeList = new NodeType[]{NodeType.TypeA, NodeType.TypeB, NodeType.TypeC, NodeType.TypeD, NodeType.TypeE, NodeType.TypeF, NodeType.TypeG, NodeType.TypeH, NodeType.TypeI, NodeType.TypeJ, NodeType.TypeK }; 

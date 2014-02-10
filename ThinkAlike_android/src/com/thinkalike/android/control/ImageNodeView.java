@@ -34,7 +34,7 @@ public class ImageNodeView extends ImageView implements IImageNodeView {
 		this(context, null);
 	}
 	public ImageNodeView(Context context, AttributeSet attrs) {
-		super(context);
+		super(context, attrs); //NOTE: if you call "super(context)", findViewById() will return null! 
 		//_dragNodeDelegate = new DragSourceImpl(this);
 		_context = context;
 		_onMediaLoadListener = new OnMediaLoadListener() {

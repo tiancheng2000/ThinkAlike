@@ -25,6 +25,8 @@ public class ViewModelBase {
 		if (_isBusy != value) {
 			boolean oldValue = _isBusy;
 			_isBusy = value;
+			//NOTE: there will be no ambiguity even though PropertyName may be duplicated between VMs. 
+			//       because every VM instantiate its own _pcs, managing register/unregister/fire PropertyChanges.
 			_pcs.firePropertyChange(Constant.PropertyName.IsBusy, oldValue, value);
         }
 	}

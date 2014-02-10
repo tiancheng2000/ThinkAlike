@@ -9,24 +9,25 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ContentDisplay;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
-import javafx.scene.text.Text;
+import javafx.scene.layout.TilePane;
+import javafx.scene.layout.VBox;
 import javafx.util.Callback;
 
 import com.thinkalike.generic.common.Constant;
 import com.thinkalike.generic.common.LogTag;
 import com.thinkalike.generic.common.Util;
-import com.thinkalike.generic.domain.DomainUtil;
 import com.thinkalike.generic.domain.NodeType;
 import com.thinkalike.generic.event.PropertyChangeEvent;
 import com.thinkalike.generic.event.PropertyChangeListener;
@@ -35,6 +36,7 @@ import com.thinkalike.generic.viewmodel.WorkareaViewModel;
 import com.thinkalike.generic.viewmodel.control.INodeView;
 import com.thinkalike.generic.viewmodel.control.UIImageNode;
 import com.thinkalike.generic.viewmodel.control.UINode;
+import com.thinkalike.jfx.control.ImageNodeView;
 import com.thinkalike.jfx.res.Res;
 
 public class MainScene extends AnchorPane implements Initializable {
@@ -113,15 +115,15 @@ public class MainScene extends AnchorPane implements Initializable {
 				return;
 			}
 
-			//refine context-related UINode attributes
+			//TODO: refine context-related UINode attributes
 			if(item instanceof UIImageNode){
 				
 			}
 				
 			if(item.getView() == null)
 				item.createView();
-			if(item.getView() instanceof Node)
-				setGraphic((Node)item.getView());
+			if(item.getView() instanceof javafx.scene.Node)
+				setGraphic((javafx.scene.Node)item.getView());
 			else
 				setText(String.format("<Invalid ListCell>: %s", (item.getView()==null)?"null":item.getView().getClass().getSimpleName()));
 		}
@@ -139,11 +141,41 @@ public class MainScene extends AnchorPane implements Initializable {
 	@FXML
 	StackPane sp_workarea;
 	@FXML
-	Pane p_work;
+	TilePane tp_work;
 	@FXML
-	Text txt_nodeContent;
+	VBox vb_work;
 	@FXML
-	ImageView iv_nodeContent;
+	Label lb_nodeContent;
+	@FXML
+	//ImageView iv_nodeContent;
+	//ImageNodeViewDelegate _inv_nodeContent;
+	ImageNodeView inv_nodeContent;
+	@FXML
+	Button btn_OK;
+	@FXML
+	HBox hb_nodefilters;
+	@FXML
+	Button btn_nodefilter_type;
+	@FXML
+	Button btn_nodefilter_all;
+	@FXML
+	Button btn_nodefilter_0;
+	@FXML
+	Button btn_nodefilter_1;
+	@FXML
+	Button btn_nodefilter_2;
+	@FXML
+	Button btn_nodefilter_3;
+	@FXML
+	Button btn_nodefilter_4;
+	@FXML
+	Button btn_nodefilter_5;
+	@FXML
+	Button btn_nodefilter_6;
+	@FXML
+	Button btn_nodefilter_7;
+	@FXML
+	Button btn_nodefilter_custom;
 
 	//MVVM
 	private NodeSelectorViewModel _vm_nodeSelector = null;
@@ -211,11 +243,13 @@ public class MainScene extends AnchorPane implements Initializable {
 	            new ChangeListener<UINode>() {
 	                public void changed(ObservableValue<? extends UINode> ov, 
 	                		UINode old_val, UINode new_val) {
-	                	if(_vm_workarea!=null){
-	                		_vm_workarea.setUINode(new_val);
+	                	if(_vm_nodeSelector!=null){
+	                		_vm_nodeSelector.onNodeSelected(new_val);
 	                	}
 	                }
 	            });
+		//WorkArea
+		this.btn_OK.setVisible(false);
 
 		//1.ViewModel related: 1.IProperty event for UI Update 2.ICommand for dispatching UI Command to ViewModel
 		//FD: 1.通过ICommand模式，实现onNodeTypeChanged()
@@ -231,7 +265,14 @@ public class MainScene extends AnchorPane implements Initializable {
 				public void onPropertyChanged(PropertyChangeEvent event) {
 					Util.trace(LogTag.ViewModel, String.format("[IProperty] PropertyChanged(name=%s, value=%s, listener=%s)", event.getPropertyName(), event.getNewValue(), thisInstance.getClass().getSimpleName()));
 					assert(event.getPropertyName().equals(Constant.PropertyName.NodeList));
+					@SuppressWarnings("unchecked")
 					List<UINode> nodeList = (List<UINode>)event.getNewValue();
+					//update platform-specific VO attributes here
+					for (UINode uiNode : nodeList){
+						if (uiNode instanceof UIImageNode)
+							((UIImageNode)uiNode).setFitDimension(com.thinkalike.jfx.common.Constant.NodeSelector.DEFAULT_NODELIST_WIDTH, 
+									com.thinkalike.jfx.common.Constant.NodeSelector.DEFAULT_NODELIST_HEIGHT);
+					}
 					thisInstance.updateNodeList(nodeList);
 				}
 			};
@@ -245,25 +286,25 @@ public class MainScene extends AnchorPane implements Initializable {
 			_listenToVM_workarea = new PropertyChangeListener(){
 				@Override
 				public void onPropertyChanged(PropertyChangeEvent event) {
+					Util.trace(LogTag.ViewModel, String.format("[IProperty] PropertyChanged(name=%s, value=%s, listener=%s)", event.getPropertyName(), event.getNewValue(), thisInstance.getClass().getSimpleName()));
 					if (event.getPropertyName().equals(Constant.PropertyName.Node)){
-						Util.trace(LogTag.ViewModel, String.format("[IProperty] PropertyChanged(name=%s, value=%s, listener=%s)", event.getPropertyName(), event.getNewValue(), thisInstance.getClass().getSimpleName()));
 						updateWorkarea((UINode)event.getNewValue());
 					}
 				}
 			};
 			_vm_workarea.addPropertyChangeListener(Constant.PropertyName.Node, _listenToVM_workarea);
 		}
-		_vm_workarea.setUINode(null);
 		
 		//2.node type selector
 		this.cb_nodeType.setValue(_vm_nodeSelector.getCurrentNodeType()); //will activate PropertyChanged event
 		
 		//3.UINode --> ListCell 
 		//ImageNodeView + TextNodeView, ref:KT:\Study\Java\JavaFX\GUI\ListView\#readme.rtf
-//    	txt_nodeContent.setText(new_val.getProperty("content").toString());
+//    	this.txt_nodeContent.setText(new_val.getProperty("content").toString());
 //    	Image imageContent = new Image(String.format("file:%s", id)); //path = id
-//    	iv_nodeContent.setImage(imageContent); 
-		
+//    	this.iv_nodeContent.setImage(imageContent); 
+//		_inv_nodeContent = new ImageNodeViewDelegate(this.iv_nodeContent);
+				
 	}
 
 	//-- Public and internal Methods --------------------------
@@ -276,21 +317,26 @@ public class MainScene extends AnchorPane implements Initializable {
 	}
 
 	private void updateWorkarea(UINode uiNode){
-		INodeView nodeView = DomainUtil.getNodeView(uiNode); 
-		if(nodeView==null){
-			Util.error(TAG, "updateWorkarea: cannot get view from work.");
+		if (uiNode == null){
+			this.inv_nodeContent.setImage(null);
+			this.btn_OK.setVisible(false);
 			return;
 		}
-		else if(!(nodeView instanceof Node)){
+		
+		INodeView nodeView = uiNode.getView(); 
+		if(nodeView==null){
+			nodeView = uiNode.attachView(inv_nodeContent); //attach and update uiData to an existed raw ImageView 
+			this.btn_OK.setVisible(true);
+		}
+		else if(nodeView instanceof javafx.scene.Node){
+			sp_workarea.getChildren().clear();
+			sp_workarea.getChildren().add((javafx.scene.Node)nodeView);
+			//nodeView.onParentViewChanged(sp_workarea);
+			//Otherwise, use IWorkView.attachedToView(sp_workarea) instead.
+		}
+		else{
 			Util.error(TAG, "updateWorkarea: workView is not a valid JavaFX Node object");
 			return;
 		}
-		//RelativeLayout.LayoutParams rlp = new RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-		//rlp.addRule(RelativeLayout.CENTER_IN_PARENT);
-		
-		sp_workarea.getChildren().clear();
-		sp_workarea.getChildren().add((Node)nodeView);
-		//nodeView.onParentViewChanged(sp_workarea);
-		//Otherwise, use IWorkView.attachedToView(sp_workarea) instead.
 	}
 }

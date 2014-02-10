@@ -13,7 +13,7 @@ import android.widget.LinearLayout;
 import com.thinkalike.R;
 
 //IMPROVE: 1.implement a generic version "Abstract View/Control"(UIComboBox) 2.use generics (e.g."<NodeType>") 
-public class ComboBox<T> extends LinearLayout implements View.OnClickListener {
+public class ComboBox<T> extends LinearLayout{
 	//-- Constants and Enums -----------------------------------
 	//-- Inner Classes and Structures --------------------------
 	
@@ -32,6 +32,7 @@ public class ComboBox<T> extends LinearLayout implements View.OnClickListener {
 	private ComboBoxListener<T> _comboBoxListener;
 	private Animation _showAnimation;
 	private boolean _isShown;
+	private View.OnClickListener _listenToButtonClick;
 
 	//-- Properties --------------------------------------------
 	
@@ -44,6 +45,34 @@ public class ComboBox<T> extends LinearLayout implements View.OnClickListener {
 		_ll_root = (LinearLayout) findViewById(R.id.ll_root);
 		_iv_imageButton_base = (ImageView) findViewById(R.id.iv_imageButton_base);
 		
+		//1.listener to click event of image buttons
+		_listenToButtonClick = new View.OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				int id_selected = v.getId();
+				int idx_selected = ((Integer)v.getTag()).intValue();
+
+				//FD: 1.1st item: a.(when collapsed)act as a currently selected item  b.(when expended)act as a controller 
+				//    2.other items: if clicked, collapse the combobox and activate onSelectItemChange()
+				if(!_isShown){ // && id_selected==0){
+					assert(id_selected==0);
+					_isShown = true;
+					setImageAndValue(_iv_imageButtons[0], 0);
+					setVisible();
+					return;
+				}
+				
+				_isShown = false;
+				_iv_imageButtons[0].setImageResource(_imageResIds[idx_selected]);
+				_idx_default = idx_selected;
+				setInvisible();
+
+				if (_comboBoxListener != null)
+					_comboBoxListener.onSelectedItemChanged(_itemValues[_idx_default]);
+			}
+		};
+		
+		//2.initialize image buttons (including register listener)
 		_imageResIds = new int[imageResIds.length];
 		System.arraycopy(imageResIds, 0, _imageResIds, 0, imageResIds.length);
 		//_itemValues = new T[itemValues.length]; //ref:What's the reason I can't create generic array types in Java  - Stack Overflow
@@ -93,7 +122,7 @@ public class ComboBox<T> extends LinearLayout implements View.OnClickListener {
 				_iv_imageButtons[i].setVisibility(View.INVISIBLE);
 			}
 			//set listeners
-			_iv_imageButtons[i].setOnClickListener(this);
+			_iv_imageButtons[i].setOnClickListener(_listenToButtonClick);
 			//load to container
 			_ll_root.addView(_iv_imageButtons[i], i);
 		}
@@ -128,28 +157,4 @@ public class ComboBox<T> extends LinearLayout implements View.OnClickListener {
 	}
 	
 	//-- Event Handlers ----------------------------------------
-	@Override
-	public void onClick(View v) {
-
-		int id_selected = v.getId();
-		int idx_selected = ((Integer)v.getTag()).intValue();
-
-		//FD: 1.1st item: a.(when collapsed)act as a currently selected item  b.(when expended)act as a controller 
-		//    2.other items: if clicked, collapse the combobox and activate onSelectItemChange()
-		if(!_isShown){ // && id_selected==0){
-			assert(id_selected==0);
-			_isShown = true;
-			setImageAndValue(_iv_imageButtons[0], 0);
-			setVisible();
-			return;
-		}
-		
-		_isShown = false;
-		_iv_imageButtons[0].setImageResource(_imageResIds[idx_selected]);
-		_idx_default = idx_selected;
-		setInvisible();
-
-		if (_comboBoxListener != null)
-			_comboBoxListener.onSelectedItemChanged(_itemValues[_idx_default]);
-	}
 }

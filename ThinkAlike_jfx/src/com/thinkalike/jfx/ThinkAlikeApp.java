@@ -167,7 +167,8 @@ public class ThinkAlikeApp extends Application implements Platform, Loader.OnLoa
 	
     private void gotoMainScene() {
         try {
-        	MainScene mainScene = (MainScene) replacePrimarySceneContent(Res.getLayoutUrl("scene_main.fxml"));
+        	@SuppressWarnings("unused")
+			MainScene mainScene = (MainScene) replacePrimarySceneContent(Res.getLayoutUrl("scene_main.fxml"));
         } catch (Exception ex) {
         	//use Util from generic package
             //Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);

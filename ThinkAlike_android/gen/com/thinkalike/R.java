@@ -47,41 +47,72 @@ public final class R {
         public static final int bkg_actionbar=0x7f020004;
         public static final int bkg_border=0x7f020005;
         public static final int bkg_button=0x7f020006;
-        public static final int bkg_itempane=0x7f020007;
-        public static final int bkg_main=0x7f020008;
-        public static final int bkg_popupwindow=0x7f020009;
-        public static final int btn_back=0x7f02000a;
-        public static final int btn_normal=0x7f02000b;
-        public static final int btn_press=0x7f02000c;
-        public static final int btn_typea=0x7f02000d;
-        public static final int btn_typeb=0x7f02000e;
-        public static final int btn_typec=0x7f02000f;
-        public static final int btn_typed=0x7f020010;
-        public static final int btn_typee=0x7f020011;
-        public static final int btn_typef=0x7f020012;
-        public static final int btn_typeg=0x7f020013;
-        public static final int btn_typeh=0x7f020014;
-        public static final int btn_typei=0x7f020015;
-        public static final int btn_typej=0x7f020016;
-        public static final int btn_typek=0x7f020017;
-        public static final int default_image=0x7f020018;
-        public static final int ic_launcher=0x7f020019;
-        public static final int placeholder_image=0x7f02001a;
-        public static final int progressbar_circular=0x7f02001b;
+        public static final int bkg_button_dark=0x7f020007;
+        public static final int bkg_button_gold=0x7f020008;
+        public static final int bkg_itempane=0x7f020009;
+        public static final int bkg_main=0x7f02000a;
+        public static final int bkg_popupwindow=0x7f02000b;
+        public static final int btn_back=0x7f02000c;
+        public static final int btn_normal=0x7f02000d;
+        public static final int btn_press=0x7f02000e;
+        public static final int btn_typea=0x7f02000f;
+        public static final int btn_typeb=0x7f020010;
+        public static final int btn_typec=0x7f020011;
+        public static final int btn_typed=0x7f020012;
+        public static final int btn_typee=0x7f020013;
+        public static final int btn_typef=0x7f020014;
+        public static final int btn_typeg=0x7f020015;
+        public static final int btn_typeh=0x7f020016;
+        public static final int btn_typei=0x7f020017;
+        public static final int btn_typej=0x7f020018;
+        public static final int btn_typek=0x7f020019;
+        public static final int colorswitch_black=0x7f02001a;
+        public static final int colorswitch_white=0x7f02001b;
+        public static final int default_image=0x7f02001c;
+        public static final int filter_cost_rank_0=0x7f02001d;
+        public static final int filter_cost_rank_1=0x7f02001e;
+        public static final int filter_cost_rank_2=0x7f02001f;
+        public static final int filter_cost_rank_3=0x7f020020;
+        public static final int filter_cost_rank_4=0x7f020021;
+        public static final int filter_cost_rank_5=0x7f020022;
+        public static final int filter_cost_rank_6=0x7f020023;
+        public static final int filter_cost_rank_7plus=0x7f020024;
+        public static final int filter_cost_rank_all=0x7f020025;
+        public static final int filter_type_cost=0x7f020026;
+        public static final int ic_launcher=0x7f020027;
+        public static final int placeholder_image=0x7f020028;
+        public static final int progressbar_circular=0x7f020029;
     }
     public static final class id {
+        public static final int btn_nodefilter_0=0x7f080015;
+        public static final int btn_nodefilter_1=0x7f080016;
+        public static final int btn_nodefilter_2=0x7f080017;
+        public static final int btn_nodefilter_3=0x7f080018;
+        public static final int btn_nodefilter_4=0x7f080019;
+        public static final int btn_nodefilter_5=0x7f08001a;
+        public static final int btn_nodefilter_6=0x7f08001b;
+        public static final int btn_nodefilter_7=0x7f08001c;
+        public static final int btn_nodefilter_all=0x7f080014;
+        public static final int btn_nodefilter_custom=0x7f08001d;
+        public static final int btn_nodefilter_type=0x7f080013;
+        public static final int btn_ok=0x7f080011;
         public static final int content=0x7f080007;
+        public static final int fl_workarea=0x7f08000c;
         public static final int iv_imageButton_base=0x7f080005;
+        public static final int iv_nodeselected=0x7f080010;
         public static final int left=0x7f080008;
+        public static final int ll_nodefilters=0x7f080012;
         public static final int ll_root=0x7f080004;
         public static final int ll_twopane=0x7f080003;
+        public static final int ll_work=0x7f08000d;
+        public static final int ll_work_overlay=0x7f08000e;
         public static final int lv_nodelist=0x7f08000b;
         public static final int nodeselector=0x7f080002;
         public static final int right=0x7f080009;
         public static final int rl_nodeselector=0x7f08000a;
         public static final int rl_root=0x7f080000;
-        public static final int rl_workarea=0x7f08000c;
         public static final int title=0x7f080006;
+        public static final int tv_tag=0x7f08000f;
         public static final int workarea=0x7f080001;
     }
     public static final class layout {
@@ -102,7 +133,7 @@ public final class R {
          */
         public static final int activity_main=0x7f030000;
         public static final int activity_main_twopane=0x7f030001;
-        public static final int activity_nodeselector=0x7f030002;
+        public static final int activity_workarea=0x7f030002;
         public static final int combobox=0x7f030003;
         public static final int messagebox=0x7f030004;
         public static final int nodeselector=0x7f030005;
@@ -111,10 +142,12 @@ public final class R {
     }
     public static final class string {
         public static final int app_name=0x7f060000;
+        public static final int btn_OK=0x7f060006;
+        public static final int btn_search=0x7f060007;
         public static final int loading=0x7f060005;
         public static final int progressbar=0x7f060004;
         public static final int thumb_node=0x7f060003;
-        public static final int title_nodelist=0x7f060001;
+        public static final int title_nodeselector=0x7f060001;
         public static final int title_workarea=0x7f060002;
     }
     public static final class style {

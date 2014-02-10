@@ -10,19 +10,18 @@ public class UIImageNode extends UINode{
 	//-- Inner Classes and Structures --------------------------
 	//-- Delegates and Events ----------------------------------
 	//-- Instance and Shared Fields ----------------------------
-	private int _width, _height;
+	private int _fitWidth, _fitHeight;
 	
 	//-- Properties --------------------------------------------
 	/**
+	 * fitWidth/fitHeight affects image loading efficiency, and should be tunable at VO level.
 	 * By default: 1.Image auto-fits(center-fit) ImageView 2.keep aspect ratio 3.background loading 4.smooth
 	 * 0-value for any one of the dimensions means calculating the other dimension according to aspect ratio.
 	 * 0-value for both dimensions means Image will auto-fit ImageView and ImageView auto-fit its container.
-	 * percentage value means Image will auto-fit ImageView and ImageView center-fit its container with 
-	 * 
 	 */
-	public void setDimension(int width, int height) {_width=width; _height=height;}
-	public int getWidth() {return _width;}
-	public int getHeight() {return _height;}
+	public void setFitDimension(int fitWidth, int fitHeight) {_fitWidth=fitWidth; _fitHeight=fitHeight;}
+	public int getFitWidth() {return _fitWidth;}
+	public int getFitHeight() {return _fitHeight;}
 	public String getRelativePath() {return ((ImageNode)getData()).getRelativePath();}
 	
 	//-- Constructors ------------------------------------------
@@ -45,8 +44,8 @@ public class UIImageNode extends UINode{
 		}
 		return (INodeView)super.createView();
 	}
-	public void attachView(INodeView view) {
-		super.attachView(view);
+	public INodeView attachView(INodeView view) {
+		return super.attachView(view);
 	}
 	
 	//-- Private and Protected Methods -------------------------

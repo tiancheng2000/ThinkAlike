@@ -16,9 +16,7 @@ import android.os.Looper;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
-import android.view.ViewParent;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -187,6 +185,7 @@ public class Util extends com.thinkalike.generic.common.Util {
 		
 		BitmapFactory.Options options = new BitmapFactory.Options();
 		options.inJustDecodeBounds = true;
+		@SuppressWarnings("unused")
 		Bitmap bitmap = BitmapFactory.decodeFile(imagePath, options);
 		if(options.outWidth==0 || options.outHeight==0){
 			Util.error(null, TAG, "invalid options.outWidth or options.outHeight (=0).");

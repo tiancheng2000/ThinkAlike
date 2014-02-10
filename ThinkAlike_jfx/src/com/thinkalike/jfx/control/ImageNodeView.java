@@ -29,11 +29,39 @@ public class ImageNodeView extends ImageView implements IImageNodeView {
 			
 			//0.initialize according to context.
 			int width_limit, height_limit;
-			width_limit = Constant.NodeSelector.DEFAULT_NODELIST_WIDTH;
-			height_limit = Constant.NodeSelector.DEFAULT_NODELIST_HEIGHT;
+			width_limit = ((UIImageNode)uiData).getFitWidth();
+			height_limit = ((UIImageNode)uiData).getFitHeight();
+			if(width_limit==0 && height_limit==0){
+				//Image fit ImageView: ImageView should already have its own fitWidth/fitHeight set 
+			}
+			else{
+				//Image has its own fit dimensions
+				this.setPreserveRatio(true);
+				this.setFitWidth(width_limit);
+				this.setFitHeight(height_limit);
+			}
+			
+			//1.call static routine for actual rendering, which is shared with ImageNodeViewDelegate class.
+			ImageNodeView.update(uiData, this);
+		}
+	}
+	
+	//-- Public and internal Methods ---------------------------
+	//-- Private and Protected Methods -------------------------
+	protected static void update(UINode uiData, ImageView rawView) {
+		//core platform-related implementation: DO -> View
+		if(rawView == null)
+			return;
+		
+		if(uiData instanceof UIImageNode){
+			
+			//0.initialize according to context.
+			int width_limit, height_limit;
+			width_limit = (int)rawView.getFitWidth();
+			height_limit = (int)rawView.getFitHeight();
 			
 			//1.set the default image: 
-			setImage(new Image(Res.getImageUrl("default_image.gif")));
+			rawView.setImage(new Image(Res.getImageUrl("default_image.gif")));
 
 			//2.Async load Image: 
 			//IMPROVE: if url contains html-encoded substring (e.g."%20"), the image will not be correctly loaded.
@@ -41,7 +69,7 @@ public class ImageNodeView extends ImageView implements IImageNodeView {
 			
 			//Method 1. Synchronized image loading, with fixed size
 			Image image = Util.decodeThumbFromFile(imageUrl, width_limit, height_limit);
-			setImage(image);
+			rawView.setImage(image);
 
 			//Method 2. Asynchronized image loading, with fixed size
 //			MediaAsyncLoader.asyncLoadImageFile(imagePath,
@@ -50,8 +78,8 @@ public class ImageNodeView extends ImageView implements IImageNodeView {
 //								_onMediaLoadListener);
 
 			//Method 3. Asynchronized image loading, with proper size
-//			final ImageNodeView thisInstance = this;
-//			this.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener(){
+//			final ImageNodeView thisInstance = rawView;
+//			rawView.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener(){
 //					@Override
 //					public boolean onPreDraw() {
 //						thisInstance.getViewTreeObserver().removeOnPreDrawListener(this);  //<-- this is a must
@@ -66,7 +94,5 @@ public class ImageNodeView extends ImageView implements IImageNodeView {
 		}
 	}
 	
-	//-- Public and internal Methods ---------------------------
-	//-- Private and Protected Methods -------------------------
 	//-- Event Handlers ----------------------------------------
 }

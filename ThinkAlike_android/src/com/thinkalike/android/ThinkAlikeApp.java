@@ -46,6 +46,7 @@ public class ThinkAlikeApp extends android.app.Application implements Platform, 
 		Config.STORAGE_BASEPATH = Environment.getExternalStorageDirectory().getAbsolutePath(); //platform-dependent
 		
 		//2.Initialize Log scheme (File IO)
+		@SuppressWarnings("unused")
 		Util dumb = Util.getInstance(); //initialize
 		Util.trace(null, TAG, "---------- " +Constant.APP_NAME+ " get launched [" +com.thinkalike.generic.common.Util.getTimeStamp()+ "] ----------");
 		Util.trace(null, TAG, String.format("resolution = %s", getResources().getDisplayMetrics().toString()));

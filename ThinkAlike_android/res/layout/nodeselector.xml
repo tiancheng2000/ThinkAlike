@@ -2,8 +2,9 @@
 	android:id="@+id/rl_nodeselector"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:background="@drawable/bkg_itempane">
-
+	android:background="@drawable/bkg_itempane"
+	android:orientation="vertical">
+    
 	<ListView
 		android:id="@+id/lv_nodelist"
 		android:layout_width="match_parent"

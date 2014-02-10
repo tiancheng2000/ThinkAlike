@@ -32,12 +32,16 @@ public class DomainUtil{
 	}
 	
 	//Node/Element ---
+	//public static void dumpNode(String tag, Node baseNode, int level){}
+	//public static UINode getUINode(Node node){}
 	public static INodeView getNodeView(UINode uiNode){
 		return (uiNode==null)? null : uiNode.getView();
 	}
 
 	//IView ---
-
+	//public static void linkView(Node parentNode, Node childNode){}
+	//public static void linkView(Node parentNode, Node childNode, int index){}
+	//public static void unlinkView(Node parentNode, Node childNode){}
 	
 	//-- Private and Protected Methods -------------------------
 	//-- Event Handlers ----------------------------------------

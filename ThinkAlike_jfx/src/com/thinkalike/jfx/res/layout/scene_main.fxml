@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
+<?import com.thinkalike.jfx.control.*?>
 
 <AnchorPane id="p_root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns:fx="http://javafx.com/fxml" fx:controller="com.thinkalike.jfx.view.MainScene">
   <children>
@@ -27,12 +28,31 @@
         </StackPane>
         <StackPane fx:id="sp_workarea" HBox.hgrow="ALWAYS">
           <children>
-            <Pane fx:id="p_work" StackPane.alignment="CENTER">
+            <TilePane fx:id="tp_work" />
+            <VBox fx:id="vb_work" fillWidth="false" alignment="TOP_CENTER">
               <children>
-                <Text fx:id="txt_nodeContent" layoutX="10.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-                <ImageView fx:id="iv_nodeContent" fitHeight="150.0" fitWidth="200.0" layoutX="10.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" />
+                <Label fx:id="lb_nodeContent" text="Work Area">
+	              <VBox.margin>
+	                <Insets bottom="0.0" left="0.0" right="0.0" top="70.0" />
+	              </VBox.margin>
+                </Label>
+                <ImageNodeView fx:id="inv_nodeContent" fitHeight="400.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" />
+                <Button fx:id="btn_OK" defaultButton="true" text="OK" contentDisplay="CENTER"/>
+	            <HBox fx:id="hb_nodefilters" VBox.vgrow="ALWAYS" alignment="CENTER">
+	                <Button fx:id="btn_nodefilter_type" contentDisplay="GRAPHIC_ONLY"/>
+	                <Button fx:id="btn_nodefilter_all" contentDisplay="GRAPHIC_ONLY"/>
+	                <Button fx:id="btn_nodefilter_0" contentDisplay="GRAPHIC_ONLY"/>
+	                <Button fx:id="btn_nodefilter_1" contentDisplay="GRAPHIC_ONLY"/>
+	                <Button fx:id="btn_nodefilter_2" contentDisplay="GRAPHIC_ONLY"/>
+	                <Button fx:id="btn_nodefilter_3" contentDisplay="GRAPHIC_ONLY"/>
+	                <Button fx:id="btn_nodefilter_4" contentDisplay="GRAPHIC_ONLY"/>
+	                <Button fx:id="btn_nodefilter_5" contentDisplay="GRAPHIC_ONLY"/>
+	                <Button fx:id="btn_nodefilter_6" contentDisplay="GRAPHIC_ONLY"/>
+	                <Button fx:id="btn_nodefilter_7" contentDisplay="GRAPHIC_ONLY"/>
+	                <Button fx:id="btn_nodefilter_custom" text="全库查找" contentDisplay="CENTER"/>
+	            </HBox>
               </children>
-            </Pane>
+            </VBox>
           </children>
         </StackPane>
       </children>

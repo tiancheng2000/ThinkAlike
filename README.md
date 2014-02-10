@@ -34,8 +34,15 @@ Where to get more info?
   * Project consulting. Business, Open Source, new project, legacy projects, just if you think of using ThinkAlike.
   * English usage correction. (I'm a Chinese native speaker working at a Japanese company, so...)
 
+Structural directions
+---------------------
+* Branches
+  * Initial-Base: A beginner's example with all essential framework factors and a simple NodeSelector implemented. 
+  * HSCardRef: The main branch by default. Show usage of ThinkAlike by implementing a HearthStone Card Reference.
+  * Web-Service: Show how to connect to Web Services within ThinkAlike by implementing an Air Quality Monitor.
+
 Special Thanks to 
------------------------
+-----------------
 * Although it is definitely an architecture-purposed framework, to put some sugar in it, some game factors(images) are introduced.  
   [Blizzard][] is a respect-award game entertainment company.  
   [HealthStone][] is its stunning breaker on strategy card game market (under closed beta test phase).  

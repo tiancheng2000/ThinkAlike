@@ -1,5 +1,7 @@
 package com.thinkalike.generic.viewmodel.control;
 
+import com.thinkalike.generic.domain.INodeRO;
+import com.thinkalike.generic.domain.IReadOnlyProvider;
 import com.thinkalike.generic.domain.Node;
 
 
@@ -16,6 +18,8 @@ public abstract class UINode {
 	protected INodeView _view;
 	
 	//-- Properties --------------------------------------------
+	//NOTE: VOs can manage DOs inside of them, but only have right to provide read-only interface to outside. 
+	public INodeRO getDataRO() {return (_data instanceof IReadOnlyProvider)?(INodeRO)((IReadOnlyProvider)_data).getIReadOnlyEntrace():null;}
 	protected Node getData() {return _data;}
 	public INodeView getView() {return _view;}
 	//NOTE: (inherited class) should expose DO's properties here, so as to be referenced(read-only) by View layer.
@@ -59,9 +63,10 @@ public abstract class UINode {
 		
 		return _view;
 	}
-	public void attachView(INodeView view) {
+	public INodeView attachView(INodeView view) {
 		_view = view;
 		_view.update(this);
+		return _view;
 	}
 	
 	//-- Private and Protected Methods -------------------------

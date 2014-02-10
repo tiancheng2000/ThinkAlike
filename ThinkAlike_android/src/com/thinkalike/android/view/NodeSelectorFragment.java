@@ -8,6 +8,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 
@@ -32,7 +34,7 @@ import com.thinkalike.generic.viewmodel.control.UINode;
  * Activities containing this fragment MUST implement the {@link FragmentCallbacks}
  * interface.
  */
-public class NodeSelectorFragment extends Fragment {
+public class NodeSelectorFragment extends Fragment implements OnItemClickListener{
 
 	//-- Constants and Enums --------------------------
 	private static final int[] ImageResIds = new int[]{R.drawable.btn_typea, R.drawable.btn_typeb, R.drawable.btn_typec, R.drawable.btn_typed, R.drawable.btn_typee, R.drawable.btn_typef, R.drawable.btn_typeg, R.drawable.btn_typeh, R.drawable.btn_typei, R.drawable.btn_typej, R.drawable.btn_typek}; 
@@ -45,21 +47,22 @@ public class NodeSelectorFragment extends Fragment {
 	private static final String STATE_XXX = "xxx";
 
 	//-- Inner Classes and Structures --------------------------
-	/**
-	 * A callback interface that all activities containing this fragment must implement. 
-	 * This mechanism allows activities to be notified of item selections.
-	 */
-	//IMPROVE: unify name convention, "XxxCallbacks" or "XxxListener" or something like
-	public interface FragmentCallbacks {
-		/**
-		 * Callback for when an item has been selected.
-		 */
-		public void onNodeSelected(String id);
-	}
+	//Timothy [D]: don't use such platform-dependent route for event dispatching, use EventBus instead. 
+//	/**
+//	 * A callback interface that all activities containing this fragment must implement. 
+//	 * This mechanism allows activities to be notified of item selections.
+//	 */
+//	//IMPROVE: unify name convention, "XxxCallbacks" or "XxxListener" or something like
+//	public interface FragmentCallbacks {
+//		/**
+//		 * Callback for when an item has been selected.
+//		 */
+//		public void onNodeSelected(String id);
+//	}
 
 	//-- Delegates and Events --------------------------	
 	//-- Instance and Shared Fields --------------------------
-	private FragmentCallbacks _listenerFromActivity = null; //relative activity listen to us
+	//private FragmentCallbacks _listenerFromActivity = null; //relative activity listen to us
 	private ComboBox<NodeType> _nodeTypeSelector;
 	private ListView _lv_nodeList;
 	//MVVM
@@ -96,6 +99,7 @@ public class NodeSelectorFragment extends Fragment {
 				public void onPropertyChanged(PropertyChangeEvent event) {
 					Util.trace(LogTag.ViewModel, String.format("[IProperty]::View PropertyChanged(name=%s, value=%s, listener=%s)", event.getPropertyName(), event.getNewValue(), thisInstance.getClass().getSimpleName()));
 					assert(event.getPropertyName().equals(Constant.PropertyName.NodeList));
+					@SuppressWarnings("unchecked")
 					List<UINode> nodeList = (List<UINode>)event.getNewValue();
 					thisInstance.updateNodeList(nodeList);
 				}
@@ -123,6 +127,7 @@ public class NodeSelectorFragment extends Fragment {
 		});
 		rl_nodeselector.addView(_nodeTypeSelector);
 		_lv_nodeList = (ListView) rootView.findViewById(R.id.lv_nodelist);
+		_lv_nodeList.setOnItemClickListener(this);
 
 		return rootView;
 	}
@@ -152,13 +157,13 @@ public class NodeSelectorFragment extends Fragment {
 		Util.trace(LogTag.LifeCycleManagement, String.format("%s: onAttach", getClass().getSimpleName()));
 		super.onAttach(activity);
 
-		// Activities containing this fragment must implement its callbacks.
-		if (!(activity instanceof FragmentCallbacks)) {
-			throw new IllegalStateException(
-					"Activity must implement fragment's callbacks.");
-		}
+		//ViewModel may check type of parent Activity here. 
+//		if (!(activity instanceof FragmentCallbacks)) {
+//			throw new IllegalStateException(
+//					"Activity must implement fragment's callbacks.");
+//		}
 
-		_listenerFromActivity = (FragmentCallbacks) activity;
+		//_listenerFromActivity = (FragmentCallbacks) activity;
 	}
 
 	@Override
@@ -166,8 +171,8 @@ public class NodeSelectorFragment extends Fragment {
 		Util.trace(LogTag.LifeCycleManagement, String.format("%s: onDetach", getClass().getSimpleName()));
 		super.onDetach();
 
-		// Reset the active callbacks interface to null.
-		_listenerFromActivity = null;
+		//// Reset the active callbacks interface to null.
+		//_listenerFromActivity = null;
 	}
 
 	@Override
@@ -184,7 +189,25 @@ public class NodeSelectorFragment extends Fragment {
 		_lv_nodeList.setAdapter(new NodeAdapter(this.getActivity(), uiNodeList.toArray(uiNodes)));
 		//(UINode[])(_viewModel.getUINodeList().toArray())));
 	}
-	
+
 	//-- Event Handlers --------------------------	
+/*	kw: oops.. ListView.setOnItemSelectedListener() doesn't act as you think! use onItemClickListener instead. 
+ *      ref:http://stackoverflow.com/questions/2454337/why-is-my-onitemselectedlistener-not-called-in-a-listview
+	@Override
+	public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+	}
+	@Override
+	public void onNothingSelected(AdapterView<?> parent) {
+	}
+*/
+	@Override
+	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+		assert(parent.getAdapter() instanceof NodeAdapter);
+		NodeAdapter adapter = (NodeAdapter)parent.getAdapter();
+		UINode uiNode = (UINode)adapter.getItem(position);
+		Util.trace(LogTag.ViewModel, String.format("[ICommand]::View Node selected(=%s)", uiNode));
+		if(_viewModel!=null)
+			_viewModel.onNodeSelected(uiNode);
+	}
 
 }

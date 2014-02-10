@@ -2,6 +2,8 @@ package com.thinkalike.android.view;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.view.Window;
+import android.view.WindowManager;
 
 import com.thinkalike.R;
 import com.thinkalike.android.ThinkAlikeApp;
@@ -18,8 +20,7 @@ import com.thinkalike.generic.common.Util;
  * This activity also implements the required {@link NodeSelectorFragment.FragmentCallbacks}
  * interface to listen for resource drag&drop.
  */
-public class MainActivity extends FragmentActivity implements
-		NodeSelectorFragment.FragmentCallbacks {
+public class MainActivity extends FragmentActivity {
 
 	//-- Constants and Enums ----------------------------------------------
 	//-- Inner Classes and Structures -------------------------------------
@@ -41,6 +42,8 @@ public class MainActivity extends FragmentActivity implements
 		ThinkAlikeApp.getInstance().registerUIContext(this); //Application.getUIContext() will be used as uiContext by ViewModel in some case, which happens before onResume(). 
 		super.onCreate(savedInstanceState);
 		_ueh.initialize();
+		requestWindowFeature(Window.FEATURE_NO_TITLE); 
+		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.activity_main);
 
 		if (findViewById(R.id.ll_twopane) != null) {
@@ -73,31 +76,5 @@ public class MainActivity extends FragmentActivity implements
 	//-- Public and internal Methods --------------------------------------
 	//-- Private and Protected Methods ------------------------------------
 	//-- Event Handlers ---------------------------------------------------
-	/**
-	 * Callback method from {@link NodeSelectorFragment.FragmentCallbacks} indicating that
-	 * the item with the given ID was selected.
-	 */
-	@Override
-	public void onNodeSelected(String id) {
-		//TODO: FragmentManager，能设置“进出动画”(FragmentTransaction.setCustomAnimations())，可用于Canvas上的多页切换!
-		//TODO: instead of Clicking operation, we should handle Drag&Drop.  
-		if (_isLargeScreen) {
-//			// In two-pane mode, show the detail view in this activity by
-//			// adding or replacing the detail fragment using a
-//			// fragment transaction.
-//			Bundle arguments = new Bundle();
-//			arguments.putString(CanvasFragment.ARG_ITEM_ID, id);
-//			CanvasFragment fragment = new CanvasFragment();
-//			fragment.setArguments(arguments);
-//			getSupportFragmentManager().beginTransaction()
-//					.replace(R.id.rl_canvas, fragment).commit();
-		} else {
-//			// In single-pane mode, simply start the detail activity
-//			// for the selected item ID.
-//			Intent detailIntent = new Intent(this, EditorActivity.class);
-//			detailIntent.putExtra(CanvasFragment.ARG_ITEM_ID, id);
-//			startActivity(detailIntent);     
-		}
-	}
 
 }

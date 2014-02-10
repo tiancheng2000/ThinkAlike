@@ -26,8 +26,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".android.view.NodeListActivity"
-            android:label="@string/title_nodelist" 
+            android:name=".android.view.WorkareaActivity"
+            android:label="@string/title_workarea" 
             android:screenOrientation="landscape" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

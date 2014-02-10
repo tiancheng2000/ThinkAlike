@@ -23,7 +23,6 @@ import java.util.Enumeration;
 import java.util.Map;
 import java.util.StringTokenizer;
 import java.util.zip.ZipEntry;
-import java.util.zip.ZipException;
 import java.util.zip.ZipFile;
 import java.util.zip.ZipOutputStream;
 
@@ -31,7 +30,6 @@ import com.thinkalike.generic.Loader;
 import com.thinkalike.generic.common.Config.LogLevel;
 import com.thinkalike.generic.common.Constant.SortOrder;
 import com.thinkalike.generic.common.Constant.SortType;
-import com.thinkalike.generic.domain.NodeType;
 
 public class Util {
 	//-- Constants and Enums -----------------------------------
@@ -361,51 +359,66 @@ public class Util {
 			catch (IOException e) {}
 		}
 	}
-	public static void upZipFile(String zipFilePath, String destFolderPath) throws ZipException, IOException {
+	public static void upZipFile(String zipFilePath, String destFolderPath) {
 		upZipFile(zipFilePath, destFolderPath, null);
 	}
-	public static void upZipFile(String zipFilePath, String destFolderPath, String appointFileName) throws ZipException, IOException {
+	public static void upZipFile(String zipFilePath, String destFolderPath, String appointFileName) {
         File destFolder = new File(destFolderPath);
         if (!destFolder.exists())
             destFolder.mkdir();
         if (!destFolder.isDirectory())
             return;
 
-        ZipFile zipFile = new ZipFile(new File(zipFilePath));
-        for (Enumeration<?> entries = zipFile.entries(); entries.hasMoreElements();) {
-            ZipEntry entry = ((ZipEntry)entries.nextElement());
-            
-            InputStream in = null;
-            File destFile = null;
-            if(appointFileName == null || appointFileName.trim().length() == 0){
-            	in = zipFile.getInputStream(entry);
-                destFile = new File(appendPath(destFolderPath, entry.getName()));
-            }else{
-            	if (entry.getName().contains(appointFileName)) {
-            		//IMPROVE: is it necessary to do appointFileName check?
-            		in = zipFile.getInputStream(entry);
-                    destFile = new File(appendPath(destFolderPath, entry.getName()));
-            	}
-            }
-            if(in == null || destFile == null || destFile.isDirectory())
-            	continue;
-            
-            if (!destFile.exists()) {
-                File fileParentDir = destFile.getParentFile();
-                if (!fileParentDir.exists())
-                	//Skill: use File.mkdirs() to recursively build up ancestor folders if necessary
-                    fileParentDir.mkdirs();
-                destFile.createNewFile();
-            }
-            OutputStream out = new FileOutputStream(destFile);
-            byte buffer[] = new byte[Constant.BUFFER_ZIP_SIZE];
-            int realLength;
-            while ((realLength = in.read(buffer)) > 0) {
-                out.write(buffer, 0, realLength);
-            }
-            in.close();
-            out.close();
-        }
+        ZipFile zipFile = null;
+        InputStream in = null;
+        OutputStream out = null;
+		try {
+			zipFile = new ZipFile(new File(zipFilePath));
+	        for (Enumeration<?> entries = zipFile.entries(); entries.hasMoreElements();) {
+	            ZipEntry entry = ((ZipEntry)entries.nextElement());
+	            
+	            in = null;
+	            File destFile = null;
+	            if(appointFileName == null || appointFileName.trim().length() == 0){
+	            	in = zipFile.getInputStream(entry);
+	                destFile = new File(appendPath(destFolderPath, entry.getName()));
+	            }else{
+	            	if (entry.getName().contains(appointFileName)) {
+	            		//IMPROVE: is it necessary to do appointFileName check?
+	            		in = zipFile.getInputStream(entry);
+	                    destFile = new File(appendPath(destFolderPath, entry.getName()));
+	            	}
+	            }
+	            if(in == null || destFile == null || destFile.isDirectory())
+	            	continue;
+	            
+	            if (!destFile.exists()) {
+	                File fileParentDir = destFile.getParentFile();
+	                if (!fileParentDir.exists())
+	                	//Skill: use File.mkdirs() to recursively build up ancestor folders if necessary
+	                    fileParentDir.mkdirs();
+	                destFile.createNewFile();
+	            }
+	            out = new FileOutputStream(destFile);
+	            byte buffer[] = new byte[Constant.BUFFER_ZIP_SIZE];
+	            int realLength;
+	            while ((realLength = in.read(buffer)) > 0) {
+	                out.write(buffer, 0, realLength);
+	            }
+	            in.close();
+	            out.close();
+	        }
+		} catch (IOException e) {
+			Util.error(TAG, String.format("upZipFile failed: zipFilePath=%s, err=%s",zipFilePath,e.getMessage())); 
+		} finally {
+			try {if(in!=null)in.close();}
+			catch (IOException e) {}
+			try {if(out!=null)out.close();}
+			catch (IOException e) {}
+			try {if(zipFile!=null)zipFile.close();}
+			catch (IOException e) {}
+		}
+        
     }
 
 	
@@ -466,7 +479,8 @@ public class Util {
     	propertyName = firstCharUpperCase(propertyName);
         try{
             Class<?> target = classInstance.getClass();
-            Method getter = target.getMethod("get"+propertyName, (Class<?>[])null);
+            @SuppressWarnings("unused")
+			Method getter = target.getMethod("get"+propertyName, (Class<?>[])null);
         } catch (NoSuchMethodException e){
         	return false;
         }
@@ -474,6 +488,7 @@ public class Util {
     }
     public static boolean hasFieldValue(Class<?> target, String fieldName){
         try{
+            @SuppressWarnings("unused")
             Field field = target.getField(fieldName);
         } catch (NoSuchFieldException e){
         	return false;

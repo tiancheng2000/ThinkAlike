@@ -7,7 +7,6 @@ import android.content.Context;
 
 import com.thinkalike.generic.common.Util;
 import com.thinkalike.generic.dal.IAssetManagerLocal;
-import com.thinkalike.generic.dal.IAssetManagerLocal.EntryListMode;
 
 public class AssetManagerLocal implements IAssetManagerLocal {
 	//-- Constants and Enums -----------------------------------

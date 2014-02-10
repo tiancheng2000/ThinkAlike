@@ -8,11 +8,16 @@ import com.thinkalike.generic.common.Constant;
 import com.thinkalike.generic.common.LogTag;
 import com.thinkalike.generic.common.Util;
 import com.thinkalike.generic.dal.NodeLoader;
+import com.thinkalike.generic.domain.INodeRO;
 import com.thinkalike.generic.domain.ImageNode;
 import com.thinkalike.generic.domain.NodeType;
 import com.thinkalike.generic.viewmodel.control.UIImageNode;
 import com.thinkalike.generic.viewmodel.control.UINode;
 
+
+/**
+ * managed Constant.PropertyName: Node, NodeList
+ */
 public class NodeSelectorViewModel extends ViewModelBase{
 	//-- Constants and Enums --------------------------
 	//-- Inner Classes and Structures --------------------------
@@ -42,9 +47,9 @@ public class NodeSelectorViewModel extends ViewModelBase{
 	//-- Instance and Shared Fields --------------------------
 	private static NodeSelectorViewModel _this;
 	private NodeType _currentNodeType = NodeType.TypeA;
-	//IMPROVE: confirm if this variable is necessary
-	//private String _activatedItemId = ""; 
 	private List<UINode> _uiNodeList = null;
+	//private Node _nodeSelected;
+	private INodeRO _nodeSelected_RO = null;
 
 	//-- Properties --------------------------
 	public NodeType getCurrentNodeType(){return _currentNodeType;}
@@ -69,27 +74,26 @@ public class NodeSelectorViewModel extends ViewModelBase{
 	
 
 	//-- Private and Protected Methods --------------------------
-	private void initData() {
-		
-	}
-	
-	private void initLayout() {
-		
-	}
+//	private void initData() {
+//	}
+//	
+//	private void initLayout() {
+//	}
 
 	private List<UINode> getUINodeList(boolean isForcedReload)
 	{
 		//MVVM::DataSource: list need to be fetched from somewhere 
 		if(_uiNodeList == null || isForcedReload){
 			//IMPROVE: 1.consider the UIContext could still be invalid by now -- UINode's createView() should be modified
-			//          2.consider the case that one ViewModel can serve several Views -- a.multiple uiContext b.multiple view?
+			//          2.consider the case that one ViewModel can serve several Views -- a.multiple uiContexts b.multiple views?
 			Object uiContext = Loader.getInstance().getPlatform().getUIContext();
 			Util.trace(LogTag.ViewModel, String.format("Load DO: uiContext=%s", (uiContext==null)? "null" : uiContext.getClass().getSimpleName()));
 
 			ImageNode[] imageNodes = NodeLoader.loadImageNodes(_currentNodeType);
+			//IMPROVE: choose: a.initialize required VO attributes during VO's instantiation b.implant "vmContext" into VOs? 
 			_uiNodeList = new ArrayList<UINode>();
 			for (int i=0; i<imageNodes.length; i++){
-				_uiNodeList.add(new UIImageNode(uiContext, imageNodes[i], false)); //It will be more efficient to create platform-dependent ImageView after UI dimension(width & height) can be calculated. 
+				_uiNodeList.add(new UIImageNode(uiContext, imageNodes[i], false)); //It will be more efficient to create platform-dependent ImageView after UI dimension(width & height) can be calculated.
 			}
 			Util.trace(LogTag.ViewModel, String.format("Load DO: _uiNodeList.size=%s", (_uiNodeList==null) ? "n/a" : _uiNodeList.size()));
 		}
@@ -109,9 +113,28 @@ public class NodeSelectorViewModel extends ViewModelBase{
 	public void onRefreshNodeList(){
 		//TODO: ICommand should also be implemented through Event scheme -- maybe a EventBus for both ICommand and IProperty
 		Util.trace(LogTag.ViewModel, "[ICommand]::VM onRefreshNodeList()");
-		//Object oldValue = _uiNodeList;
-		_uiNodeList = getUINodeList(true);
-		this.firePropertyChange(Constant.PropertyName.NodeList, null, _uiNodeList); //force refresh
+		boolean isForcedReload = true; 
+		Object oldValue = _uiNodeList;
+		_uiNodeList = getUINodeList(isForcedReload);
+		if(!isForcedReload && oldValue==_uiNodeList)
+			onNodeSelected(null); //clear selection in most refresh cases 
+		this.firePropertyChange(Constant.PropertyName.NodeList, isForcedReload?null:oldValue, _uiNodeList); //force refresh
+	}
+
+	public void onNodeSelected(UINode uiNode){
+		Util.trace(LogTag.ViewModel, "[ICommand]::VM onNodeSelected()");
+		if(uiNode==null)
+			return;
+		
+		//NOTE: We choose to transfer read-only DTO here. For simple projects that do not care about 
+		//      Access Privilege, or difference between DTO and DO, you can just transfer DO.
+		//Node oldValue = _nodeSelected;
+		//_nodeSelected = uiNode.getData();
+		INodeRO oldValue = _nodeSelected_RO;
+		_nodeSelected_RO = uiNode.getDataRO();
+		
+		this.firePropertyChange(Constant.PropertyName.Node, oldValue, _nodeSelected_RO);
 	}
 
 }
+
