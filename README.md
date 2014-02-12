@@ -41,6 +41,10 @@ Structural directions
   * HSCardRef: The main branch by default. Show usage of ThinkAlike by implementing a HearthStone Card Reference.
   * Web-Service: Show how to connect to Web Services within ThinkAlike by implementing an Air Quality Monitor.
 
+License 
+-------
+This project is licensed under The GNU Lesser General Public License (LGPLv3).
+
 Special Thanks to 
 -----------------
 * Although it is definitely an architecture-purposed framework, to put some sugar in it, some game factors(images) are introduced.  

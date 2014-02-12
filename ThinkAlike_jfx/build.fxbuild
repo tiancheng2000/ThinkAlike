@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="ASCII"?>
 <anttasks:AntTask xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:anttasks="http://at.bestsolution.efxclipse.tooling.jdt/1.0" buildDirectory="${project}/build">
-  <deploy>
-    <application name="ThinkAlike_jfx"/>
-    <info/>
+  <deploy packagingFormat="exe">
+    <application name="ThinkAlike_jfx" mainclass="com.thinkalike.jfx.ThinkAlikeApp" version="0.6"/>
+    <info vendor="com.thinkalike"/>
   </deploy>
   <signjar/>
 </anttasks:AntTask>
