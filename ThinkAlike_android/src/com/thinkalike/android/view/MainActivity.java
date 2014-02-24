@@ -1,5 +1,8 @@
 package com.thinkalike.android.view;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.Window;
@@ -23,6 +26,8 @@ import com.thinkalike.generic.common.Util;
 public class MainActivity extends FragmentActivity {
 
 	//-- Constants and Enums ----------------------------------------------
+	private final static int DIALOG_ONCLOSE = 99;
+
 	//-- Inner Classes and Structures -------------------------------------
 	//-- Delegates and Events ---------------------------------------------
 	//-- Instance and Shared Fields ---------------------------------------
@@ -71,6 +76,36 @@ public class MainActivity extends FragmentActivity {
 		_ueh = null;
 		ThinkAlikeApp.getInstance().unregisterUIContext(this);
 		super.onDestroy();
+	}
+
+	@SuppressWarnings("deprecation")
+	@Override
+	public void onBackPressed() {
+		this.showDialog(DIALOG_ONCLOSE); //for simplicity. IMPROVE: use DialogFragment instead
+		//super.onBackPressed();
+	}
+
+	@Override
+	protected Dialog onCreateDialog(int id) {
+		Dialog dialog=null;
+		switch (id){
+		case DIALOG_ONCLOSE:
+			new AlertDialog.Builder(this)
+			.setMessage(this.getResources().getString(R.string.close_confirm))
+			.setCancelable(false)
+			.setPositiveButton(R.string.btn_OK, 
+		    		new DialogInterface.OnClickListener(){
+		             	public void onClick(DialogInterface dialog, int id){
+		             		MainActivity.this.finish();
+		             	}
+		           	})
+		    .setNegativeButton(R.string.btn_Cancel, null)
+			.show();
+            break;
+		default:
+			break;
+		}
+		return dialog;
 	}
 
 	//-- Public and internal Methods --------------------------------------

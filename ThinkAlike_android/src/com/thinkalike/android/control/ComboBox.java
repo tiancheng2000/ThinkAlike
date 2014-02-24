@@ -80,7 +80,8 @@ public class ComboBox<T> extends LinearLayout{
 		System.arraycopy(itemValues, 0, _itemValues, 0, itemValues.length);
 		for (int i=0; i<_itemValues.length; i++){
 			if(_itemValues[i]==defaultValue){
-				_idx_default = i;  
+				_idx_default = i;
+				break;
 			}
 		}
 		initView();

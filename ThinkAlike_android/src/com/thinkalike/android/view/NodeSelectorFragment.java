@@ -65,6 +65,7 @@ public class NodeSelectorFragment extends Fragment implements OnItemClickListene
 	//NOTE: manage instance variables of Activity/Fragment by using onSavedInstanceState() -- Android LifeCycle Management
 	//private FragmentCallbacks _listenerFromActivity = null; //relative activity listen to us
 	private ComboBox<NodeType> _nodeTypeSelector;
+	private NodeType _currentNodeType = DefaultValue; //managed as savedInstanceState
 	private ListView _lv_nodeList;
 	//MVVM
 	private NodeSelectorViewModel _viewModel = null;
@@ -118,13 +119,18 @@ public class NodeSelectorFragment extends Fragment implements OnItemClickListene
 				container, false); //kw: 3rd param must be false -- Android SDK
 		
 		RelativeLayout rl_nodeselector = (RelativeLayout) rootView.findViewById(R.id.rl_nodeselector);
-		_nodeTypeSelector = new ComboBox<NodeType>(this.getActivity(), ImageResIds, ItemValues, DefaultValue);
+		if(savedInstanceState!=null){
+			_currentNodeType = (NodeType)savedInstanceState.getSerializable("currentNodeType"); //enum is serializable
+		}
+		_nodeTypeSelector = new ComboBox<NodeType>(this.getActivity(), ImageResIds, ItemValues, _currentNodeType);
 		_nodeTypeSelector.registerListener(new ComboBoxListener<NodeType>(){
 			@Override
 			public void onSelectedItemChanged(NodeType nodeType) {
 				Util.trace(LogTag.ViewModel, String.format("[ICommand]::View NodeType changed(=%s)", nodeType));
-				if(_viewModel != null)
+				if(_viewModel != null){
 					_viewModel.onNodeTypeChanged(nodeType);
+					_currentNodeType = nodeType;
+				}
 			}
 		});
 		rl_nodeselector.addView(_nodeTypeSelector);
@@ -150,6 +156,7 @@ public class NodeSelectorFragment extends Fragment implements OnItemClickListene
 
 	@Override
 	public void onResume() {
+		_viewModel.onNodeTypeChanged(_currentNodeType);
 		_viewModel.onRefreshNodeList();
 		super.onResume();
 	}
@@ -189,6 +196,7 @@ public class NodeSelectorFragment extends Fragment implements OnItemClickListene
 		//NOTE: onSaveInstanceState() is not always called (such as when a user navigates back from activity B to activity A). 
 		//       ref:http://forums.xamarin.com/discussion/6103/onsave-restoreinstancestate-by-back-button-pressing-not-called-but-destroyed  @TomOpgenorth
 		Util.trace(LogTag.LifeCycleManagement, String.format("%s: onSaveInstanceState", getClass().getSimpleName()));
+		outState.putSerializable("currentNodeType", _currentNodeType); //enum is serializable
 		super.onSaveInstanceState(outState);
 	}
 	
