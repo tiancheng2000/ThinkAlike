@@ -30,7 +30,7 @@ public class MainActivity extends FragmentActivity {
 	/**
 	 * Whether or not the screen size is large enough to contain a two-pane mode activity. i.e. when running on a tablet device.
 	 */
-	private boolean _isLargeScreen;
+	private boolean _isLargeScreen; //IMPROVE: manage with onSaveInstanceState()
 
 	//-- Properties -------------------------------------------------------
 	//-- Constructors -----------------------------------------------------

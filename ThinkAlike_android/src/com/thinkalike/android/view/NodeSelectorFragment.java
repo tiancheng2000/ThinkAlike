@@ -62,6 +62,7 @@ public class NodeSelectorFragment extends Fragment implements OnItemClickListene
 
 	//-- Delegates and Events --------------------------	
 	//-- Instance and Shared Fields --------------------------
+	//NOTE: manage instance variables of Activity/Fragment by using onSavedInstanceState() -- Android LifeCycle Management
 	//private FragmentCallbacks _listenerFromActivity = null; //relative activity listen to us
 	private ComboBox<NodeType> _nodeTypeSelector;
 	private ListView _lv_nodeList;
@@ -112,6 +113,7 @@ public class NodeSelectorFragment extends Fragment implements OnItemClickListene
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
+		Util.trace(LogTag.LifeCycleManagement, String.format("%s: onCreateView", getClass().getSimpleName()));
 		View rootView = inflater.inflate(R.layout.nodeselector,
 				container, false); //kw: 3rd param must be false -- Android SDK
 		
@@ -174,13 +176,22 @@ public class NodeSelectorFragment extends Fragment implements OnItemClickListene
 		//// Reset the active callbacks interface to null.
 		//_listenerFromActivity = null;
 	}
+	
+	@Override
+	public void onDestroy() {
+		Util.trace(LogTag.LifeCycleManagement, String.format("%s: onDestroy", getClass().getSimpleName()));
+		super.onDestroy();
+		_viewModel.removePropertyChangeListener(Constant.PropertyName.NodeList, _listenToVM);
+	}
 
 	@Override
 	public void onSaveInstanceState(Bundle outState) {
+		//NOTE: onSaveInstanceState() is not always called (such as when a user navigates back from activity B to activity A). 
+		//       ref:http://forums.xamarin.com/discussion/6103/onsave-restoreinstancestate-by-back-button-pressing-not-called-but-destroyed  @TomOpgenorth
 		Util.trace(LogTag.LifeCycleManagement, String.format("%s: onSaveInstanceState", getClass().getSimpleName()));
 		super.onSaveInstanceState(outState);
 	}
-
+	
 	//-- Public and internal Methods --------------------------	
 	//-- Private and Protected Methods --------------------------
 	private void updateNodeList(List<UINode> uiNodeList){

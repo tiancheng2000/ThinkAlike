@@ -146,6 +146,14 @@ public class WorkareaFragment extends Fragment {
 		//_viewModel.onXxx();
 	}
 	
+	
+	@Override
+	public void onDestroy() {
+		Util.trace(LogTag.LifeCycleManagement, String.format("%s: onDestroy", getClass().getSimpleName()));
+		super.onDestroy();
+		_viewModel.removePropertyChangeListener(Constant.PropertyName.Node, _listenToVM);
+	}
+
 	//-- Public and internal Methods --------------------------	
 	//-- Private and Protected Methods --------------------------	
 	private void showProgressBar(boolean bFlag) {
@@ -173,7 +181,7 @@ public class WorkareaFragment extends Fragment {
 			nodeView = uiNode.attachView(_inv_nodeselected); //attach and update uiData to an existed raw ImageView 
 			_btn_OK.setVisibility(View.VISIBLE);
 		}
-		else if (!(nodeView instanceof View)){
+		else if (nodeView instanceof View){
 			//...
 		}
 		else {
