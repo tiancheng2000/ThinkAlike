@@ -16,7 +16,7 @@
 */
 
 #p_root {
-	-fx-background-image: url("images/bkg_main.png");
+	-fx-background-image: url("images/bkg_main.jpg");
 	-fx-background-position: center center; 
 	-fx-background-repeat: no-repeat;
 }
