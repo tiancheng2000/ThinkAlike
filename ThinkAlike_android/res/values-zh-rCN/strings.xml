@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ThinkAlike_android</string>
+    <string name="title_nodeselector">Node Selector</string>
+    <string name="title_workarea">WorkArea</string>
+    <string name="thumb_node">Node Thumb (image)</string>
+    <string name="progressbar">进度条</string>
+    <string name="loading">加载中&#8230;</string>
+    <string name="close_confirm">是否立即退出？</string>
+    <string name="btn_OK">确认</string>
+    <string name="btn_Cancel">取消</string>
+    <string name="btn_search">全库查找</string>
+    
+</resources>

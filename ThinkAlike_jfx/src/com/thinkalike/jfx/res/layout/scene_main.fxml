@@ -16,7 +16,7 @@
   <children>
     <HBox AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
       <children>
-        <StackPane fx:id="sp_nodeSelector" prefWidth="200.0">
+        <StackPane fx:id="sp_nodeSelector" minWidth="180.0">
           <children>
             <ComboBox fx:id="cb_nodeType" StackPane.alignment="TOP_CENTER" />
             <ListView fx:id="lv_nodeList">
@@ -49,7 +49,7 @@
 	                <Button fx:id="btn_nodefilter_5" contentDisplay="GRAPHIC_ONLY"/>
 	                <Button fx:id="btn_nodefilter_6" contentDisplay="GRAPHIC_ONLY"/>
 	                <Button fx:id="btn_nodefilter_7" contentDisplay="GRAPHIC_ONLY"/>
-	                <Button fx:id="btn_nodefilter_custom" text="全库查找" contentDisplay="CENTER"/>
+	                <Button fx:id="btn_nodefilter_custom" text="Filter" contentDisplay="CENTER"/>
 	            </HBox>
               </children>
             </VBox>

@@ -28,7 +28,7 @@
 			/>
 	
 		<com.thinkalike.android.control.ImageNodeView
-			android:id="@+id/iv_nodeselected"
+			android:id="@+id/iv_nodecontent"
 			android:layout_width="300dip"
 			android:layout_height="426dip"
 			/>

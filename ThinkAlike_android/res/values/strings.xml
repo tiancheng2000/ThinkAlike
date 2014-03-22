@@ -10,6 +10,6 @@
     <string name="close_confirm">Do you really want to exit?</string>
     <string name="btn_OK">OK</string>
     <string name="btn_Cancel">Cancel</string>
-    <string name="btn_search">全库查找</string>
+    <string name="btn_search">Search</string>
     
 </resources>

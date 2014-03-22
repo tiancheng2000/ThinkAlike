@@ -99,7 +99,7 @@ public final class R {
         public static final int content=0x7f080007;
         public static final int fl_workarea=0x7f08000c;
         public static final int iv_imageButton_base=0x7f080005;
-        public static final int iv_nodeselected=0x7f080010;
+        public static final int iv_nodecontent=0x7f080010;
         public static final int left=0x7f080008;
         public static final int ll_nodefilters=0x7f080012;
         public static final int ll_root=0x7f080004;
