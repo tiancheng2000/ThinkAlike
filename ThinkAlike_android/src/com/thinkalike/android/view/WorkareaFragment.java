@@ -1,3 +1,19 @@
+/**
+* Copyright 2013-2014 Tiancheng Hu
+* 
+* Licensed under the GNU Lesser General Public License, version 3.0 (LGPL-3.0, the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+* 
+*     http://opensource.org/licenses/lgpl-3.0.html
+*     
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
 package com.thinkalike.android.view;
 
 import android.app.ProgressDialog;
@@ -37,7 +53,7 @@ public class WorkareaFragment extends Fragment {
 	//private TextView _tv_content;
 	//private ImageView _iv_content;
 	private ProgressDialog _pd;
-	private ImageNodeView _inv_nodeselected;
+	private ImageNodeView _inv_nodecontent;
 	private Button _btn_OK;
 	
 	// FragmentCallbacks
@@ -105,7 +121,7 @@ public class WorkareaFragment extends Fragment {
 		//initialize Editor's canvas based on DOs (Page[])
 		_btn_OK = (Button) rootView.findViewById(R.id.btn_ok); 
 		_btn_OK.setVisibility(View.INVISIBLE);
-		_inv_nodeselected = (ImageNodeView) rootView.findViewById(R.id.iv_nodeselected); 
+		_inv_nodecontent = (ImageNodeView) rootView.findViewById(R.id.iv_nodecontent); 
 		//NOTE: if ImageView/ImageNodeView is instantiated dynamically without its dimensions specified, use the following callback instead. 
 
 //		if (_item != null) {
@@ -171,14 +187,14 @@ public class WorkareaFragment extends Fragment {
 
 	private void updateWorkarea(UINode uiNode){
 		if (uiNode == null){
-			_inv_nodeselected.setImageBitmap(null);
+			_inv_nodecontent.setImageBitmap(null);
 			_btn_OK.setVisibility(View.INVISIBLE);
 			return;
 		}
 
 		INodeView nodeView = uiNode.getView();
 		if(nodeView==null){
-			nodeView = uiNode.attachView(_inv_nodeselected); //attach and update uiData to an existed raw ImageView 
+			nodeView = uiNode.attachView(_inv_nodecontent); //attach and update uiData to an existed raw ImageView 
 			_btn_OK.setVisibility(View.VISIBLE);
 		}
 		else if (nodeView instanceof View){

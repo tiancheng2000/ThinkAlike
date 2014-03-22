@@ -59,7 +59,8 @@
 #btn_nodefilter_custom {
 	-fx-graphic: url("images/btn_gold.png");
 	-fx-background-color: rgba(0,0,0,0);
-    -fx-font: bold 12 simsun;
-    -fx-text-fill: #555555;
+	/* -fx-font: bold 12 simsun; */
+	-fx-font: bold 20 arial;
+	-fx-text-fill: #555555;
 }
 

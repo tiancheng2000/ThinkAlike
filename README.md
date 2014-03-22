@@ -3,7 +3,7 @@ ThinkAlike
 
 What's it?
 ----------
-It's an open source Java MVVM framework aiming at easier Cross-Platform development among Android and other JVM platforms (e.g.Windows, MacOS).
+It's an open source Java MVVM framework aiming at easier Cross-Platform development among Android and other JVM platforms (e.g.Windows, MacOS).  
 Especially, in case you want to take full advantage of Android native SDK while keeping cross-platform possiblity, this Java solution works.
 
 What it is *NOT*
@@ -50,10 +50,10 @@ Special Thanks to
 -----------------
 * Although this is definitely an architecture-purposed framework, to add some spice to it, some game factors(images) are introduced.  
   [Blizzard][] is a respect-award game entertainment company.  
-  [HealthStone][] is its stunning breaker on strategy card game market (under closed beta test phase).  
+  [HearthStone][] is its stunning breaker on strategy card game market (under closed beta test phase).  
   ThinkAlike will appear as a simple "Game Card Reference". Commercial license for the card images belongs to [Blizzard][]. Thank them for having created a fantasy World like [WOW][], and furnishing an enjoyable card game table beside the winehouse stove now! 
   [Blizzard]: http://www.blizzard.com/
-  [HealthStone]: http://us.battle.net/hearthstone/
+  [HearthStone]: http://us.battle.net/hearthstone/
   [WOW]: http://us.battle.net/wow/
 
 
