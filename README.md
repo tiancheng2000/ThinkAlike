@@ -1,10 +1,14 @@
-ThinkAlike
+ThinkAlike  
 ==========
+  
+### Download ###
+Installers and source files can be obtained from [here][release].  
+[release]: https://github.com/tiancheng2000/ThinkAlike/releases
 
 What's it?
 ----------
-It's an open source Java MVVM framework aiming at easier Cross-Platform development among Android and other JVM platforms (e.g.Windows, MacOS).  
-Especially, in case you want to take full advantage of Android native SDK while keeping cross-platform possiblity, this Java solution works.
+* It's an open source Java MVVM framework aiming at easier Cross-Platform development among Android and other JVM platforms (e.g.Windows, MacOS).  
+* Especially, in case you want to take full advantage of Android native SDK while keeping cross-platform possiblity, this Java solution works.
 
 What it is *NOT*
 ----------------
@@ -44,7 +48,8 @@ Structural directions
 
 License 
 -------
-This project is licensed under The GNU Lesser General Public License (LGPLv3).
+This project is licensed under [The GNU Lesser General Public License (LGPLv3)][LGPLv3].  
+[LGPLv3]: http://www.opensource.org/licenses/lgpl-3.0.html
 
 Special Thanks to 
 -----------------
