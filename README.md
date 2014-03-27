@@ -26,9 +26,9 @@ What's it in detail -- What can it bring to us?
   
 Where to get more info?
 -----------------------
-* There is a series of blog explaining how to use ThinkAlike framework step-by-step.  
-  Only a [Chinese language version][blog] is available by now. An shorter English version will be coming soon.
+* A [Chinese language blog series][blog] and a [shorter English tech article][article] are available, explaining the usage of ThinkAlike step-by-step. 
   [blog]: http://blog.sina.com.cn/s/articlelist_1926542847_2_1.html
+  [article]: http://www.codeproject.com/Articles/749481/How-to-make-your-Android-projects-more-portable-to
 * You may contact me @github for details. Generally the following contents will be welcome: 
   * Architectual discussions and suggestions.
   * Pull request! (of course) -- especially if you have had similar idea or project experience.
