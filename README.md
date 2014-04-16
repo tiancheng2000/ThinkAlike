@@ -54,9 +54,8 @@ This project is licensed under [The GNU Lesser General Public License (LGPLv3)][
 Special Thanks to 
 -----------------
 * Although this is definitely an architecture-purposed framework, to add some spice to it, some game factors(images) are introduced.  
-  [Blizzard][] is a respect-award game entertainment company.  
-  [HearthStone][] is its stunning breaker on strategy card game market (under closed beta test phase).  
-  ThinkAlike will appear as a simple "Game Card Reference". Commercial license for the card images belongs to [Blizzard][]. Thank them for having created a fantasy World like [WOW][], and furnishing an enjoyable card game table beside the winehouse stove now! 
+  [Blizzard][] is a respect-award game entertainment company. [HearthStone][] is its stunning breaker on strategy card game market (released in March 2014).  
+  ThinkAlike will appear as a simple "Game Card Reference". Commercial license for the card images belongs to [Blizzard][]. Thank them for having created a fantastic World like [WOW][], and furnished an enjoyable card game table beside the winehouse stove now! 
   [Blizzard]: http://www.blizzard.com/
   [HearthStone]: http://us.battle.net/hearthstone/
   [WOW]: http://us.battle.net/wow/
