@@ -24,10 +24,13 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import com.thinkalike.generic.Loader;
-import com.thinkalike.generic.common.Constant;
 import com.thinkalike.generic.common.LogTag;
 import com.thinkalike.generic.common.Util;
+import com.thinkalike.generic.common.Config.Key;
 
+/**
+ * Handle asset files (generally unzip&copy) by using local utility class (AssetManagerLocal). 
+ */
 public class AssetManager {
 	//-- Constants and Enums -----------------------------------
 	//-- Inner Classes and Structures --------------------------
@@ -94,7 +97,7 @@ public class AssetManager {
 					//IMPROVE: overwrite/delete after ensuring inputStream is opened successfully
 					//IMPROVE: Exception should be caught for each File.
 					outputStream = new FileOutputStream(destFile, false);
-					byte[] buffer = new byte[Constant.BUFFER_READ_SIZE];
+					byte[] buffer = new byte[(Integer)Loader.getInstance().getPlatform().getConfig(Key.BUFFER_READ_SIZE)];
 					int len;
 					while ((len = inputStream.read(buffer)) > 0) {
 						outputStream.write(buffer, 0, len);

@@ -18,12 +18,13 @@ package com.thinkalike.android.dal;
 
 import java.lang.ref.WeakReference;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 
-import com.thinkalike.android.ThinkAlikeApp;
 import com.thinkalike.android.common.Util;
 import com.thinkalike.android.dal.MediaAsyncLoader.OnMediaLoadListener;
+import com.thinkalike.generic.Loader;
 import com.thinkalike.generic.common.LogTag;
 
 class AsyncResourceTask extends AsyncTask<Object, Integer, Boolean>{
@@ -85,7 +86,7 @@ class AsyncResourceTask extends AsyncTask<Object, Integer, Boolean>{
 				return true;
 			} catch (OutOfMemoryError e) {
 				//Util.trace(null, LogTag.UIThread, "Before calling Toast from a non-UI thread."); 
-				Util.error(ThinkAlikeApp.getInstance().getUIContext(), LogTag.MemoryManagement, String.format("AsyncWorker[WorkType::%s] OOM: path=%s w=%d h=%d", 
+				Util.error((Context)Loader.getInstance().getPlatform().getUIContext(), LogTag.MemoryManagement, String.format("AsyncWorker[WorkType::%s] OOM: path=%s w=%d h=%d", 
 							_workType.toString(), params[PARAM_PATH], ((Integer) params[PARAM_MAXWIDTH]).intValue(), ((Integer) params[PARAM_MAXHEIGHT]).intValue()));
 				//Util.trace(null, LogTag.UIThread, "After calling Toast from a non-UI thread."); 
 				_errCode = ERR_OOM;

@@ -43,6 +43,7 @@ import java.util.zip.ZipFile;
 import java.util.zip.ZipOutputStream;
 
 import com.thinkalike.generic.Loader;
+import com.thinkalike.generic.common.Config.Key;
 import com.thinkalike.generic.common.Config.LogLevel;
 import com.thinkalike.generic.common.Constant.SortOrder;
 import com.thinkalike.generic.common.Constant.SortType;
@@ -114,20 +115,20 @@ public class Util {
     }
     
     public static void logSystem(String tag, String message, int level){
-    	if (Config.LOGGING_USING_LOG){
+    	if ((Boolean)Loader.getInstance().getPlatform().getConfig(Key.LOGGING_USING_LOG)){
     		String strMsg = String.format("[%s] %s (%s) %s", LogLevel.toString(level), Util.getTimeStamp(), tag, message);
     		System.out.println(strMsg);
     	}
     }
     public static void logFile(String tag, String message, int level){
-    	if (Config.LOGGING_USING_LOGFILE){
+    	if ((Boolean)Loader.getInstance().getPlatform().getConfig(Key.LOGGING_USING_LOGFILE)){
     		//TODO: logFile for JRE platform
     		//String strMsg = String.format("[%s] %s (%s) %s", LogLevel.toString(level), Util.getTimeStamp(), tag, message);
     		//System.out.println(strMsg);
     	}
     }
 	public static void logGUI(Object context, String tag, String message, int level) {
-    	if (Config.LOGGING_USING_GUI){
+    	if ((Boolean)Loader.getInstance().getPlatform().getConfig(Key.LOGGING_USING_GUI)){
     		//TODO: logGUI for JRE platform
     		//String strMsg = String.format("[%s] %s (%s) %s", LogLevel.toString(level), Util.getTimeStamp(), tag, message);
     	}
@@ -171,11 +172,11 @@ public class Util {
     	return pathToUrl(getAbsolutePath(relativePath));
     }
     public static String getAbsolutePath(String relativePath){
-    	return Util.appendPath(Config.STORAGE_BASEPATH, relativePath);    
+    	return Util.appendPath((String)Loader.getInstance().getPlatform().getConfig(Key.STORAGE_BASEPATH), relativePath);
 	}
     public static String getRelativePath(String absolutePath){
     	//IMPROVE: check if the beginning parts are same
-    	return absolutePath.substring(Config.STORAGE_BASEPATH.length());
+    	return absolutePath.substring(((String)Loader.getInstance().getPlatform().getConfig(Key.STORAGE_BASEPATH)).length());
 	}
     public static String getFileName(String filePath){
     	return filePath.substring(filePath.lastIndexOf(Constant.FILEPATH_SEPARATOR)+1);
@@ -330,7 +331,7 @@ public class Util {
         try {
 	        FileOutputStream fos = new FileOutputStream(destFile);
 	        int readLen = 0;
-	        byte[] buffer = new byte[Constant.BUFFER_READ_SIZE];
+	        byte[] buffer = new byte[(Integer)Loader.getInstance().getPlatform().getConfig(Key.BUFFER_READ_SIZE)];
 	        while ((readLen = fis.read(buffer)) != -1) {
 	            fos.write(buffer, 0, readLen);
 	        }
@@ -416,7 +417,7 @@ public class Util {
 	                destFile.createNewFile();
 	            }
 	            out = new FileOutputStream(destFile);
-	            byte buffer[] = new byte[Constant.BUFFER_ZIP_SIZE];
+	            byte buffer[] = new byte[(Integer)Loader.getInstance().getPlatform().getConfig(Key.BUFFER_ZIP_SIZE)];
 	            int realLength;
 	            while ((realLength = in.read(buffer)) > 0) {
 	                out.write(buffer, 0, realLength);
@@ -606,14 +607,24 @@ public class Util {
     	if(!LogTag.showRulesAllowed(tag))
     		return;
     	
-    	if (Config.LOGGING_USING_LOG){
-    		Loader.getInstance().getPlatform().logSystem(tag, message, level);
+    	Loader loader = Loader.getInstance();
+       	if ((Boolean)Loader.getInstance().getPlatform().getConfig(Key.LOGGING_USING_LOG)){
+    		if(loader!=null)
+    			loader.getPlatform().logSystem(tag, message, level);
+    		else
+    			logSystem(tag, message, level);
     	}
-    	if (Config.LOGGING_USING_LOGFILE){
-    		Loader.getInstance().getPlatform().logFile(tag, message, level);
+       	if ((Boolean)Loader.getInstance().getPlatform().getConfig(Key.LOGGING_USING_LOGFILE)){
+    		if(loader!=null)
+    			loader.getPlatform().logFile(tag, message, level);
+    		else
+    			logFile(tag, message, level);
     	}
-    	if (Config.LOGGING_USING_GUI){
-    		Loader.getInstance().getPlatform().logGUI(tag, message, level);
+       	if ((Boolean)Loader.getInstance().getPlatform().getConfig(Key.LOGGING_USING_GUI)){
+    		if(loader!=null)
+    			loader.getPlatform().logGUI(tag, message, level);
+    		else
+    			logGUI(null, tag, message, level);
     	}
     }
     //-- 2. File/Folder/Full Path related ----------------------------------------------------
@@ -624,10 +635,10 @@ public class Util {
             for(File file : fileList)
                 zipFile(file, zipOut, rootPath);
         } else {
-            byte buffer[] = new byte[Constant.BUFFER_ZIP_SIZE];
+            byte buffer[] = new byte[(Integer)Loader.getInstance().getPlatform().getConfig(Key.BUFFER_ZIP_SIZE)];
             BufferedInputStream inputStream = null;
 			try {
-				inputStream = new BufferedInputStream(new FileInputStream(srcFile), Constant.BUFFER_ZIP_SIZE);
+				inputStream = new BufferedInputStream(new FileInputStream(srcFile), (Integer)Loader.getInstance().getPlatform().getConfig(Key.BUFFER_ZIP_SIZE));
 				zipOut.putNextEntry(new ZipEntry(rootPath));
 	            int realLength;
 	            while ((realLength = inputStream.read(buffer)) != -1) {

@@ -36,6 +36,7 @@ import javax.imageio.stream.ImageInputStream;
 import org.apache.log4j.Logger;
 import org.apache.log4j.Priority;
 
+import com.thinkalike.jfx.common.Constant;
 import com.thinkalike.generic.common.Config;
 import com.thinkalike.generic.common.Config.LogLevel;
 import com.thinkalike.generic.common.Constant.Layout;
@@ -214,7 +215,7 @@ public class Util extends com.thinkalike.generic.common.Util {
             		break;
             	case TypedValue.UNIT_SP: //"em" comes here
             		float fontsize = (float) ((node instanceof Labeled) ? ((Labeled)node).fontProperty().getValue().getSize() 
-            				: Constant.WorkArea.TEXT_FONTSIZE); //px
+            				: Constant.TEXT_FONTSIZE_DEFAULT); //px
             		fontsize *= 1.8; //TEMP: title's height is incorrect if using default value.  
             		//return TypedValue.applyDimension(unit, size.floatValue()*fontsize,
             		//		view.getContext().getResources().getDisplayMetrics());

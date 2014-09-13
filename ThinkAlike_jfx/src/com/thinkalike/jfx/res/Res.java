@@ -26,8 +26,8 @@ import com.thinkalike.jfx.common.Constant;
  */
 public class Res {
 	//-- Constants and Enums -----------------------------------
-	private final static String[] LOCALE_SPECIFIC_PATTERN = new String[]
-			{"btn_type", "filter_cost_rank_all"};
+	protected static String[] LOCALE_SPECIFIC_PATTERN = new String[]{}; //domain-specific
+	
 	//-- Inner Classes and Structures --------------------------
 	//-- Delegates and Events ----------------------------------
 	//-- Instance and Shared Fields ----------------------------
@@ -39,6 +39,8 @@ public class Res {
 	public static String getImageUrl(String url){
 		//IMPROVE: for I18N in JavaFX, using ResourceBundle? What's Android's way to avoid unnecessary  
 		// file existence check of locale-specific resource item? auto-generated resource item list?
+		// According to android.content.res.Resources, the Maps between resIDs and Values can be easily referenced.
+		// Before checking file existence using AssetsManager, its Resource bundle and resID will be checked firstly.
 		String locale_append = ""; //language part of the locale
 		if(isLocaleSpecific(url) && !Locale.getDefault().getLanguage().equals("en"))
 			locale_append = "_" + Locale.getDefault().getLanguage();
@@ -49,7 +51,7 @@ public class Res {
 	}
 	
 	//-- Private and Protected Methods -------------------------
-	private static boolean isLocaleSpecific(String resourceName){
+	protected static boolean isLocaleSpecific(String resourceName){
 		for (int i=0; i<LOCALE_SPECIFIC_PATTERN.length; i++){
 			if(resourceName.indexOf(LOCALE_SPECIFIC_PATTERN[i]) == 0)
 				return true;

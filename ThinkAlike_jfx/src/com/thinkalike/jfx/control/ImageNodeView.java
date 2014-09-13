@@ -19,12 +19,11 @@ package com.thinkalike.jfx.control;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import com.thinkalike.jfx.res.Res;
 import com.thinkalike.generic.viewmodel.control.IImageNodeView;
 import com.thinkalike.generic.viewmodel.control.UIImageNode;
 import com.thinkalike.generic.viewmodel.control.UINode;
-import com.thinkalike.jfx.common.Constant;
 import com.thinkalike.jfx.common.Util;
-import com.thinkalike.jfx.res.Res;
 
 public class ImageNodeView extends ImageView implements IImageNodeView {
 	//-- Constants and Enums -----------------------------------
@@ -61,7 +60,7 @@ public class ImageNodeView extends ImageView implements IImageNodeView {
 			ImageNodeView.update(uiData, this);
 		}
 	}
-	
+
 	//-- Public and internal Methods ---------------------------
 	//-- Private and Protected Methods -------------------------
 	protected static void update(UINode uiData, ImageView rawView) {

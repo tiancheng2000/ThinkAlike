@@ -34,20 +34,22 @@ import android.os.Build;
  *  Source has been released to the public as is and without any warranty.
  */
 public class UncaughtExceptionHandler implements java.lang.Thread.UncaughtExceptionHandler, Runnable {
-	public static final String ExceptionReportFilename = Constant.APP_NAME + ".uncaught.txt";
+	public String exceptionReportFilename;
 	
 	private static final String MSG_SUBJECT_TAG = "UncaughtException Report";   //"app label + this tag" = email subject
-	private static final String MSG_SENDTO = Constant.UNCAUGHTEXCEPTION_RECEIVER_MAIL;   //email will be sent to this account
 	//the following may be something you wish to consider localizing
 	private static final String MSG_BODY = "Please help by sending this email. "+
 		"No personal information is being sent (you can check by reading the rest of the email).";
+	private String msg_sendto;   //email will be sent to this account
 	
 	private Thread.UncaughtExceptionHandler mDefaultUEH;
 	private Activity mAct = null;
  
-	public UncaughtExceptionHandler(Activity aAct) {
+	public UncaughtExceptionHandler(Activity aAct, String reportFileName, String receiverMail) {
 		mDefaultUEH = Thread.getDefaultUncaughtExceptionHandler();
 		mAct = aAct;
+		exceptionReportFilename = reportFileName + ".uncaught.txt";
+		msg_sendto = receiverMail;
 	}
 
 	/**
@@ -233,10 +235,10 @@ public class UncaughtExceptionHandler implements java.lang.Thread.UncaughtExcept
 	protected void saveDebugReport(String aReport) {
 		//save report to file
 		try {
-			FileOutputStream theFile = mAct.openFileOutput(ExceptionReportFilename, Context.MODE_PRIVATE);
+			FileOutputStream theFile = mAct.openFileOutput(exceptionReportFilename, Context.MODE_PRIVATE);
 			theFile.write(aReport.getBytes());
 			theFile.close();
-			Util.copyFileTo(mAct.openFileInput(ExceptionReportFilename), Util.appendPath(Config.STORAGE_BASEPATH, ExceptionReportFilename));
+			Util.copyFileTo(mAct.openFileInput(exceptionReportFilename), Util.appendPath(Config.STORAGE_BASEPATH, exceptionReportFilename));
 		} catch(IOException ioe) {
 			//error during error report needs to be ignored, do not wish to start infinite loop
 		}		
@@ -250,13 +252,13 @@ public class UncaughtExceptionHandler implements java.lang.Thread.UncaughtExcept
 		String theTrace = "";
 		try {
 			BufferedReader theReader = new BufferedReader(
-					new InputStreamReader(mAct.openFileInput(ExceptionReportFilename)));
+					new InputStreamReader(mAct.openFileInput(exceptionReportFilename)));
 			while ((theLine = theReader.readLine())!=null) {
 				theTrace += theLine+"\n";
 			}
 			if (sendDebugReportToAuthor(theTrace)) {
 				//Timothy [D]: keep the UEH file whether mail is sent successfully or not. 
-				mAct.deleteFile(ExceptionReportFilename);
+				mAct.deleteFile(exceptionReportFilename);
 			}
 		} catch (FileNotFoundException eFnf) {
 			// nothing to do
@@ -276,7 +278,7 @@ public class UncaughtExceptionHandler implements java.lang.Thread.UncaughtExcept
 			Intent theIntent = new Intent(Intent.ACTION_SEND);
 			String theSubject = getAppName()+" "+MSG_SUBJECT_TAG;
 			String theBody = "\n"+MSG_BODY+"\n\n"+aReport+"\n\n";
-			theIntent.putExtra(Intent.EXTRA_EMAIL,new String[] {MSG_SENDTO});
+			theIntent.putExtra(Intent.EXTRA_EMAIL,new String[] {msg_sendto});
 			theIntent.putExtra(Intent.EXTRA_TEXT, theBody);
 			theIntent.putExtra(Intent.EXTRA_SUBJECT, theSubject);
 			theIntent.setType("message/rfc822");

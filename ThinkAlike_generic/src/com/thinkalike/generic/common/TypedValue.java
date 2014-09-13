@@ -16,6 +16,7 @@
 
 package com.thinkalike.generic.common;
 
+//Originates from development of EasyPublisher. IMPROVE: android.util.TypedValue provide more sophisticated implementation.
 public class TypedValue{
 	//-- Constants and Enums ----------------------------------------------
 	public static final int UNIT_FRACTION_PARENT = 1;

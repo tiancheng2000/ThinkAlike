@@ -24,7 +24,7 @@ import com.thinkalike.generic.common.LogTag;
 import com.thinkalike.generic.common.Util;
 
 
-//IMPROVE: package-scope class, not public. but Java doesn't have package-level Class accessibility
+//IMPROVE: library-scope class, not public. but Java doesn't have library-level Class accessibility
 //          maybe move it into ViewModelBase class.
 public class PropertyChangeListenerAdapter implements java.beans.PropertyChangeListener{
 	//-- Constants and Enums --------------------------

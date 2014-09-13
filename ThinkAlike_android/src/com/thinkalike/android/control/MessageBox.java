@@ -55,7 +55,7 @@ public class MessageBox {
 	public static MessageBox showDialog(Context context, Object titleText, Object contentText, Object leftText, Object rightText, boolean force) {
 		final MessageBox messageBox = new MessageBox();
 		
-		View dialogView = LayoutInflater.from(context).inflate(R.layout.messagebox, null);
+		View dialogView = LayoutInflater.from(context).inflate(R.layout.talib_messagebox, null);
 		
 		TextView title = (TextView) dialogView.findViewById(R.id.title);
 		title.setText(parseParam(context, titleText));

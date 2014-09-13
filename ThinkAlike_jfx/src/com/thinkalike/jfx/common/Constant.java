@@ -16,7 +16,6 @@
 
 package com.thinkalike.jfx.common;
 
-import com.thinkalike.generic.common.Util;
 import com.thinkalike.jfx.assets.Assets;
 import com.thinkalike.jfx.res.Res;
 
@@ -29,34 +28,20 @@ public class Constant {
 	//--- File Operation ----------------------------------
     
 	//--- Resource, Asset files ---------------------------
+	//IMPROVE: resource/assets url is project-specific and should be handled in code base (Res class, Assets class) 
 	//NOTE: url path SHOULD end with "/", but not start with one.
-	public static final String URL_RESOURCE_BASE = Util.namespaceToPath(Res.class.getPackage().getName()); //"{project_ns}/jfx/res/";
-	public static final String URL_RESOURCE_IMAGES = Util.appendUrl(URL_RESOURCE_BASE, "images");
-	public static final String URL_RESOURCE_LAYOUT = Util.appendUrl(URL_RESOURCE_BASE, "layout");
-	public static final String URL_ASSET_BASE = Util.namespaceToPath(Assets.class.getPackage().getName()); //"{project_ns}/jfx/assets/";
-    
+	public static String URL_RESOURCE_BASE = Util.namespaceToPath(Res.class.getPackage().getName()); //"{framework_ns}/jfx/res/";
+	public static String URL_RESOURCE_IMAGES = Util.appendUrl(URL_RESOURCE_BASE, "images");
+	public static String URL_RESOURCE_LAYOUT = Util.appendUrl(URL_RESOURCE_BASE, "layout");
+	public static String URL_ASSET_BASE = Util.namespaceToPath(Assets.class.getPackage().getName()); //"{framework_ns}/jfx/assets/";
+
 	//--- Screen Layout -----------------------------------
-    public class Screen{
-    	public static final int WIDTH = 1024;
-    	public static final int HEIGHT = 780;
-    }
    
     //--- Drag & Drop -------------------------------------
 
-    //--- NodeSelector UI ---------------------------------
-    public class NodeSelector{
-    	public static final int DEFAULT_NODELIST_WIDTH = 120;
-    	public static final int DEFAULT_NODELIST_HEIGHT = 166;
-    }
+    //--- Generic UI ---------------------------------
+	public static final int TEXT_FONTSIZE_DEFAULT = 16; //px
     
-    public class WorkArea{
-    	public static final int TEXT_FONTSIZE_DEFAULT = 16;  //px
-    	public static final int TEXT_FONTSIZE = 20;  //px
-    }
-
-    //--- Drag & Drop -------------------------------------
-    //ref: generic.common
-        
     //--- Log related -------------------------------------
     //Log Tags -- for more, reference to generic.common.LogTag.java  
 	

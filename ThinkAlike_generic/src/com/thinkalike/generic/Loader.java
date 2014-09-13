@@ -16,36 +16,45 @@
 
 package com.thinkalike.generic;
 
-import com.thinkalike.generic.common.Config;
+import java.util.ArrayList;
+
+import com.thinkalike.generic.common.Config.Key;
 import com.thinkalike.generic.common.Util;
 import com.thinkalike.generic.dal.AssetManager;
 
 
 public class Loader {
 	//-- Constants and Enums -----------------------------------
+	public static final int E_OK = 0;
+	public static final int E_INVALID_PLATFORM = 1;
+	
 	//-- Inner Classes and Structures --------------------------
 	public interface OnLoaderEventListener{
+		public void onInitialized();
 		public void onReloaded();
 		//public void onConfigChanged();
+		public void onFinalized();
 	}
 	
 	//-- Delegates and Events ----------------------------------
 	//-- Instance and Shared Fields ----------------------------
-	private static Loader _this;
+	protected static Loader _this;
 	private Platform _platform;
-	@SuppressWarnings("unused")
-	private OnLoaderEventListener _onLoaderEventListener;
+	private ArrayList<OnLoaderEventListener> _onLoaderEventListeners; 
 	
 	//-- Properties --------------------------------------------
 	public Platform getPlatform(){return _platform;}
+	public void addLoaderEventListener(OnLoaderEventListener l){_onLoaderEventListeners.add(l);}
+	public void removeLoaderEventListener(OnLoaderEventListener l){_onLoaderEventListeners.remove(l);}
 	
 	//-- Constructors ------------------------------------------
-	private Loader(Platform platform, OnLoaderEventListener l)
+	protected Loader(Platform platform, OnLoaderEventListener l)
 	{
 		_platform = platform;
-		_onLoaderEventListener = l;
+		_onLoaderEventListeners = new ArrayList<OnLoaderEventListener>();
+		addLoaderEventListener(l);
 		
-		//...load generic.View, which load platform-dependent Views 
+		//IMPROVE: ...load generic.View, which in turn load platform-specific Views 
 	}
 
 	//-- Destructors -------------------------------------------
@@ -57,10 +66,14 @@ public class Loader {
 	}
 	
 	public static Loader getInstance(){
-		if (_this == null)
-			throw new UnsupportedOperationException("Loader: must be instantiated by a platform-relative Applicaiton");
-		else if (_this.getPlatform() == null)
-			throw new UnsupportedOperationException("Loader: must be initialized with a valid platform instance");
+		if (_this == null){
+			//throw new UnsupportedOperationException("Loader: must be instantiated by a platform-relative Application");
+			//Util.warn(TAG, "Loader: should be instantiated by a platform-relative Application");
+		}
+		else if (_this.getPlatform() == null){
+			//throw new UnsupportedOperationException("Loader: must be initialized with a valid platform instance");
+			//Util.warn(TAG, "Loader: must be initialized with a valid platform instance");
+		}
 		return _this;
 	}
 	
@@ -71,11 +84,19 @@ public class Loader {
 	//finalize()
 	//onConfigReloaded()
 
-	public void initialize(){
+	public int initialize(){
+		if(_platform == null)
+			return E_INVALID_PLATFORM;
+		
 		//IMPROVE: 1.use AssetLoader thread  2.ignore Asset copy if already exists
-		AssetManager.copyAssets(Config.PATH_ROOT, Util.getAbsolutePath(Config.PATH_ROOT));
-		if(!Config.PATH_TYPE_A.startsWith(Config.PATH_ROOT))
-			AssetManager.copyAssets(Config.PATH_TYPE_A, Util.getAbsolutePath(Config.PATH_TYPE_A));
+		String path_root = (String)_platform.getConfig(Key.PATH_ROOT);
+		AssetManager.copyAssets(path_root, Util.getAbsolutePath(path_root));
+
+		for(OnLoaderEventListener l : _onLoaderEventListeners){
+			l.onInitialized();
+		}
+		
+		return E_OK;
 	}
 
 	//-- Private and Protected Methods -------------------------

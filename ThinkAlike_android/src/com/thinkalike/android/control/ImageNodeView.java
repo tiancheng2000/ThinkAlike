@@ -78,7 +78,7 @@ public class ImageNodeView extends ImageView implements IImageNodeView {
 		if(uiData instanceof UIImageNode){
 			
 			//1.set the default image
-			setImageDrawable(_context.getResources().getDrawable(R.drawable.default_image));
+			setImageDrawable(_context.getResources().getDrawable(R.drawable.talib_default_image));
 			//Util.trace(null, LogTag.MemoryManagement, "totalMemory ===== " + Runtime.getRuntime().totalMemory() + " at getDrawable");
 
 			//2.Async load Image
@@ -91,7 +91,7 @@ public class ImageNodeView extends ImageView implements IImageNodeView {
 //													, Constant.NodeView.DEFAULT_NODELIST_HEIGHT);
 //			setImageBitmap(thumb);
 			
-			//Method 2. Asynchronized image loading, with hard-fix size
+			//Method 2. Asynchronized image loading, with fixed size
 //			MediaAsyncLoader.asyncLoadImageFile(imagePath,
 //												Constant.NodeView.DEFAULT_NODELIST_WIDTH,
 //												Constant.NodeView.DEFAULT_NODELIST_HEIGHT,

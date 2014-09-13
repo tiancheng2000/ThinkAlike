@@ -22,6 +22,7 @@ public class ImageNode implements Node, IReadOnlyProvider {
 	public static final String TAG = ImageNode.class.getSimpleName();
 
 	//-- Inner Classes and Structures --------------------------
+	//kw: non-static member class is appropriate here as it's an adapter view of its enclosing class.
 	public class RO implements INodeRO{  //forward pattern
 		public String getRelativePath() {return ImageNode.this.getRelativePath();}
 	}

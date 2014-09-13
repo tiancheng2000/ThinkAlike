@@ -16,6 +16,7 @@
 
 package com.thinkalike.generic.domain;
 
+//IMPROVE: consider using generics, ref:javafx.beans.property.ReadOnlyObjectProperty<T> 
 /**
  * tag interface represents that all member methods of its inheritors must be read-only. 
  */

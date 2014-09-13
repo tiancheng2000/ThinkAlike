@@ -47,7 +47,7 @@ public class ComboBox<T> extends LinearLayout{
 	private int _idx_default = 0;
 	private ComboBoxListener<T> _comboBoxListener;
 	private Animation _showAnimation;
-	private boolean _isShown;
+	private boolean _isExpanded;	//the status in which all selectable items are shown
 	private View.OnClickListener _listenToButtonClick;
 
 	//-- Properties --------------------------------------------
@@ -57,7 +57,7 @@ public class ComboBox<T> extends LinearLayout{
 		super(context);
 		assert(imageResIds!=null && itemValues!=null && imageResIds.length==itemValues.length && defaultValue!=null);
 		
-		LayoutInflater.from(context).inflate(R.layout.combobox, this, true);
+		LayoutInflater.from(context).inflate(R.layout.talib_combobox, this, true);
 		_ll_root = (LinearLayout) findViewById(R.id.ll_root);
 		_iv_imageButton_base = (ImageView) findViewById(R.id.iv_imageButton_base);
 		
@@ -70,18 +70,18 @@ public class ComboBox<T> extends LinearLayout{
 
 				//FD: 1.1st item: a.(when collapsed)act as a currently selected item  b.(when expended)act as a controller 
 				//    2.other items: if clicked, collapse the combobox and activate onSelectItemChange()
-				if(!_isShown){ // && id_selected==0){
+				if(!_isExpanded){ // && id_selected==0){
 					assert(id_selected==0);
-					_isShown = true;
+					_isExpanded = true;
 					setImageAndValue(_iv_imageButtons[0], 0);
-					setVisible();
+					expand();
 					return;
 				}
 				
-				_isShown = false;
+				_isExpanded = false;
 				_iv_imageButtons[0].setImageResource(_imageResIds[idx_selected]);
 				_idx_default = idx_selected;
-				setInvisible();
+				collapse();
 
 				if (_comboBoxListener != null)
 					_comboBoxListener.onSelectedItemChanged(_itemValues[_idx_default]);
@@ -144,7 +144,7 @@ public class ComboBox<T> extends LinearLayout{
 			_ll_root.addView(_iv_imageButtons[i], i);
 		}
 		
-		_isShown = false;
+		_isExpanded = false;
 		//setInvisible();
 	}
 
@@ -153,21 +153,21 @@ public class ComboBox<T> extends LinearLayout{
 		iv.setTag(idx);
 	}
 
-	private void setInvisible() {
+	private void collapse() {
 		for(int i=1; i<_iv_imageButtons.length; i++){
 			_iv_imageButtons[i].setVisibility(View.INVISIBLE);
 		}
 	}
 
-	private void setVisible() {
+	private void expand() {
 		for(int i=1; i<_iv_imageButtons.length; i++){
 			_iv_imageButtons[i].setVisibility(View.VISIBLE);
 		}
-		startShowAnimation();
+		animateExpanding();
 	}
 
-	private void startShowAnimation() {
-		_showAnimation = AnimationUtils.loadAnimation(this.getContext(), R.anim.fade_in);
+	private void animateExpanding() {
+		_showAnimation = AnimationUtils.loadAnimation(this.getContext(), R.anim.talib_fade_in);
 		for(int i=1; i<_iv_imageButtons.length; i++){
 			_iv_imageButtons[i].startAnimation(_showAnimation);
 		}

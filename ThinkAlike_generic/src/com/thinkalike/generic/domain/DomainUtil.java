@@ -20,8 +20,7 @@ import com.thinkalike.generic.viewmodel.control.INodeView;
 import com.thinkalike.generic.viewmodel.control.UINode;
 
 /**
- * @author Timothy
- *
+ * ***NOT USED*** Domain utility class. Should be domain-specific.
  */
 public class DomainUtil{
 	//-- Constants and Enums -----------------------------------

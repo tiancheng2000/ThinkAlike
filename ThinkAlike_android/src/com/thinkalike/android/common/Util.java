@@ -38,7 +38,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.thinkalike.android.ThinkAlikeApp;
+import com.thinkalike.android.common.Constant;
+import com.thinkalike.generic.Loader;
 import com.thinkalike.generic.common.Config;
 import com.thinkalike.generic.common.Config.LogLevel;
 import com.thinkalike.generic.common.LogTag;
@@ -115,9 +116,12 @@ public class Util extends com.thinkalike.generic.common.Util {
 	public static void logSystem(String tag, String message, int level) {
     	if (Config.LOGGING_USING_LOG){
     		int logcatLevel = translateLogLevel(level);
+    		//NOTE: it's possible some Exception has "null" as result of its getMessage()..android.os.NetworkOnMainThreadException
+    		if(message == null)
+    			message = "";
     		//only use tag canonicalization in necessary circumstances. ONLY android.systemIO need this.
         	//NOTE: TAG should be shorter than 23 chars in Android. use LogTag.canonicalize().
-        	tag = LogTag.canonicalize(tag, Constant.MAX_LENGTH_LOGTAG);
+    		tag = LogTag.canonicalize(tag, Constant.MAX_LENGTH_LOGTAG);
         	//NOTE: Android LOG's default template already contains time stamp
         	if (Log.isLoggable(tag, logcatLevel)){
         		switch (logcatLevel){
@@ -169,8 +173,9 @@ public class Util extends com.thinkalike.generic.common.Util {
         			Toast.makeText(context, message, Toast.LENGTH_LONG).show(); //Toast.LENGTH_SHORT
     			else{
     				//if there is an active Activity, show the message, otherwise, ignore.
-    				if (ThinkAlikeApp.getInstance().getUIContext() instanceof Activity){
-    					final Activity currentActivity = (Activity)ThinkAlikeApp.getInstance().getUIContext();
+    				if (Loader.getInstance() != null &&
+    					Loader.getInstance().getPlatform().getUIContext() instanceof Activity){
+    					final Activity currentActivity = (Activity)Loader.getInstance().getPlatform().getUIContext();
     					final String messageToShow = message;
     					currentActivity.runOnUiThread(new Runnable(){
 							@Override
@@ -363,7 +368,7 @@ public class Util extends com.thinkalike.generic.common.Util {
     		}
     	case TypedValue.COMPLEX_UNIT_SP: //"em" comes here
     		float fontsize = (view instanceof TextView) ? ((TextView)view).getTextSize() 
-    				: Constant.WorkArea.TEXT_FONTSIZE; //px
+    				: Constant.TEXT_FONTSIZE_DEFAULT; //px
     		fontsize *= 1.8; //TEMP: title's height is incorrect if using default value.  
     		//return TypedValue.applyDimension(unit, size.floatValue()*fontsize,  
     		//		view.getContext().getResources().getDisplayMetrics());
