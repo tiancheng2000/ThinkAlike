@@ -51,8 +51,8 @@ public class LogTag {
    	private static enum ShowMode {Exclusion, Inclusion};
    	private static final ShowMode showMode = ShowMode.Exclusion; //Inclusion
 	//used by showRulesAllowed() w. showMode
-   	private static final String[] exclusionList = new String[]{"GestureDetector", "GCImpl::PageBaseView", MemoryManagement, AssetThread}; 
-   								//UIControlEvent: "GestureDetector", "GCImpl::PageBaseView"
+   	private static final String[] exclusionList = new String[]{"GestureDetector", "GCImpl::PageBaseView", MemoryManagement}; 
+   								//UIControlEvent: "GestureDetector", "GCImpl::PageBaseView"; AssetThread
    	private static final String[] inclusionList = new String[]{};
    	
    	//-- Inner Classes and Structures --------------------------

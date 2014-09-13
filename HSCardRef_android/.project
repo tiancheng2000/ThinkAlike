@@ -34,12 +34,12 @@
 		<link>
 			<name>assets</name>
 			<type>2</type>
-			<location>J:/EP/Java/workspace_SmartClient/HSCardRef/HSCardRef_generic/assets-zh-rCN</location>
+			<location>J:/EP/Java/workspace_SmartClient/ThinkAlike/HSCardRef_generic/assets-zh-rCN</location>
 		</link>
 		<link>
 			<name>src_generic</name>
 			<type>2</type>
-			<location>J:/EP/Java/workspace_SmartClient/HSCardRef/HSCardRef_generic/src</location>
+			<location>J:/EP/Java/workspace_SmartClient/ThinkAlike/HSCardRef_generic/src</location>
 		</link>
 	</linkedResources>
 </projectDescription>

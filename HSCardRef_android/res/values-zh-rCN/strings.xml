@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">炉石传说卡牌助手(ThinkAlike跨平台支持)</string>
+    <string name="app_name">ThinkAlike炉石助手</string>
     <string name="title_nodeselector">Node Selector</string>
     <string name="title_workarea">WorkArea</string>
     <string name="thumb_node">Node Thumb (image)</string>
