@@ -1,0 +1,25 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rl_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+	android:background="@drawable/bkg_main"
+    tools:context=".MainActivity" >
+
+    <fragment
+        android:id="@+id/workarea"
+        android:name="com.hscardref.android.view.WorkareaFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!--
+    When being activated, NodeSelector will be shown above the Workarea in this one-pane layout
+    -->
+    <fragment
+        android:id="@+id/nodeselector"
+        android:name="com.hscardref.android.view.NodeSelectorFragment"
+        android:layout_width="100dp"
+        android:layout_height="match_parent"
+        tools:layout="@android:layout/list_content" />
+
+</RelativeLayout>

@@ -1,0 +1,41 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rl_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+	android:background="@drawable/bkg_main"
+    tools:context=".MainActivity" >
+
+    <!--
+    This layout is a two-pane layout. See res/values-large/refs.xml and
+    res/values-sw600dp/refs.xml for an example of layout aliases
+    that replace the single-pane version of the layout with
+    this two-pane version.
+
+    For more on layout aliases, see:
+    http://developer.android.com/training/multiscreen/screensizes.html#TaskUseAliasFilters
+    -->
+
+    <LinearLayout
+	    android:id="@+id/ll_twopane"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal" >
+        
+	    <fragment
+	        android:id="@+id/nodeselector"
+	        android:name="com.hscardref.android.view.NodeSelectorFragment"
+	        android:layout_width="200dp"
+	        android:layout_height="match_parent"
+	        tools:layout="@android:layout/list_content" />
+	
+	    <fragment
+	        android:id="@+id/workarea"
+	        android:name="com.hscardref.android.view.WorkareaFragment"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent" />
+	    
+    </LinearLayout>
+	    
+</RelativeLayout>
+

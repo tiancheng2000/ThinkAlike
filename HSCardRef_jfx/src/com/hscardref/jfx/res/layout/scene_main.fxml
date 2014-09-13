@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import com.thinkalike.jfx.control.*?>
+
+<AnchorPane id="p_root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns:fx="http://javafx.com/fxml" fx:controller="com.hscardref.jfx.view.MainScene">
+  <children>
+    <HBox AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+      <children>
+        <StackPane fx:id="sp_nodeSelector" minWidth="180.0">
+          <children>
+            <ComboBox fx:id="cb_nodeType" StackPane.alignment="TOP_CENTER" />
+            <ListView fx:id="lv_nodeList">
+              <StackPane.margin>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="70.0" />
+              </StackPane.margin>
+            </ListView>
+          </children>
+        </StackPane>
+        <StackPane fx:id="sp_workarea" HBox.hgrow="ALWAYS">
+          <children>
+            <TilePane fx:id="tp_work" />
+            <VBox fx:id="vb_work" fillWidth="false" alignment="TOP_CENTER">
+              <children>
+                <Label fx:id="lb_nodeContent" text="Work Area">
+	              <VBox.margin>
+	                <Insets bottom="0.0" left="0.0" right="0.0" top="70.0" />
+	              </VBox.margin>
+                </Label>
+                <ImageNodeView fx:id="inv_nodeContent" fitHeight="400.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" />
+                <Button fx:id="btn_OK" defaultButton="true" text="OK" contentDisplay="CENTER"/>
+	            <HBox fx:id="hb_nodefilters" VBox.vgrow="ALWAYS" alignment="CENTER">
+	                <Button fx:id="btn_nodefilter_type" contentDisplay="GRAPHIC_ONLY"/>
+	                <Button fx:id="btn_nodefilter_all" contentDisplay="GRAPHIC_ONLY"/>
+	                <Button fx:id="btn_nodefilter_0" contentDisplay="GRAPHIC_ONLY"/>
+	                <Button fx:id="btn_nodefilter_1" contentDisplay="GRAPHIC_ONLY"/>
+	                <Button fx:id="btn_nodefilter_2" contentDisplay="GRAPHIC_ONLY"/>
+	                <Button fx:id="btn_nodefilter_3" contentDisplay="GRAPHIC_ONLY"/>
+	                <Button fx:id="btn_nodefilter_4" contentDisplay="GRAPHIC_ONLY"/>
+	                <Button fx:id="btn_nodefilter_5" contentDisplay="GRAPHIC_ONLY"/>
+	                <Button fx:id="btn_nodefilter_6" contentDisplay="GRAPHIC_ONLY"/>
+	                <Button fx:id="btn_nodefilter_7" contentDisplay="GRAPHIC_ONLY"/>
+	                <Button fx:id="btn_nodefilter_custom" text="Filter" contentDisplay="CENTER"/>
+	            </HBox>
+              </children>
+            </VBox>
+          </children>
+        </StackPane>
+      </children>
+    </HBox>
+  </children>
+  <stylesheets>
+    <URL value="@../style_base.css" />
+    <URL value="@../style_dark.css" />
+  </stylesheets>
+</AnchorPane>

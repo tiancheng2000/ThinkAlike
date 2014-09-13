@@ -1,0 +1,131 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ta="http://schemas.android.com/apk/com.thinkalike"
+	android:id="@+id/fl_workarea"
+    android:background="@color/alpha_grey"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/ll_work"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+        android:orientation="vertical">
+    </LinearLayout>
+    
+    <LinearLayout
+        android:id="@+id/ll_work_overlay"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:gravity="center_horizontal"
+        android:orientation="vertical">
+        
+		<TextView
+		    android:id="@+id/tv_tag"
+		    android:layout_width="wrap_content"
+		    android:layout_height="15dp"
+		    android:gravity="bottom"
+		    android:text="@string/title_workarea" />
+	
+		<com.thinkalike.android.control.ImageNodeView
+			android:id="@+id/iv_nodecontent"
+			android:layout_width="300dp"
+			android:layout_height="0dp"
+			android:layout_weight="8"
+			/>
+	
+		<Button
+	        android:id="@+id/btn_ok"
+	        android:layout_width="100dp"
+			android:layout_height="0dp"
+			android:layout_weight="1"
+	        android:layout_margin="4dp"
+	        android:background="@drawable/bkg_button_dark"
+	        android:text="@string/btn_OK"
+	        android:textColor="@drawable/colorswitch_white"
+	        android:textSize="20sp"
+	        />
+		
+	    <LinearLayout
+	        android:id="@+id/ll_nodefilters"
+		    android:layout_width="match_parent"
+			android:layout_height="0dp"
+			android:layout_weight="1"
+		    android:gravity="center"
+	        android:orientation="horizontal">
+
+			<Button android:id="@+id/btn_nodefilter_type"
+			    android:layout_width="0dp"
+				android:layout_weight="2"
+			    android:layout_height="match_parent"
+			    android:layout_margin="4dp"
+		        android:background="@drawable/filter_type_cost"/>
+			<Button android:id="@+id/btn_nodefilter_all"
+			    android:layout_width="0dp"
+				android:layout_weight="2"
+			    android:layout_height="match_parent"
+			    android:layout_margin="4dp"
+		        android:background="@drawable/filter_cost_rank_all"/>
+			<Button android:id="@+id/btn_nodefilter_0"
+			    android:layout_width="0dp"
+				android:layout_weight="1"
+			    android:layout_height="match_parent"
+			    android:layout_margin="4dp"
+		        android:background="@drawable/filter_cost_rank_0"/>
+			<Button android:id="@+id/btn_nodefilter_1"
+			    android:layout_width="0dp"
+				android:layout_weight="1"
+			    android:layout_height="match_parent"
+			    android:layout_margin="4dp"
+		        android:background="@drawable/filter_cost_rank_1"/>
+			<Button android:id="@+id/btn_nodefilter_2"
+			    android:layout_width="0dp"
+				android:layout_weight="1"
+			    android:layout_height="match_parent"
+			    android:layout_margin="4dp"
+		        android:background="@drawable/filter_cost_rank_2"/>
+			<Button android:id="@+id/btn_nodefilter_3"
+			    android:layout_width="0dp"
+				android:layout_weight="1"
+			    android:layout_height="match_parent"
+			    android:layout_margin="4dp"
+		        android:background="@drawable/filter_cost_rank_3"/>
+			<Button android:id="@+id/btn_nodefilter_4"
+			    android:layout_width="0dp"
+				android:layout_weight="1"
+			    android:layout_height="match_parent"
+			    android:layout_margin="4dp"
+		        android:background="@drawable/filter_cost_rank_4"/>
+			<Button android:id="@+id/btn_nodefilter_5"
+			    android:layout_width="0dp"
+				android:layout_weight="1"
+			    android:layout_height="match_parent"
+			    android:layout_margin="4dp"
+		        android:background="@drawable/filter_cost_rank_5"/>
+			<Button android:id="@+id/btn_nodefilter_6"
+			    android:layout_width="0dp"
+				android:layout_weight="1"
+			    android:layout_height="match_parent"
+			    android:layout_margin="4dp"
+		        android:background="@drawable/filter_cost_rank_6"/>
+			<Button android:id="@+id/btn_nodefilter_7"
+			    android:layout_width="0dp"
+				android:layout_weight="2"
+			    android:layout_height="match_parent"
+			    android:layout_margin="4dp"
+		        android:background="@drawable/filter_cost_rank_7plus"/>
+			<Button android:id="@+id/btn_nodefilter_custom"
+			    android:layout_width="0dp"
+				android:layout_weight="4"
+			    android:layout_height="match_parent"
+			    android:layout_margin="4dp"
+		        android:background="@drawable/bkg_button_gold"
+		        android:text="@string/btn_search"
+		        android:textColor="@drawable/colorswitch_black"
+		        android:textSize="20sp"
+		        />
+
+	    </LinearLayout>
+				
+    </LinearLayout>
+
+</FrameLayout>

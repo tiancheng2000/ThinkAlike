@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">HearthStone Card Reference (cross-platform based on ThinkAlike)</string>
+    <string name="title_nodeselector">Node Selector</string>
+    <string name="title_workarea">WorkArea</string>
+    <string name="thumb_node">Node Thumb (image)</string>
+    <string name="progressbar">progress bar</string>
+    <string name="loading">Loading&#8230;</string>
+    <string name="close_confirm">Do you really want to exit?</string>
+    <string name="btn_OK">OK</string>
+    <string name="btn_Cancel">Cancel</string>
+    <string name="btn_search">Search</string>
+    
+</resources>

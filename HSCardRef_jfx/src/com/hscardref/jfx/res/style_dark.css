@@ -1,0 +1,66 @@
+
+.root{
+	-fx-base: rgb(63, 63, 63);
+	-fx-background: rgb(73, 73, 73);
+    -fx-control-inner-background: white; /*black;*/
+    -fx-color: -fx-base;
+
+    /* For highlighting/accenting/focused objects. */
+    -fx-accent: derive(-fx-control-inner-background, -50%);
+    -fx-focus-color: derive(-fx-control-inner-background, -50%);
+
+    /* The color to use in ListView/TreeView/TableView to indicate hover. */
+    -fx-cell-hover-color: #cce3f4;         
+    -fx-cell-focus-inner-border: #85b9de;
+
+    /* The colors to use in Pagination */
+    -fx-page-bullet-border: #acacac;
+    -fx-page-indicator-hover-border: #accee5; 
+    
+    cell-separator-color: black;
+    text-cell-bkgcolor: -fx-control-inner-background;
+    text-cell-bkgcolor-odd: derive(-fx-control-inner-background, -50%);
+}
+
+#p_root {
+	-fx-background-color: black;
+}
+
+#sp_nodeSelector {
+    -fx-background-image: url("images/bkg_itempane.png");     
+}	
+
+#sp_workarea {
+	-fx-background-color: rgba(0,0,0,0.6);
+}
+ 
+#vb_work {
+	-fx-border-color: rgba(200,200,0,0.4); 
+	-fx-border-width: 2px;
+}
+
+#btn_OK {
+    -fx-graphic: url("images/btn_dark.png");
+    -fx-background-color: rgba(0,0,0,0); 
+    -fx-font: bold 16 monospace;
+    -fx-text-fill: #aaaaaa;
+}
+
+#btn_nodefilter_type {-fx-graphic: url("images/filter_type_cost.png");-fx-background-color: rgba(0,0,0,0);}
+#btn_nodefilter_all {-fx-graphic: url("images/filter_cost_rank_all.png");-fx-background-color: rgba(0,0,0,0);}
+#btn_nodefilter_0 {-fx-graphic: url("images/filter_cost_rank_0.png");-fx-background-color: rgba(0,0,0,0);}
+#btn_nodefilter_1 {-fx-graphic: url("images/filter_cost_rank_1.png");-fx-background-color: rgba(0,0,0,0);}
+#btn_nodefilter_2 {-fx-graphic: url("images/filter_cost_rank_2.png");-fx-background-color: rgba(0,0,0,0);}
+#btn_nodefilter_3 {-fx-graphic: url("images/filter_cost_rank_3.png");-fx-background-color: rgba(0,0,0,0);}
+#btn_nodefilter_4 {-fx-graphic: url("images/filter_cost_rank_4.png");-fx-background-color: rgba(0,0,0,0);}
+#btn_nodefilter_5 {-fx-graphic: url("images/filter_cost_rank_5.png");-fx-background-color: rgba(0,0,0,0);}
+#btn_nodefilter_6 {-fx-graphic: url("images/filter_cost_rank_6.png");-fx-background-color: rgba(0,0,0,0);}
+#btn_nodefilter_7 {-fx-graphic: url("images/filter_cost_rank_7+.png");-fx-background-color: rgba(0,0,0,0);}
+#btn_nodefilter_custom {
+	-fx-graphic: url("images/btn_gold.png");
+	-fx-background-color: rgba(0,0,0,0);
+	/* -fx-font: bold 12 simsun; */
+	-fx-font: bold 20 arial;
+	-fx-text-fill: #555555;
+}
+

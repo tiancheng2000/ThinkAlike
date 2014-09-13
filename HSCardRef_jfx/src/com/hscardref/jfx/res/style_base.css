@@ -1,0 +1,121 @@
+
+/* 
+.root {
+    -fx-control-inner-background: white;
+}
+.list-cell {
+    -fx-skin: "com.sun.javafx.scene.control.skin.ListCellSkin";
+    -fx-background-color: -fx-control-inner-background;
+    -fx-padding: 0.25em;
+    -fx-text-fill: -fx-text-inner-color;
+    -fx-opacity: 1;
+}
+.list-cell:odd {
+    -fx-background-color: derive(-fx-control-inner-background,-5%);
+}
+*/
+
+#p_root {
+	-fx-background-image: url("images/bkg_main.jpg");
+	-fx-background-position: center center; 
+	-fx-background-repeat: no-repeat;
+}
+
+#sp_nodeSelector {
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: stretch;
+    /* -fx-padding: 70 10 10 10 --> use margin insets setting instead */
+}
+
+#sp_workarea {
+	-fx-background-color: -fx-background; 
+}
+
+
+#cb_nodeType .combo-box .list-cell {
+    -fx-cell-size: 70;
+}
+#cb_nodeType .combo-box-base {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
+    -fx-padding: 0 0 0 -8; /*IMPROVE: otherwise blank will appear left side */
+}
+#cb_nodeType .combo-box-base:hover {
+    -fx-background-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border, -fx-body-color;
+    -fx-background-radius: 5, 5, 4, 3;
+    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
+}
+#cb_nodeType .combo-box-base .arrow-button {
+    -fx-background-color: null;
+}
+#cb_nodeType .combo-box-base .arrow {
+    -fx-shape: " ";
+}
+/*IMPROVE: .combo-box-popup cannot be used as ID selector's descendant selector */
+.combo-box-popup {} /* useless */
+.combo-box-popup .list-view {
+    -fx-background-color: null; /*IMPROVE: otherwise blank on right side will be visible. e.g.-fx-background */
+    -fx-effect: null;
+}
+.combo-box-popup .list-view .list-cell {
+    -fx-background-color: null;
+    -fx-padding: 8 0 0 13;
+    -fx-cell-size: 70;
+} 
+
+#lv_nodeList {
+    -fx-background-color: rgba(0,0,0,0); /*= transparent*/
+}
+#lv_nodeList .list-cell {
+    -fx-background-color: rgba(0,0,0,0);
+    -fx-border-color: cell-separator-color transparent transparent transparent;
+    -fx-alignment: center;
+    -fx-cell-size: 175;
+}
+#lv_nodeList .list-cell .normal-cell{
+    -fx-alignment: center;
+}
+#lv_nodeList .list-cell .text-cell {
+    -fx-background-color: text-cell-bkgcolor;
+    -fx-alignment: top-left;
+}
+#lv_nodeList .list-cell:odd .text-cell {
+    -fx-background-color: text-cell-bkgcolor-odd;
+    -fx-alignment: top-left;
+}
+
+
+/* list-view scrollbar */
+#lv_nodeList .scroll-bar:horizontal, 
+#lv_nodeList .scroll-bar:vertical{
+    -fx-background-color: null;
+}
+/* The increment and decrement button CSS class of scrollbar */
+#lv_nodeList .scroll-bar .increment-button, 
+#lv_nodeList .scroll-bar .decrement-button {
+    -fx-background-color: null;
+	-fx-background-radius: 2em;
+}
+#lv_nodeList .scroll-bar .increment-arrow, 
+#lv_nodeList .scroll-bar .decrement-arrow{
+	-fx-background-color: null;
+    -fx-shape: "";
+    -fx-padding: 2;
+}
+/* The main scrollbar **track** CSS class  */
+#lv_nodeList .scroll-bar:horizontal .track,
+#lv_nodeList .scroll-bar:vertical .track{
+	-fx-background-color: null;
+	-fx-border-color: null;
+	-fx-background-radius: 0em;
+	-fx-border-radius: 0em;
+} 
+/* The main scrollbar **thumb** CSS class which we drag every time (movable) */
+#lv_nodeList .scroll-bar:horizontal .thumb,
+#lv_nodeList .scroll-bar:vertical .thumb {
+    -fx-background-color: derive(-fx-background, 60%);
+	-fx-background-insets: 3, 0, 0;
+	-fx-background-radius: 2em;
+}
+
