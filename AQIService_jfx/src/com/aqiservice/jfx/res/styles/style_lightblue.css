@@ -1,0 +1,20 @@
+/*
+.root{
+	-fx-base: rgb(255, 255, 255);
+	-fx-background: rgb(255, 255, 255);
+    -fx-control-inner-background: white;
+    -fx-color: -fx-base;
+
+    // For highlighting/accenting/focused objects.
+    -fx-accent: derive(-fx-control-inner-background, -50%);
+    -fx-focus-color: derive(-fx-control-inner-background, -50%);
+}
+*/
+
+#vb_root {
+	-fx-background-color: null;
+	-fx-background-radius: 0;
+	-fx-background-image: url("../images/bkg_main.png");
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: stretch;
+}

@@ -1,0 +1,37 @@
+/* 
+#vb_root {
+	-fx-background-color: null;
+	-fx-background-radius: 0;
+	-fx-background-image: url("../images/bkg_main.png");
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: stretch;
+}
+*/
+
+#l_area {-fx-font: 18 "Microsoft YaHei"}
+#l_aqi_descript {-fx-font: bold 20 "Microsoft YaHei"}
+#rct_aqi {
+	/* -fx-fill: rgba(255,126,1,0.65); */
+	-fx-fill: linear-gradient(rgb(255,190,127) 0%, rgb(255,152,51) 35%, rgb(255,141,29) 45%, rgb(255,141,29) 90%, rgb(255,190,127) 100%);
+	-fx-arc-width: 10; -fx-arc-height: 10;
+	-fx-effect: dropshadow(gaussian,#aaa,10,0.5,2,2)
+}
+#l_aqi {-fx-font: bold 24 "Microsoft YaHei"}
+#grid_aqi {
+	-fx-grid-lines-visible: false; -fx-hgap: 0; -fx-vgap: 0; -fx-padding: 10;
+	/*-fx-background-color: rgba(255,126,1,0.65);*/
+	-fx-background-color: linear-gradient(rgb(255,190,127) 0%, rgb(255,152,51) 35%, rgb(255,141,29) 45%, rgb(255,141,29) 90%, rgb(255,190,127) 100%);
+	-fx-background-insets: 0; -fx-background-radius: 4;
+	-fx-effect: dropshadow(gaussian,#aaa,10,0.5,2,2)
+}
+#col_1h_average {-fx-font: 11 "Microsoft YaHei"}
+#col_24h_average {-fx-font: 11 "Microsoft YaHei"}
+#row_pm2_5 {-fx-font: 11 "Microsoft YaHei"}
+#l_pm2_5 {-fx-font: bold 18 "Microsoft YaHei"}
+#l_pm2_5_24h {-fx-font: bold 18 "Microsoft YaHei"}
+#l_publish_date {-fx-font: 11 "Microsoft YaHei"}
+#l_date {-fx-font: 11 "System"}
+
+
+
+

@@ -1,0 +1,7 @@
+<resources>
+
+    <style name="Text" parent="@android:style/TextAppearance">
+        <!-- <item name="android:typeface">@assets/fonts/yahei_slim</item>  -->
+    </style>
+
+</resources>

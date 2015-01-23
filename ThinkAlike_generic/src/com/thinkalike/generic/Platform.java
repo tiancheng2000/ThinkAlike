@@ -17,10 +17,12 @@
 package com.thinkalike.generic;
 
 import com.thinkalike.generic.common.Config.Key;
+import com.thinkalike.generic.common.Constant.OsType;
 import com.thinkalike.generic.domain.Factory;
 
 public interface Platform {
 
+	public OsType getOsType();
 	public String getString(int id); //id shall be translated to platform-dependent id
 	public Object getConstant(String key); 
 	public Object getConfig(String key);

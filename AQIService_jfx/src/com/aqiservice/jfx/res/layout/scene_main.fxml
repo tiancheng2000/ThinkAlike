@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+
+<VBox id="vb_root" alignment="CENTER" prefHeight="194.0" prefWidth="313.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.aqiservice.jfx.view.MainController">
+	<children>	
+		<HBox alignment="CENTER" prefHeight="60.0" prefWidth="200.0" spacing="20.0">
+			<padding>
+				<Insets top="10.0" bottom="0.0" left="20.0" right="20.0" />
+			</padding>
+			<children>
+				<Label fx:id="l_area" text="%label.area" />
+				<Label fx:id="l_aqi_descript" minWidth="60.0" text="%label.descript" alignment="CENTER" />
+				<StackPane>
+					<children>	
+						<Rectangle fx:id="rct_aqi" height="40.0" width="50.0" arcHeight="3.5" arcWidth="3.5"/>
+						<Label fx:id="l_aqi" text="0" />
+					</children>
+				</StackPane>
+			</children>
+		</HBox>
+		<HBox alignment="CENTER" prefHeight="80.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+			<padding>
+				<Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
+			</padding>
+			<children>
+				<GridPane id="grid_aqi" xmlns:fx="http://javafx.com/fxml">
+					<columnConstraints>
+						<ColumnConstraints minWidth="10.0" prefWidth="90.0" hgrow="SOMETIMES" />
+						<ColumnConstraints minWidth="10.0" prefWidth="115.0" hgrow="SOMETIMES" />
+						<ColumnConstraints minWidth="10.0" prefWidth="115.0" hgrow="SOMETIMES" />
+					</columnConstraints>
+					<rowConstraints>
+						<RowConstraints minHeight="10.0" prefHeight="15.0" vgrow="SOMETIMES" />
+						<RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+					</rowConstraints>
+					<children>
+						<Label id="col_1h_average" text="%label.1h_average" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+						<Label id="col_24h_average" text="%label.24h_average" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
+						<Label id="row_pm2_5" text="%label.pm2_5" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+						<Label fx:id="l_pm2_5" text="0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+						<Label fx:id="l_pm2_5_24h" text="0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+					</children>
+				</GridPane>
+			</children>
+		</HBox>
+		<HBox alignment="CENTER" prefHeight="40.0" prefWidth="200.0" spacing="10.0">
+			<padding>
+				<Insets top="0.0" bottom="10.0" left="40.0" right="40.0"/>
+			</padding>
+			<children>
+				<Label id="l_publish_date" text="%label.publish_date" />
+				<Label fx:id="l_date" text="0000-00-00 00:00:00" />
+			</children>
+		</HBox>
+	</children>
+	<stylesheets>
+		<URL value="@../styles/style_base.css" />
+		<URL value="@../styles/style_lightblue.css" />
+	</stylesheets>
+</VBox>

@@ -14,21 +14,15 @@
 * limitations under the License.
 */
 
-package com.thinkalike.generic.domain;
+package com.aqiservice.jfx.common;
 
-import com.thinkalike.generic.concurrent.Executor;
-import com.thinkalike.generic.dal.IAssetManagerLocal;
-import com.thinkalike.generic.viewmodel.control.IImageNodeView;
+//Project-specific class
+public class Config {
+	//1.Message Output / Logging related
+	//managed in generic module. Even in C/S case, the client and server may have its own generic module.  
+	
+	//2.Path related
+	//currently, platform-related paths are managed in generic module, and initialized to platform-specific values 
+	//during Application initialization phase.      
 
-public interface Factory {
-	//SmartClient Framework Domain ----------
-	public IAssetManagerLocal createAssetManagerLocal(Object context);
-	public <Result> Executor<Result> createAsyncExecutor(Result dumb);
- 
-	//Business Domain ----------
-	//  XxxNode ---
-	public IImageNodeView createImageNodeView(Object uiContext);
-	
-	//  Layout ---
-	
 }

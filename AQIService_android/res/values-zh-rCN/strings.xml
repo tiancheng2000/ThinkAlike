@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ThinkAlike空气指数</string>
+    <string name="btn_OK">确认</string>
+    <string name="btn_Cancel">取消</string>
+    <string name="label_area">地区</string>
+    <string name="label_descript">空气质量</string>
+    <string name="label_1h_average">1小时</string>
+    <string name="label_24h_average">24小时</string>
+    <string name="label_pm2_5">颗粒物2.5</string>
+    <string name="label_publish_date">发布时间：</string>
+    <string name="label_publish_date_value">0000-00:00:00</string>
+    <string name="aqi_rank_excellent">优</string>
+    <string name="aqi_rank_fine">良</string>
+    <string name="aqi_rank_p_slight">轻度污染</string>
+    <string name="aqi_rank_p_mid">中度污染</string>
+    <string name="aqi_rank_p_severe">重度污染</string>
+    <string name="aqi_rank_p_mostsevere">严重污染</string>
+    
+</resources>

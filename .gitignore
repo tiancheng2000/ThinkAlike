@@ -213,4 +213,8 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
-/AQIService_*
+
+#Sub-Projects
+#/AQIService_*
+/HSCardRef_*
+/BE.Note

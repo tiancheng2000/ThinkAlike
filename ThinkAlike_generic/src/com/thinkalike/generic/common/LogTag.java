@@ -16,6 +16,8 @@
 
 package com.thinkalike.generic.common;
 
+import java.util.ArrayList;
+
 public class LogTag {
 
 	//-- Constants and Enums -----------------------------------
@@ -26,6 +28,7 @@ public class LogTag {
 	//      by modifying /data/local.prop (see Log.isLoggable() for detail)
 	//FD: (General UseCase) 
 	//1. Trace potential conflicts: e.g. Critical Section Enter/Exit, Resource Lock/Unlock, Multi-Thread, EventHandler Multi-Access(Async Message) 
+	public static final String GenericThread = "GenericThread";
 	public static final String UIThread = "UIThread";
 	public static final String ResourceThread = "ResourceThread";
 	public static final String AssetThread = "AssetThread";
@@ -48,18 +51,30 @@ public class LogTag {
 	//4. Specify the ClassName so as to locate the message origin: directly use TAG defined in the Class
 	//MainActivity.TAG etc.
 
-   	private static enum ShowMode {Exclusion, Inclusion};
-   	private static final ShowMode showMode = ShowMode.Exclusion; //Inclusion
+	public static enum ShowMode {Exclusion, Inclusion};
+   	private static ShowMode showMode = ShowMode.Exclusion; //Inclusion
 	//used by showRulesAllowed() w. showMode
-   	private static final String[] exclusionList = new String[]{"GestureDetector", "GCImpl::PageBaseView", MemoryManagement}; 
-   								//UIControlEvent: "GestureDetector", "GCImpl::PageBaseView"; AssetThread
-   	private static final String[] inclusionList = new String[]{};
+   	private static final ArrayList<String> exclusionList = new ArrayList<String>();
+   	static {
+   		exclusionList.add("GestureDetector");
+   		exclusionList.add(MemoryManagement);
+   		exclusionList.add(AssetThread);
+   	}
+   	private static final ArrayList<String> inclusionList = new ArrayList<String>();
    	
    	//-- Inner Classes and Structures --------------------------
 	//-- Delegates and Events ----------------------------------
 	//-- Instance and Shared Fields ----------------------------
-
    	//-- Properties --------------------------------------------
+   	public static void setShowMode(ShowMode showMode_){showMode = showMode_;}
+   	public static ShowMode getShowMode(){return showMode;}
+   	public static String listExclusionItems(){return exclusionList.toString();}
+   	public static void addExclusionItem(String tag){exclusionList.add(tag);}
+   	public static void removeExclusionItem(String tag){exclusionList.remove(tag);}
+   	public static String listInclusionItems(){return inclusionList.toString();}
+   	public static void addInclusionItem(String tag){inclusionList.add(tag);}
+   	public static void removeInclusionItem(String tag){inclusionList.remove(tag);}
+   	
 	//-- Constructors ------------------------------------------
 	//-- Destructors -------------------------------------------
 	//-- Base Class Overrides ----------------------------------

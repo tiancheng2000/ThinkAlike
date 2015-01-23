@@ -27,6 +27,7 @@ public class Constant {
 	public static final String FRAMEWORK_SHORTNAME = "ThinkAlike";
 		
 	//--- System specific --------------------------------
+    public static enum OsType {Android, JRE7, JRE8};
 	public static final String NEW_LINE = System.getProperty("line.separator");
     public static final String FILEPATH_SEPARATOR = System.getProperty("file.separator"); //"\\";
     public static final String APP_BASEPATH = Util.appendPath(System.getProperty("user.dir"), FILEPATH_SEPARATOR);

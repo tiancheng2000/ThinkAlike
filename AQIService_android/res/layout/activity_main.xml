@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context=".MainActivity" >
+
+    <LinearLayout
+	    android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_weight="3"
+	    android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+		    android:id="@+id/l_area"
+		    android:layout_width="wrap_content"
+		    android:layout_height="24dp"
+		    style="@style/Text"
+		    android:text="@string/label_area" />
+        <TextView
+		    android:id="@+id/l_aqi_descript"
+		    android:layout_width="36dp"
+		    android:layout_height="28dp"
+		    style="@style/Text.Larger"
+		    android:text="@string/label_descript" />
+
+	    <FrameLayout
+		    android:layout_width="wrap_content"
+			android:layout_height="24dp"
+			android:background="@drawable/rounded_frame">
+	        <TextView
+			    android:id="@+id/l_aqi"
+			    style="@style/Text.Largest"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:text="" />
+   		</FrameLayout>
+	        
+   	</LinearLayout>
+	        		
+    <TableLayout
+	    android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_weight="4"
+	    android:gravity="center"
+	    android:stretchColumns="1,2"
+		android:background="@drawable/rounded_frame">
+        
+		<TableRow>
+	        <TextView android:text="" />
+	        <TextView
+	            style="@style/Text.Smallest" 
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+	            android:text="@string/label_1h_average" />
+	        <TextView 
+	            style="@style/Text.Smallest" 
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+	            android:text="@string/label_24h_average" />
+	    </TableRow>
+	    <TableRow>
+	        <TextView
+	            style="@style/Text.Smallest" 
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+	            android:text="@string/label_pm2_5" />
+	        <TextView
+			    android:id="@+id/l_pm2_5"
+			    android:layout_width="wrap_content"
+			    android:layout_height="15dp"
+			    style="@style/Text"
+			    android:text="" />
+	        <TextView
+			    android:id="@+id/l_pm2_5_24h"
+			    android:layout_width="wrap_content"
+			    android:layout_height="15dp"
+			    style="@style/Text"
+			    android:text="" />
+	    </TableRow>
+        
+   	</TableLayout>
+    
+    <LinearLayout
+	    android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_weight="2"
+	    android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+		    android:layout_width="wrap_content"
+		    android:layout_height="15dp"
+		    style="@style/Text.Smallest"
+		    android:text="@string/label_publish_date" />
+        <TextView
+		    android:id="@+id/l_date"
+		    android:layout_width="wrap_content"
+		    android:layout_height="15dp"
+		    style="@style/Text.Smallest"
+		    android:text="@string/label_publish_date_value" />
+        
+   	</LinearLayout>
+    
+</LinearLayout>
