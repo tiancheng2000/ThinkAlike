@@ -5,12 +5,13 @@
     <string name="btn_OK">OK</string>
     <string name="btn_Cancel">Cancel</string>
     <string name="label_area">Area</string>
-    <string name="label_descript">air quality</string>
+    <string name="label_descript">quality</string>
+    <string name="label_aqi">000</string>
     <string name="label_1h_average">1-hour</string>
     <string name="label_24h_average">24-hour</string>
     <string name="label_pm2_5">PM2.5</string>
     <string name="label_publish_date">Publish Date:</string>
-    <string name="label_publish_date_value">0000-00:00:00</string>
+    <string name="label_publish_date_value">0000&#8211;00:00:00</string>
     <string name="aqi_rank_excellent">Excellent</string>
     <string name="aqi_rank_fine">Fine</string>
     <string name="aqi_rank_p_slight">Slightly Polluted</string>

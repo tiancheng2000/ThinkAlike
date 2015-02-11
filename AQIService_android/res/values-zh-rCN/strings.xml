@@ -10,7 +10,7 @@
     <string name="label_24h_average">24小时</string>
     <string name="label_pm2_5">颗粒物2.5</string>
     <string name="label_publish_date">发布时间：</string>
-    <string name="label_publish_date_value">0000-00:00:00</string>
+    <string name="label_publish_date_value">0000&#8211;00:00:00</string>
     <string name="aqi_rank_excellent">优</string>
     <string name="aqi_rank_fine">良</string>
     <string name="aqi_rank_p_slight">轻度污染</string>

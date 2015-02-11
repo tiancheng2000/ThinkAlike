@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+  use android:updatePeriodMillis only if you want to update even if the device is asleep.
+  otherwise use AlarmManager (either ELAPSED_REALTIME or RTC) instead.
+  -->
+<appwidget-provider
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:minWidth="280dp"
+  android:minHeight="180dp"
+  android:updatePeriodMillis="0"
+  android:initialLayout="@layout/widget_main"
+  android:resizeMode="vertical"
+  android:minResizeWidth="280dp"
+  android:minResizeHeight="70dp"
+  android:previewImage="@drawable/preview"
+  android:widgetCategory="home_screen|keyguard"
+  android:initialKeyguardLayout="@layout/widget_keyguard"
+  >
+</appwidget-provider>

@@ -7,7 +7,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     
     <uses-sdk
-        android:minSdkVersion="11"
+        android:minSdkVersion="14"
         android:targetSdkVersion="17" />
     
     <application
@@ -16,6 +16,21 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/Theme.BlackBackground.NoTitle" >
+
+		<receiver android:name="com.aqiservice.android.receiver.MainWidgetProvider" >
+		    <intent-filter>
+		        <action android:name="com.aqiservice.android.receiver.MainWidgetProvider.CLICK" />
+		        <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+		    </intent-filter>
+		    <meta-data android:name="android.appwidget.provider"
+		               android:resource="@xml/widgetinfo" />
+		</receiver>
+        
+        <service android:name="com.aqiservice.android.service.MainWidgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS"
+            android:exported="false" />
+        
+        <!-- Ealier implementation as an Activity 
         <activity
             android:name="com.aqiservice.android.view.MainActivity"
             android:label="@string/app_name" 
@@ -26,6 +41,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+         -->
+
     </application>
 
 </manifest>
