@@ -20,6 +20,7 @@
 		<receiver android:name="com.aqiservice.android.receiver.MainWidgetProvider" >
 		    <intent-filter>
 		        <action android:name="com.aqiservice.android.receiver.MainWidgetProvider.CLICK" />
+		        <action android:name="com.aqiservice.android.receiver.MainWidgetProvider.REFRESH" />
 		        <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
 		    </intent-filter>
 		    <meta-data android:name="android.appwidget.provider"

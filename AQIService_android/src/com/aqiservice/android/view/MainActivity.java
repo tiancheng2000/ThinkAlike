@@ -166,7 +166,7 @@ public class MainActivity extends Activity {
 		_l_aqi.setText(String.format("%d", aqiInfo.getAqiValue()));
 		_l_pm2_5.setText(String.format("%d", aqiInfo.getAqiPM2_5()));
 		_l_pm2_5_24h.setText(String.format("%d", aqiInfo.getAqiPM2_5_24h()));
-		_l_date.setText((new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")).format(aqiInfo.getAqiDate()));//TODO: UTC->LTC
+		_l_date.setText((new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")).format(aqiInfo.getAqiDate())); //TODO: UTC->LTC
 	}
 
 }

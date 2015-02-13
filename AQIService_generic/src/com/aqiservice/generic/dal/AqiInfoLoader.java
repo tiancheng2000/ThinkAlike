@@ -29,7 +29,7 @@ public class AqiInfoLoader {
 	public final static String CITY_CODES[] = {"021"}; //Shanghai
 	//NOTE: Token must not be upload to public code base.
 	//IMPROVE: hide this token behind a self-made web service (Python)
-	private final static String TOKEN = "2sUML8ur4pEszxGwyt6Q";
+	private final static String TOKEN = "2sUML8ur4pEszxGwyt6Q"; //this is a test phase token and has limited usage count
 	private final static int TIMEOUT_READ = 10 * 1000;
 	private final static int TIMEOUT_CONNECT = 15 * 1000;
 	
