@@ -4,6 +4,7 @@
     <string name="app_name">ThinkAlike AQI</string>
     <string name="btn_OK">OK</string>
     <string name="btn_Cancel">Cancel</string>
+    <string name="label_loading">Loading</string>
     <string name="label_area">Area</string>
     <string name="label_descript">quality</string>
     <string name="label_aqi">000</string>

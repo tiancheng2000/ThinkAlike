@@ -75,8 +75,9 @@ public class AqiInfoLoader {
 			//clear up
 			try{if(is != null)is.close();}
 			catch(Exception e){}
-			//keep connection for continuous data retrieving
+			//keep connection for continuous data retrieving?
 			//_conn.disconnect();
+			_conn = null; //TEMP
 		}
 		
 		return result;
@@ -85,3 +86,4 @@ public class AqiInfoLoader {
 	//-- Private and Protected Methods -------------------------
 	//-- Event Handlers ----------------------------------------
 }
+

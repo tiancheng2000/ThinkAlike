@@ -4,6 +4,7 @@
     <string name="app_name">ThinkAlike空气指数</string>
     <string name="btn_OK">确认</string>
     <string name="btn_Cancel">取消</string>
+    <string name="label_loading">数据读取，请稍后...</string>
     <string name="label_area">地区</string>
     <string name="label_descript">空气质量</string>
     <string name="label_1h_average">1小时</string>

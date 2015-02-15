@@ -47,16 +47,18 @@ public final class R {
     }
     public static final class drawable {
         public static final int bkg_main=0x7f020000;
-        public static final int ic_launcher=0x7f020001;
-        public static final int preview=0x7f020002;
-        public static final int rounded_frame=0x7f020003;
-        public static final int space_1x1=0x7f020004;
-        public static final int talib_bg_btn=0x7f020005;
-        public static final int talib_bg_dialog=0x7f020006;
-        public static final int talib_bg_title=0x7f020007;
-        public static final int talib_btn_normal=0x7f020008;
-        public static final int talib_btn_press=0x7f020009;
-        public static final int talib_default_image=0x7f02000a;
+        public static final int bkg_main_init=0x7f020001;
+        public static final int bkg_main_small=0x7f020002;
+        public static final int ic_launcher=0x7f020003;
+        public static final int preview=0x7f020004;
+        public static final int rounded_frame=0x7f020005;
+        public static final int space_1x1=0x7f020006;
+        public static final int talib_bg_btn=0x7f020007;
+        public static final int talib_bg_dialog=0x7f020008;
+        public static final int talib_bg_title=0x7f020009;
+        public static final int talib_btn_normal=0x7f02000a;
+        public static final int talib_btn_press=0x7f02000b;
+        public static final int talib_default_image=0x7f02000c;
     }
     public static final class id {
         public static final int content=0x7f0a0009;
@@ -78,27 +80,29 @@ public final class R {
         public static final int talib_messagebox=0x7f030002;
         public static final int widget_keyguard=0x7f030003;
         public static final int widget_main=0x7f030004;
-        public static final int widget_main_small=0x7f030005;
+        public static final int widget_main_init=0x7f030005;
+        public static final int widget_main_small=0x7f030006;
     }
     public static final class string {
         public static final int app_name=0x7f070000;
-        public static final int aqi_rank_excellent=0x7f07000f;
-        public static final int aqi_rank_fine=0x7f070010;
-        public static final int aqi_rank_p_mid=0x7f070012;
-        public static final int aqi_rank_p_mostsevere=0x7f070014;
-        public static final int aqi_rank_p_severe=0x7f070013;
-        public static final int aqi_rank_p_slight=0x7f070011;
+        public static final int aqi_rank_excellent=0x7f070010;
+        public static final int aqi_rank_fine=0x7f070011;
+        public static final int aqi_rank_p_mid=0x7f070013;
+        public static final int aqi_rank_p_mostsevere=0x7f070015;
+        public static final int aqi_rank_p_severe=0x7f070014;
+        public static final int aqi_rank_p_slight=0x7f070012;
         public static final int btn_Cancel=0x7f070006;
         public static final int btn_OK=0x7f070005;
         public static final int close_confirm=0x7f070004;
-        public static final int label_1h_average=0x7f07000a;
-        public static final int label_24h_average=0x7f07000b;
-        public static final int label_aqi=0x7f070009;
-        public static final int label_area=0x7f070007;
-        public static final int label_descript=0x7f070008;
-        public static final int label_pm2_5=0x7f07000c;
-        public static final int label_publish_date=0x7f07000d;
-        public static final int label_publish_date_value=0x7f07000e;
+        public static final int label_1h_average=0x7f07000b;
+        public static final int label_24h_average=0x7f07000c;
+        public static final int label_aqi=0x7f07000a;
+        public static final int label_area=0x7f070008;
+        public static final int label_descript=0x7f070009;
+        public static final int label_loading=0x7f070007;
+        public static final int label_pm2_5=0x7f07000d;
+        public static final int label_publish_date=0x7f07000e;
+        public static final int label_publish_date_value=0x7f07000f;
         public static final int loading=0x7f070003;
         public static final int progressbar=0x7f070002;
         public static final int thumb_node=0x7f070001;

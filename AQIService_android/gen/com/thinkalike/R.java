@@ -37,13 +37,13 @@ public final class R {
 		public static final int yellow = 0x7f060006;
 	}
 	public static final class drawable {
-		public static final int ic_launcher = 0x7f020001;
-		public static final int talib_bg_btn = 0x7f020005;
-		public static final int talib_bg_dialog = 0x7f020006;
-		public static final int talib_bg_title = 0x7f020007;
-		public static final int talib_btn_normal = 0x7f020008;
-		public static final int talib_btn_press = 0x7f020009;
-		public static final int talib_default_image = 0x7f02000a;
+		public static final int ic_launcher = 0x7f020003;
+		public static final int talib_bg_btn = 0x7f020007;
+		public static final int talib_bg_dialog = 0x7f020008;
+		public static final int talib_bg_title = 0x7f020009;
+		public static final int talib_btn_normal = 0x7f02000a;
+		public static final int talib_btn_press = 0x7f02000b;
+		public static final int talib_default_image = 0x7f02000c;
 	}
 	public static final class id {
 		public static final int content = 0x7f0a0009;

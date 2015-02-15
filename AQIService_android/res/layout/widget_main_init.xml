@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_marginTop="@dimen/widget_margin_top"
+    android:layout_marginBottom="@dimen/widget_margin_bottom"
+    android:layout_marginLeft="@dimen/widget_margin_left"
+    android:layout_marginRight="@dimen/widget_margin_right"
+    android:background="@drawable/bkg_main_init">
+    <!-- We define separate margins to allow for flexibility in twiddling the margins
+         depending on device form factor and target SDK version. -->
+
+	<TextView
+	    android:layout_width="match_parent"
+	    android:layout_height="0dp"
+	    android:layout_weight="1"
+        android:layout_gravity="center"
+        android:gravity="center"
+	    style="@style/Text.Mediumn"
+	    android:text="@string/label_loading"/>
+
+</LinearLayout>
