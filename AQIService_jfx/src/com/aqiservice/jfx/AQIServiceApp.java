@@ -36,6 +36,7 @@ import com.thinkalike.generic.common.Config.Key;
 import com.thinkalike.generic.common.Constant.OsType;
 import com.thinkalike.generic.common.Util;
 import com.thinkalike.generic.domain.Factory;
+import com.thinkalike.jfx.view.DraggableWindowDelegate;
 
 public class AQIServiceApp extends Application implements Platform, Loader.OnLoaderEventListener {
 
@@ -50,6 +51,7 @@ public class AQIServiceApp extends Application implements Platform, Loader.OnLoa
 	private Factory _factory;
 	private Stage _primaryStage;
 	private Scene _currentScene;
+	private DraggableWindowDelegate _draggable;
 
 	//-- Properties --------------------------
 	//-- Constructors --------------------------
@@ -90,6 +92,7 @@ public class AQIServiceApp extends Application implements Platform, Loader.OnLoa
 		_primaryStage = primaryStage;
 		_primaryStage.setTitle(Constant.APP_SHORTNAME + " JavaFX");
 	    gotoMainScene();
+	    _draggable = new DraggableWindowDelegate(_primaryStage, _currentScene.getRoot());
 	    _primaryStage.show();
 	    
 	}

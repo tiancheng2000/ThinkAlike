@@ -46,16 +46,16 @@ public final class R {
 		public static final int talib_default_image = 0x7f02000c;
 	}
 	public static final class id {
-		public static final int content = 0x7f0a0009;
-		public static final int iv_imageButton_base = 0x7f0a0007;
-		public static final int left = 0x7f0a000a;
+		public static final int content = 0x7f0a000a;
+		public static final int iv_imageButton_base = 0x7f0a0008;
+		public static final int left = 0x7f0a000b;
 		public static final int ll_root = 0x7f0a0000;
-		public static final int right = 0x7f0a000b;
-		public static final int title = 0x7f0a0008;
+		public static final int right = 0x7f0a000c;
+		public static final int title = 0x7f0a0009;
 	}
 	public static final class layout {
-		public static final int talib_combobox = 0x7f030001;
-		public static final int talib_messagebox = 0x7f030002;
+		public static final int talib_combobox = 0x7f030002;
+		public static final int talib_messagebox = 0x7f030003;
 	}
 	public static final class string {
 		public static final int app_name = 0x7f070000;

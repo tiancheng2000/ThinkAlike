@@ -47,7 +47,7 @@ public class AQIViewModel extends ViewModelBase{
 	//-- Constructors --------------------------
 	private AQIViewModel()
 	{
-		_aqiAreaCode = AqiInfoLoader.CITY_CODES[0];
+		_aqiAreaCode = AqiInfoLoader.CITY_CODES[1];
 		//_aqiInfo = new AqiInfo(0, "", new Date(), 0, 0);
 	}
 	

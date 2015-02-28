@@ -26,7 +26,8 @@ import com.thinkalike.generic.common.Util;
 
 public class AqiInfoLoader {
 	//-- Constants and Enums -----------------------------------
-	public final static String CITY_CODES[] = {"021"}; //Shanghai
+	public final static String CITY_CODES[] = {"010","021","0512","0571","025","023","028","027","029","020","0755","0756","0592",}; //Shanghai
+	public final static String CITY_NAMES[] = {"北京","上海","苏州","杭州","南京","重庆","成都","武汉","西安","广州","深圳","珠海","厦门"}; //Shanghai
 	//NOTE: Token must not be upload to public code base.
 	//IMPROVE: hide this token behind a self-made web service (Python)
 	private final static String TOKEN = "2sUML8ur4pEszxGwyt6Q"; //this is a test phase token and has limited usage count

@@ -19,7 +19,11 @@ package com.aqiservice.jfx.view;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
 
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -72,6 +76,8 @@ public class MainController implements Initializable {
     //private ItemDetailViewModel _vm_itemDetail = new ItemDetailViewModel();
     //final ObservableList<Item> _listItems = FXCollections.observableArrayList(_vm_aqi.getInstance().getItemList());        
 
+	Timer _timer = new Timer();
+	
 	//-- Properties --------------------------
 	//-- Constructors --------------------------
 	public MainController(){
@@ -98,13 +104,25 @@ public class MainController implements Initializable {
 					Util.trace(LogTag.ViewModel, String.format("[IProperty] PropertyChanged(name=%s, value=%s, listener=%s)", event.getPropertyName(), event.getNewValue(), thisInstance.getClass().getSimpleName()));
 					assert(event.getPropertyName().equals(Constant.PropertyName.AQIData));
 					//blank event. acquire substantial data directly from VM in the update routine.
-					thisInstance.updateAQI();
+					//thisInstance.updateAQI(); //it's not safe to directly update UI in callback
+					//new Thread(updateUiTask).start(); //needn't to use Task<> to update UI
+					Platform.runLater(new Runnable() {
+	                     @Override public void run() {
+	                    	 thisInstance.updateAQI();
+	                     }
+	                });
 				}
 			};
 			_vm_aqi.addPropertyChangeListener(Constant.PropertyName.AQIData, _listenToVM_aqi);
 		}
-		_vm_aqi.onRefresh();
-		
+		//set Timer
+		//_vm_aqi.onRefresh();
+		_timer.schedule(new TimerTask(){
+				@Override
+				public void run() {
+					_vm_aqi.onRefresh();
+				}
+			}, 0, 30*60*1000);
 	}
 
 	//-- Public and internal Methods --------------------------

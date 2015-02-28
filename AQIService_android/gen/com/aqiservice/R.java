@@ -61,27 +61,29 @@ public final class R {
         public static final int talib_default_image=0x7f02000c;
     }
     public static final class id {
-        public static final int content=0x7f0a0009;
-        public static final int iv_imageButton_base=0x7f0a0007;
+        public static final int content=0x7f0a000a;
+        public static final int iv_imageButton_base=0x7f0a0008;
         public static final int l_aqi=0x7f0a0003;
         public static final int l_aqi_descript=0x7f0a0002;
         public static final int l_area=0x7f0a0001;
         public static final int l_date=0x7f0a0006;
         public static final int l_pm2_5=0x7f0a0004;
         public static final int l_pm2_5_24h=0x7f0a0005;
-        public static final int left=0x7f0a000a;
+        public static final int left=0x7f0a000b;
         public static final int ll_root=0x7f0a0000;
-        public static final int right=0x7f0a000b;
-        public static final int title=0x7f0a0008;
+        public static final int lv_arealist=0x7f0a0007;
+        public static final int right=0x7f0a000c;
+        public static final int title=0x7f0a0009;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
-        public static final int talib_combobox=0x7f030001;
-        public static final int talib_messagebox=0x7f030002;
-        public static final int widget_keyguard=0x7f030003;
-        public static final int widget_main=0x7f030004;
-        public static final int widget_main_init=0x7f030005;
-        public static final int widget_main_small=0x7f030006;
+        public static final int setting=0x7f030001;
+        public static final int talib_combobox=0x7f030002;
+        public static final int talib_messagebox=0x7f030003;
+        public static final int widget_keyguard=0x7f030004;
+        public static final int widget_main=0x7f030005;
+        public static final int widget_main_init=0x7f030006;
+        public static final int widget_main_small=0x7f030007;
     }
     public static final class string {
         public static final int app_name=0x7f070000;
