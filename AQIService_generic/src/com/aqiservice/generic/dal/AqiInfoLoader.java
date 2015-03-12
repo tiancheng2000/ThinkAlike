@@ -28,9 +28,7 @@ public class AqiInfoLoader {
 	//-- Constants and Enums -----------------------------------
 	public final static String CITY_CODES[] = {"010","021","0512","0571","025","023","028","027","029","020","0755","0756","0592",}; //Shanghai
 	public final static String CITY_NAMES[] = {"北京","上海","苏州","杭州","南京","重庆","成都","武汉","西安","广州","深圳","珠海","厦门"}; //Shanghai
-	//NOTE: Token must not be upload to public code base.
-	//IMPROVE: hide this token behind a self-made web service (Python)
-	private final static String TOKEN = "2sUML8ur4pEszxGwyt6Q"; //this is a test phase token and has limited usage count
+	private final static String TOKEN = "********************"; //api key, hidden behind an agent service (Python)
 	private final static int TIMEOUT_READ = 10 * 1000;
 	private final static int TIMEOUT_CONNECT = 15 * 1000;
 	
@@ -51,8 +49,9 @@ public class AqiInfoLoader {
 		try {
 			//1.retrieve AQI data from web service (JSON)
 			if(_conn == null){
-				String request = String.format("http://www.pm25.in/api/querys/pm2_5.json?city=%s&token=%s&stations=no", 
-											cityCode, AqiInfoLoader.TOKEN);
+				String request = String.format("http://tchu.sinaapp.com/?city=%s",cityCode);
+				//String request = String.format("http://www.pm25.in/api/querys/pm2_5.json?city=%s&token=%s&stations=no", 
+				//							cityCode, AqiInfoLoader.TOKEN);
 				URL requestUrl = new URL(request);
 				_conn = (HttpURLConnection)requestUrl.openConnection();
 				_conn.setReadTimeout(TIMEOUT_READ);

@@ -76,7 +76,7 @@ public class MainController implements Initializable {
     //private ItemDetailViewModel _vm_itemDetail = new ItemDetailViewModel();
     //final ObservableList<Item> _listItems = FXCollections.observableArrayList(_vm_aqi.getInstance().getItemList());        
 
-	Timer _timer = new Timer();
+	Timer _timer = new Timer(true); //NOTE: auto stop on app termination
 	
 	//-- Properties --------------------------
 	//-- Constructors --------------------------
