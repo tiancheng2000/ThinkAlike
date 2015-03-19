@@ -19,12 +19,12 @@ public class MainWidgetProvider extends AppWidgetProvider {
 	private final static String TAG = MainWidgetProvider.class.getSimpleName();
     public final static String CLICK_ACTION = MainWidgetProvider.class.getName() + ".CLICK";
     public final static String REFRESH_ACTION = MainWidgetProvider.class.getName() + ".REFRESH";
+    public final static int REQUEST_CODE = 123;
 
 	//-- Inner Classes and Structures --------------------------
 	//-- Delegates and Events ----------------------------------
 	//-- Instance and Shared Fields ----------------------------
     private boolean _firstLoad = true;
-    private PendingIntent _repeatingIntent;
     
 	//-- Properties --------------------------------------------
 	//-- Constructors ------------------------------------------
@@ -52,9 +52,13 @@ public class MainWidgetProvider extends AppWidgetProvider {
 	
 	@Override
 	public void onDeleted(Context context, int[] appWidgetIds) {
-		if(appWidgetIds.length == 1){
+		if(appWidgetIds.length >= 1){
+			//NOTE: must create a new Intent & PendingIntent to feed to AlarmManager
+			Intent intent = new Intent(context, MainWidgetService.class);
+			PendingIntent stoppingIntent = PendingIntent.getService(context, REQUEST_CODE, intent, 0);
 			AlarmManager alarm = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
-			alarm.cancel(_repeatingIntent);
+			alarm.cancel(stoppingIntent);
+			_firstLoad = true;
 		}
 		super.onDeleted(context, appWidgetIds);
 	}
@@ -103,12 +107,12 @@ public class MainWidgetProvider extends AppWidgetProvider {
 		
 		if(_firstLoad){
 			//Setup Alarm to automatically update content
-			_repeatingIntent = PendingIntent.getService(context, 0, intent, 
+			PendingIntent repeatingIntent = PendingIntent.getService(context, REQUEST_CODE, intent, 
 					PendingIntent.FLAG_UPDATE_CURRENT); //NOTE: override the previous unhandled PendingIntent
 			Time time = new Time();
 			time.setToNow();
 			AlarmManager alarm = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
-			alarm.setRepeating(AlarmManager.RTC, time.toMillis(true), 60*30*1000, _repeatingIntent);
+			alarm.setRepeating(AlarmManager.RTC, time.toMillis(true), 60*30*1000, repeatingIntent);
 		}
 		else{
 			context.startService(intent); //directly activate service for layout resize
