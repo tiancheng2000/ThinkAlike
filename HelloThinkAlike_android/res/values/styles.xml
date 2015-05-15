@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    -->
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+
+    <style name="Text" parent="@android:style/TextAppearance">
+        <!-- <item name="android:typeface">@assets/fonts/yahei_slim</item>  -->
+        <item name="android:textSize">27sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+    <style name="Text.Mediumn">
+        <item name="android:textSize">27sp</item>
+    </style>
+    <style name="Text.Larger">
+        <item name="android:textSize">30sp</item>
+    </style>
+    <style name="Text.Largest">
+        <item name="android:textSize">36sp</item>
+    </style>
+    <style name="Text.Smaller">
+        <item name="android:textSize">24sp</item>
+    </style>
+    <style name="Text.Smallest">
+        <item name="android:textSize">16sp</item>
+    </style>
+    
+</resources>

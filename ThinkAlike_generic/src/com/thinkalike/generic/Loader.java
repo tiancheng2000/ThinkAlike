@@ -88,7 +88,7 @@ public class Loader {
 		if(_platform == null)
 			return E_INVALID_PLATFORM;
 		
-		//IMPROVE: 1.use AssetLoader thread  2.ignore Asset copy if already exists
+		//IMPROVE: 1.use AssetLoader thread  2.ignore Asset copy if already exists and fresh
 		String path_root = (String)_platform.getConfig(Key.PATH_ROOT);
 		AssetManager.copyAssets(path_root, Util.getAbsolutePath(path_root));
 

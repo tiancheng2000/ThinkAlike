@@ -14,7 +14,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 import com.thinkalike.generic.common.Config;
-import com.thinkalike.generic.common.Constant;
 
 import android.app.Activity;
 import android.content.Context;

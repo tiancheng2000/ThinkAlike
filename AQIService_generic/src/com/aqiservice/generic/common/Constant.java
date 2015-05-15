@@ -21,7 +21,7 @@ public class Constant {
 	//--- Application related -----------------------------
 	public static final String APP_FULLNAME = "AQIService";
 	public static final String APP_SHORTNAME = "AQIService";
-	public static final String UNCAUGHTEXCEPTION_RECEIVER_MAIL = "tchu@psh.com.cn";
+	public static final String UNCAUGHTEXCEPTION_RECEIVER_MAIL = "tchu_2000@sina.com.cn";
 		
 	//--- System dependent --------------------------------
 	//--- File Operation ----------------------------------

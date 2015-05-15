@@ -58,7 +58,7 @@ public class LogTag {
    	static {
    		exclusionList.add("GestureDetector");
    		exclusionList.add(MemoryManagement);
-   		exclusionList.add(AssetThread);
+   		//exclusionList.add(AssetThread);
    	}
    	private static final ArrayList<String> inclusionList = new ArrayList<String>();
    	

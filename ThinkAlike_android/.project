@@ -32,14 +32,9 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>assets</name>
-			<type>2</type>
-			<location>J:/EP/Java/workspace_SmartClient/ThinkAlike/ThinkAlike_generic/assets-en</location>
-		</link>
-		<link>
 			<name>src_generic</name>
 			<type>2</type>
-			<location>J:/EP/Java/workspace_SmartClient/ThinkAlike/ThinkAlike_generic/src</location>
+			<locationURI>PARENT-1-PROJECT_LOC/ThinkAlike_generic/src</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>

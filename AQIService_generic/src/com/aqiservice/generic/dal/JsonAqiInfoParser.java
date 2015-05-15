@@ -22,7 +22,11 @@ public class JsonAqiInfoParser implements AqiInfoParser {
 	//-- Inner Classes and Structures --------------------------
 	//-- Delegates and Events ----------------------------------
 	//-- Instance and Shared Fields ----------------------------
+	private String _areaCode = "";
+	
 	//-- Properties --------------------------------------------
+	public JsonAqiInfoParser setAreaCode(String areaCode){ _areaCode = areaCode; return this;}
+	
 	//-- Constructors ------------------------------------------
 	//-- Destructors -------------------------------------------
 	//-- Base Class Overrides ----------------------------------
@@ -56,17 +60,17 @@ public class JsonAqiInfoParser implements AqiInfoParser {
 		}
 		JSONObject jsonObj = (JSONObject)((JSONArray)obj).get(0);
 		int aqiValue = ((Number)jsonObj.get("aqi")).intValue(); 
-		String aqiArea = (String)jsonObj.get("area"); 
+		String aqiArea = (String)jsonObj.get("area");
 		Date aqiDate = parseDate((String)jsonObj.get("time_point")); 
 		int aqiPM2_5 = ((Number)jsonObj.get("pm2_5")).intValue(); 
 		int aqiPM2_5_24h = ((Number)jsonObj.get("pm2_5_24h")).intValue();
-		result = new AqiInfo(aqiValue, aqiArea, aqiDate, aqiPM2_5, aqiPM2_5_24h);
+		result = new AqiInfo(aqiValue, aqiArea, _areaCode, aqiDate, aqiPM2_5, aqiPM2_5_24h);
 		
 		return result;
 	}
 	
 	//-- Private and Protected Methods -------------------------
-	private Date parseDate(String str){
+	private static Date parseDate(String str){
 		Date result = new Date(); //default|onError = current 
 		if(str == null)
 			return result;

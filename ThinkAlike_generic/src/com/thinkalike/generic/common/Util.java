@@ -171,7 +171,7 @@ public class Util {
     public static String getAbsoluteUrl(String relativePath){
     	return pathToUrl(getAbsolutePath(relativePath));
     }
-    public static String getAbsolutePath(String relativePath){
+    public static String getAbsolutePath(String relativePath){ //Config.STORAGE_BASEPATH, defined in Application class.
     	return Util.appendPath((String)Loader.getInstance().getPlatform().getConfig(Key.STORAGE_BASEPATH), relativePath);
 	}
     public static String getRelativePath(String absolutePath){

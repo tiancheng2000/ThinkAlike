@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="72dp"
+    android:background="@drawable/bkg_main"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    tools:context=".MainActivity" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+		    android:id="@+id/l_message"
+		    android:layout_width="0dp"
+        	android:layout_weight="2"
+        	android:layout_height="wrap_content"
+		    android:gravity="center"
+		    style="@style/Text.Largest"
+		    android:text="@string/label_hint" />
+
+		<com.thinkalike.android.control.ImageNodeView
+			android:id="@+id/inv_image"
+		    android:layout_width="0dp"
+        	android:layout_weight="1"
+        	android:layout_height="120dp"/>
+		
+   	</LinearLayout>
+    
+</LinearLayout>

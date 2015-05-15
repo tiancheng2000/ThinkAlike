@@ -75,11 +75,12 @@ public class ImageNodeView extends ImageView implements IImageNodeView {
 			width_limit = (int)rawView.getFitWidth();
 			height_limit = (int)rawView.getFitHeight();
 			
+			//IMPROVE: raise a timeout thread, only set default image when timeout 
 			//1.set the default image: 
 			rawView.setImage(new Image(Res.getImageUrl("default_image.gif")));
 
 			//2.Async load Image: 
-			//IMPROVE: if url contains html-encoded substring (e.g."%20"), the image will not be correctly loaded.
+			//IMPROVE: if url contains html-encoded substring (e.g."%20"), it'll be decoded and image will not be correctly loaded.
 			final String imageUrl = Util.getAbsoluteUrl(((UIImageNode)uiData).getRelativePath());
 			
 			//Method 1. Synchronized image loading, with fixed size

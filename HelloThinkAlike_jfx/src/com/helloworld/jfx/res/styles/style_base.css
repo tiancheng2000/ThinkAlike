@@ -1,0 +1,9 @@
+#vb_root {
+	-fx-background-color: null;
+	-fx-background-radius: 0;
+	-fx-background-image: url("../images/bkg_main.png");
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: stretch;
+}
+
+#l_message {-fx-font: bold 18 "Microsoft YaHei"}

@@ -1,9 +1,14 @@
 package com.aqiservice.generic.domain;
 
 import java.util.Date;
+import java.util.Locale;
 
 public class AqiInfo {
 	//-- Constants and Enums -----------------------------------
+	 //default=Shanghai(上海)
+	public final static String CITY_CODES[] = {"010","021","0512","0571","025","023","028","027","029","020","0755","0756","0592",};
+	private final static int DEFAULT_CITY_CODE_INDEX = 1;
+	public final static String DEFAULT_CITY_CODE = CITY_CODES[DEFAULT_CITY_CODE_INDEX];
 	public final static int AQI_RANK_EXCELLENT = 0;
 	public final static int AQI_RANK_FINE = 1;
 	public final static int AQI_RANK_P_SLIGHT = 2;
@@ -19,10 +24,19 @@ public class AqiInfo {
 	//-- Inner Classes and Structures --------------------------
 	//-- Delegates and Events ----------------------------------
 	//-- Instance and Shared Fields ----------------------------
+	public static String CITY_NAMES[] = {"Beijing","Shanghai","Suzhou","Hangzhou","Nanjing","Chongqing","Chengdu","Wuahan","Xian","Guangzhou","Shenzhen","Zhuhai","Xiamen"};
+	public final static String CITY_NAMES_zh_CN[] = {"北京","上海","苏州","杭州","南京","重庆","成都","武汉","西安","广州","深圳","珠海","厦门"};
+	static {
+		//IMPROVE: retrieve String array from I18N Resouce file. 
+		if(!Locale.getDefault().getLanguage().equals("en")){
+			CITY_NAMES = CITY_NAMES_zh_CN;
+		}
+	}
 	private int _aqiValue;
 	private int _aqiRank = AQI_RANK_INVALID;  //#depends on _aqiValue
 	private int _aqiColor = AQI_COLOR_INVALID;  //#depends on _aqiRank
 	private String _aqiArea;  //IMPROVE: support Location enum
+	private String _aqiAreaCode;
 	private Date _aqiDate;
 	private int _aqiPM2_5;
 	private int _aqiPM2_5_24h;
@@ -42,17 +56,24 @@ public class AqiInfo {
 	}
 	public int getAqiValue() {return _aqiValue;}
 	public String getAqiArea() {return _aqiArea;}
+	public String getAqiAreaCode() {return _aqiAreaCode;}
 	public Date getAqiDate() {return _aqiDate;}
 	public int getAqiPM2_5() {return _aqiPM2_5;}
 	public int getAqiPM2_5_24h() {return _aqiPM2_5_24h;}
 
 	//-- Constructors ------------------------------------------
-	public AqiInfo(int aqiValue, String aqiArea, Date aqiDate, int aqiPM2_5, int aqiPM2_5_24h){
+	public AqiInfo(int aqiValue, String aqiArea, String aqiAreaCode, Date aqiDate, int aqiPM2_5, int aqiPM2_5_24h){
 		_aqiValue = aqiValue;
-		_aqiArea = aqiArea;
+		_aqiArea = (_aqiArea==null) ? "" : aqiArea;
+		_aqiAreaCode = (aqiAreaCode==null) ? "" : aqiAreaCode;
 		_aqiDate = aqiDate;
 		_aqiPM2_5 = aqiPM2_5;
 		_aqiPM2_5_24h = aqiPM2_5_24h;
+		
+		//areaCode has higher priority 
+		if(_aqiAreaCode.length()!=0){
+			_aqiArea = getCityName(_aqiAreaCode);
+		}
 	}
 	
 	//-- Destructors -------------------------------------------
@@ -73,6 +94,14 @@ public class AqiInfo {
 	}
 
 	//-- Public and internal Methods ---------------------------
+	public static String getCityName(String cityCode){
+		for(int i=0; i<CITY_CODES.length; i++){
+			if (cityCode.equals(CITY_CODES[i]))
+				return CITY_NAMES[i];
+		}
+		return (CITY_NAMES.length > DEFAULT_CITY_CODE_INDEX) ? CITY_NAMES[DEFAULT_CITY_CODE_INDEX] : "NO_NAME";
+	}
+
 	public static int getAqiRank(int aqiValue){
 		for(int i=0; i<AQI_RANKS.length; i++){
 			if (aqiValue<=AQI_RANKS[i])

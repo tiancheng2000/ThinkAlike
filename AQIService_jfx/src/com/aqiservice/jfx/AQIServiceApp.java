@@ -17,6 +17,7 @@
 package com.aqiservice.jfx;
 
 import java.io.InputStream;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 import javafx.application.Application;
@@ -65,7 +66,7 @@ public class AQIServiceApp extends Application implements Platform, Loader.OnLoa
 		//FD: 1.(new generic.Loader()).initialize(this, eventListener)
 		//    2.initialize platform-dependent objects: application-context(?), LogFile, Factory
 		
-		//Locale.setDefault(new Locale("en", "US"));  //TEMP: for I18N test
+		Locale.setDefault(new Locale("en", "US"));  //TEMP: for I18N test
 		
 		//0.Initialize generic.Loader
 		Loader loader = Loader.createInstance(this, this); //instantiate a Loader

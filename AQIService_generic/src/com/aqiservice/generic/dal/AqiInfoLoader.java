@@ -26,9 +26,7 @@ import com.thinkalike.generic.common.Util;
 
 public class AqiInfoLoader {
 	//-- Constants and Enums -----------------------------------
-	public final static String CITY_CODES[] = {"010","021","0512","0571","025","023","028","027","029","020","0755","0756","0592",}; //Shanghai
-	public final static String CITY_NAMES[] = {"北京","上海","苏州","杭州","南京","重庆","成都","武汉","西安","广州","深圳","珠海","厦门"}; //Shanghai
-	private final static String TOKEN = "********************"; //api key, hidden behind an agent service (Python)
+	//private final static String TOKEN = "********************"; //api key, hidden behind an agent service (Python)
 	private final static int TIMEOUT_READ = 10 * 1000;
 	private final static int TIMEOUT_CONNECT = 15 * 1000;
 	
@@ -64,7 +62,7 @@ public class AqiInfoLoader {
 			//is = new ByteArrayInputStream(response.getBytes()); //for local string encoding = UTF16. for HTTP response consider StandardCharsets.UTF_8
 		
 			//2.data conversion (JSON->AqiInfo)
-			AqiInfoParser parser = new JsonAqiInfoParser();
+			AqiInfoParser parser = new JsonAqiInfoParser().setAreaCode(cityCode);
 			//NOTE: for compatability with Android (requires JDK1.6), generic module MUST avoid using JDK1.7+ features, e.g.StandardCharsets.UTF_8 
 			result = parser.parse(is, "UTF-8");
 			

@@ -16,8 +16,6 @@
 
 package com.aqiservice.generic.viewmodel;
 
-import java.util.Date;
-
 import com.aqiservice.generic.common.Constant;
 import com.aqiservice.generic.dal.AqiInfoLoader;
 import com.aqiservice.generic.domain.AqiInfo;
@@ -47,7 +45,7 @@ public class AQIViewModel extends ViewModelBase{
 	//-- Constructors --------------------------
 	private AQIViewModel()
 	{
-		_aqiAreaCode = AqiInfoLoader.CITY_CODES[1];
+		_aqiAreaCode = AqiInfo.DEFAULT_CITY_CODE;
 		//_aqiInfo = new AqiInfo(0, "", new Date(), 0, 0);
 	}
 	

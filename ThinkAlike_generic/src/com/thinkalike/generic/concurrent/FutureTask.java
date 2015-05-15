@@ -13,6 +13,7 @@ public abstract class FutureTask<Params, Result> implements Callable<Result>{
 	
 	//-- Properties --------------------------------------------
 	//-- Constructors ------------------------------------------
+	@SuppressWarnings("unchecked")
 	public FutureTask(Params... params){
 		_params = params;
 	}

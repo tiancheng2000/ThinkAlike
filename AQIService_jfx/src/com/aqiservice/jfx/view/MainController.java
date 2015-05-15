@@ -23,7 +23,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import javafx.application.Platform;
-import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -164,7 +163,7 @@ public class MainController implements Initializable {
 		AqiInfo aqiInfo = _vm_aqi.getAqiInfo();
 		l_area.setText(aqiInfo.getAqiArea());
 		l_aqi_descript.setText(composeAqiDescript(aqiInfo.getAqiRank()));
-		rct_aqi.setFill(Color.web(String.format("#%x", aqiInfo.getAqiColor())));
+		//rct_aqi.setFill(Color.web(String.format("#%x", aqiInfo.getAqiColor()))); //IMPROVE: apply gradient
 		l_aqi.setText(String.format("%d", aqiInfo.getAqiValue()));
 		l_pm2_5.setText(String.format("%d", aqiInfo.getAqiPM2_5()));
 		l_pm2_5_24h.setText(String.format("%d", aqiInfo.getAqiPM2_5_24h()));

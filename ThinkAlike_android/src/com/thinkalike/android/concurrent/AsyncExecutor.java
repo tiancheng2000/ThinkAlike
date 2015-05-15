@@ -40,8 +40,8 @@ public class AsyncExecutor<Result> implements Executor<Result>{
 			
 			@Override
 			protected void onCancelled() {
-				if (thisTask instanceof FutureTask){
-					((FutureTask)thisTask).onCancelled();
+				if (thisTask instanceof FutureTask){  
+					((FutureTask<?, ?>)thisTask).onCancelled();
 				}
 			}
 		}; 
@@ -74,7 +74,7 @@ public class AsyncExecutor<Result> implements Executor<Result>{
 			@Override
 			protected void onCancelled() {
 				if (thisTask instanceof FutureTask){
-					((FutureTask)thisTask).onCancelled();
+					((FutureTask<?, ?>)thisTask).onCancelled();
 				}
 			}
 		}; 

@@ -181,7 +181,8 @@ public class Util extends com.thinkalike.generic.common.Util {
     public static void setPrefSize(javafx.scene.Node node, TypedValue width, TypedValue height) {
     	assert(node instanceof Region || node instanceof Control);
     	TypedValue[] tvalues = new TypedValue[]{width, height};
-    	final int IDX_WIDTH = 0, IDX_HEIGHT = 1, IDX_MAX = tvalues.length-1;
+    	@SuppressWarnings("unused")
+		final int IDX_WIDTH = 0, IDX_HEIGHT = 1, IDX_MAX = tvalues.length-1;
     	int[] units = new int[IDX_MAX+1];
     	Number[] values = new Number[IDX_MAX+1];
     	boolean[] isValid = new boolean[IDX_MAX+1];
