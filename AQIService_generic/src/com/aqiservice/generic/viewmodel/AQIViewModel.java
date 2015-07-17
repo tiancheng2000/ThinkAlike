@@ -1,5 +1,5 @@
 /**
-* Copyright 2013-2014 Tiancheng Hu
+* Copyright 2013-2015 Tiancheng Hu
 * 
 * Licensed under the GNU Lesser General Public License, version 3.0 (LGPL-3.0, the "License");
 * you may not use this file except in compliance with the License.
@@ -74,6 +74,8 @@ public class AQIViewModel extends ViewModelBase{
 		else{
 			final AQIViewModel thisInstance = this;
 			FutureTask<String, AqiInfo> task = new FutureTask<String, AqiInfo>(_aqiAreaCode){
+				//Note that this is a protected method. A public call() method will be called by Executor
+				//and eventually call this method with parameters which are initialized in constructor method.
 				@Override
 				protected AqiInfo call(String... params) {
 					if(params==null || params.length<1)
@@ -103,7 +105,8 @@ public class AQIViewModel extends ViewModelBase{
 		updateAqiInfo();
 	}
 	public void onRefreshIntervalChanged(int timeInSecond){
-		//TODO
+		//TODO: Android has a special platform-specific refresh solution (AlarmManager+PendingIntent). 
+		//      We have to take more effort on make refresh stuff generic.
 	}
 	public void onRefresh(){
 		updateAqiInfo(); //async or sync calling

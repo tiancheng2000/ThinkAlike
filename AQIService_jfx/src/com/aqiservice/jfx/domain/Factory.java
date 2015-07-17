@@ -21,6 +21,7 @@ import com.thinkalike.generic.dal.AssetManagerLocal;
 import com.thinkalike.generic.dal.IAssetManagerLocal;
 import com.thinkalike.generic.viewmodel.control.IImageNodeView;
 import com.thinkalike.jfx.assets.Assets;
+import com.thinkalike.jfx.concurrent.AsyncExecutor;
 import com.thinkalike.jfx.control.ImageNodeView;
 //import com.thinkalike.generic.viewmodel.control.ITextResourceView;
 //import com.thinkalike.jfx.control.TextResourceView;
@@ -44,8 +45,7 @@ public class Factory implements com.thinkalike.generic.domain.Factory{
 
 	@Override
 	public <Result> Executor<Result> createAsyncExecutor(Result dumb){
-		// TODO Auto-generated method stub
-		return null;
+		return new AsyncExecutor<Result>();
 	}
 	
 	//Business Domain ----------

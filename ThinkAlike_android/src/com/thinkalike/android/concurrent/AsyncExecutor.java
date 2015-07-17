@@ -1,3 +1,19 @@
+/**
+* Copyright 2013-2015 Tiancheng Hu
+* 
+* Licensed under the GNU Lesser General Public License, version 3.0 (LGPL-3.0, the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+* 
+*     http://opensource.org/licenses/lgpl-3.0.html
+*     
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
 package com.thinkalike.android.concurrent;
 
 import java.util.concurrent.Callable;
@@ -23,8 +39,10 @@ public class AsyncExecutor<Result> implements Executor<Result>{
 	public void execute(Runnable task, Result result) {
 		final Runnable thisTask = task;
 		final Result thisResult = result;
-		AsyncTask<Void, Integer, Result> async = new AsyncTask<Void, Integer, Result>(){
+		AsyncTask<Void, Long, Result> async = new AsyncTask<Void, Long, Result>(){
 			protected Result doInBackground(Void... params) {
+				//NOTE: task.run() should be responsible for setting the result into the input variable "result"
+				//      ref:java.util.concurrent.Executors.RunnableAdapter<T>
 				thisTask.run();
 				return thisResult;
 			}
@@ -44,6 +62,14 @@ public class AsyncExecutor<Result> implements Executor<Result>{
 					((FutureTask<?, ?>)thisTask).onCancelled();
 				}
 			}
+
+			@Override
+			protected void onProgressUpdate(Long... values) {
+				if (thisTask instanceof FutureTask){  
+					((FutureTask<?, ?>)thisTask).onProgressPublished(values);
+				}
+			}
+
 		}; 
 		async.execute();
 	}
@@ -51,7 +77,7 @@ public class AsyncExecutor<Result> implements Executor<Result>{
 	@Override
 	public void execute(Callable<Result> task) {
 		final Callable<Result> thisTask = task;
-		AsyncTask<Void, Integer, Result> async = new AsyncTask<Void, Integer, Result>(){
+		AsyncTask<Void, Long, Result> async = new AsyncTask<Void, Long, Result>(){
 			protected Result doInBackground(Void... params) {
 				Result result = null;
 				try {
@@ -75,6 +101,13 @@ public class AsyncExecutor<Result> implements Executor<Result>{
 			protected void onCancelled() {
 				if (thisTask instanceof FutureTask){
 					((FutureTask<?, ?>)thisTask).onCancelled();
+				}
+			}
+			
+			@Override
+			protected void onProgressUpdate(Long... values) {
+				if (thisTask instanceof FutureTask){  
+					((FutureTask<?, ?>)thisTask).onProgressPublished(values);
 				}
 			}
 		}; 
